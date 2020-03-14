@@ -1,0 +1,51 @@
+<div class="container" fxLayout="row wrap" fxLayout.lt-md="column" fxFlex="100" fxFill>
+    <div fxLayout="column wrap">
+        <mat-card>
+            <!-- <mat-card-header > -->
+                <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                <div class="casesTitle" fxLayout="row wrap" style="text-align: center;" *ngIf="data">
+                    <div fxLayout="column wrap" fxFlex="1">
+                        <h2>{{data.country_name}}</h2>
+                        <p>Number of Reported Cases</p>
+                    </div>
+                    <div fxLayout="column wrap" fxFlex="1">
+                        <mat-card-subtitle class="caseNumber">{{data.cases}}</mat-card-subtitle>
+                        <p>Updated on {{updated}}</p>
+                    </div>
+                </div>
+
+            <!-- </mat-card-header> -->
+
+            <mat-card-content class="blockContainers" fxLayout="column wrap" *ngIf="data">
+                <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+                    <div class="blockInfo" fxFlex='1' fxLayout="column wrap">
+                        <h3>New Cases Today</h3>
+                        <p>{{data.new_cases}}</p>
+                    </div>
+                    <div class="blockInfo" fxLayout="column wrap">
+                        <h3>New Deaths Today</h3>
+                        <p>{{data.new_deaths}}</p>
+                    </div>
+                </div>
+                <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+                    <div class="blockInfo" fxLayout="column wrap">
+                        <h3>Number of Recovered</h3>
+                        <p>{{data.total_recovered}}</p>
+                    </div>
+                    <div class="blockInfo" fxLayout="column wrap">
+                        <h3>Number of Deaths</h3>
+                        <p>{{data.deaths}}</p>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions>
+        </mat-card>
+
+        <div class="social">
+            <a href="https://shikwambana.info">Alphie shikwambana</a>
+        </div>
+    </div>
+</div>

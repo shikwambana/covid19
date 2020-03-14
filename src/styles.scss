@@ -1,1 +1,95 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Baloo+Thambi+2&display=swap");
+
+$primary: #00838f;
+$light: #4fb3bf;
+$dark: #005662;
+
+html,
+body {
+  height: 100%;
+//   background-image: linear-gradient($dark,$light);
+  background-repeat: no-repeat;
+}
+body {
+  margin: 0;
+  font-family: "Baloo Thambi 2", cursive;
+}
+
+.caseNumber {
+    font-size: 6vw;
+}
+.navabr {
+  background-color: $primary;
+}
+
+.navabr h1 {
+  margin: 0;
+  text-align: center;
+  color: white;
+}
+
+.casesTitle {
+// display: flex;
+  margin: 0 auto !important;
+  background: $light;
+  padding: 15px 40px;
+  color: white;
+}
+
+.casesTitle p {
+    margin: 0 !important;
+}
+
+.blockContainers,
+.content {
+  display: flex;
+}
+
+.blockInfo {
+  flex: 1;
+  text-align: center;
+  border-radius: 5px;
+  margin: 15px;
+  color: white;
+  border: 1px solid $light;
+//   max-width: 350px;
+  h3 {
+    background: $light;
+    margin: 0 !important;
+    padding: 10px;
+  }
+  p {
+    font-size: 3vw;
+    margin: 0 !important;
+    color: black;
+  }
+}
+
+
+.social {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 30px 30px;
+}
+
+.social a {
+    text-decoration: none;
+    color: $primary;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .caseNumber {
+        font-size: 10vw;
+    }
+  h3 {
+    font-size: 3vw;
+  }
+
+  p {
+    font-size: 7vw !important;
+  }
+
+}
