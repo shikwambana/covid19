@@ -2,6 +2,9 @@
     <div fxLayout="row wrap" fxLayoutAlign="center center" style="text-align: center">
         <h2>Updates from the National Institue of Communicable Disease <a href="http://www.nicd.ac.za/">(NICD)</a></h2>
     </div>
+    <div *ngIf="!articles" style="margin: 0 auto;text-align: center;">
+        <div class="lds-ripple"><div></div><div></div></div>
+    </div>
     <div class="articles" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxFlex="100" fxFill>
         <div class="article" [routerLink]="['/article/', article.id, article.slug]" [state]="{ data: article }" fxLayout="column wrap" *ngFor="let article of articles" (click)="openArticle(article)">
             <mat-card>

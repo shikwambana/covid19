@@ -1,13 +1,15 @@
 <div fxLayout="column wrap">
     <div class="articleHeader" fxLayout="column" fxLayoutAlign="center center">
         <div class="articleHeaderOverlay">
-        <h2>{{article.slug | titlecase}}</h2>
-        <h3>{{article.date | date : 'full'}}</h3>
-
+        <h2 class="fadeInDown">{{article.slug | titlecase}}</h2>
+        <h3 class="fadeInDown">{{article.date | date : 'full'}}</h3>
+        <div *ngIf="!article">
+            <div class="lds-ripple"><div></div><div></div></div>
+        </div>
         </div>
     </div>
     <div class="articleContainer" fxLayout="row wrap" >
-        <div class="article" fxLayout="column wrap" fxFlex="3">
+        <div class="article fadeInDown" fxLayout="column wrap" fxFlex="3">
 
             <div *ngIf="article" [innerHtml]="article.content.rendered"></div>
         </div>

@@ -31,6 +31,7 @@ export class ArticleComponent implements OnInit {
 
   loadArticle(article) {
     this.article = article
+    window.scroll(0,0);
   }
 
   fetchArticles() {

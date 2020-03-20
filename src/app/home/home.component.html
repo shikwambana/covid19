@@ -17,6 +17,9 @@
             </mat-autocomplete>
         </div>
         <mat-card>
+            <div *ngIf="!data" style="margin: 0 auto;text-align: center;">
+                <div class="lds-ripple"><div></div><div></div></div>
+            </div>
             <!-- <mat-card-header > -->
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <div class="casesTitle" fxLayout="row wrap" style="text-align: center;" *ngIf="data">
