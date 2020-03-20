@@ -16,6 +16,11 @@ body {
   font-family: 'Noto Sans JP', sans-serif;
 }
 
+a {
+  color: $light;
+  text-decoration: none;
+}
+
 .caseNumber {
   font-size: 6vw;
 }
@@ -45,6 +50,7 @@ body {
 .blockContainers,
 .content {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .blockInfo {
@@ -54,6 +60,7 @@ body {
   margin: 15px;
   color: white;
   border: 1px solid $light;
+  min-width: 100px;
 
   h3 {
     background: $light;

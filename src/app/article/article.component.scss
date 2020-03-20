@@ -1,0 +1,45 @@
+.articleContainer {
+    display: flex;
+    padding: 20px;
+    // flex-wrap: wrap;
+}
+
+.articleHeader {
+    text-align: center;
+    background: url('../../assets/corvid19numbers.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    // height: 190px;
+    // padding: 90px 0;    
+}
+
+.articleHeader h2 {
+    font-size: 3vw;
+}
+
+.articleHeader h3 {
+    font-size: 2vw;
+}
+
+.articleHeaderOverlay {
+    background: #000000c7;
+    padding: 90px;
+}
+
+.articleHeader h2, .articleHeader h3 {
+    margin: 0 !important;
+    color: white;
+}
+
+.article {
+    padding: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .articleContainer {
+        flex-wrap: wrap;
+    }
+}
+

@@ -38,7 +38,7 @@
 
             <mat-card-content class="blockContainers" fxLayout="column wrap" *ngIf="data">
                 <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-                    <div class="blockInfo" fxFlex='1' fxLayout="column wrap">
+                    <div class="blockInfo" fxLayout="column wrap">
                         <h3>New Cases Today</h3>
                         <p>{{data.todayCases}}</p>
                     </div>
@@ -53,22 +53,22 @@
                 </div>
                 <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
                     <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Number of Recovered</h3>
+                        <h3>Recovered</h3>
                         <p>{{data.recovered}}</p>
                     </div>
                     <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Number of Critical Cases</h3>
+                        <h3>Critical Cases</h3>
                         <p>{{data.critical}}</p>
                     </div>
                     <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Number of Deaths</h3>
+                        <h3>Deaths</h3>
                         <p>{{data.deaths}}</p>
                     </div>
                 </div>
             </mat-card-content>
         </mat-card>
 
-        <div class="articlesContainer" fxLayout="column wrap">
+        <div class="articlesContainer" #articles id="articles" fxLayout="column wrap">
             <app-articles></app-articles>
         </div>
     </div>

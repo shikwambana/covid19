@@ -1,0 +1,35 @@
+<div fxLayout="column wrap">
+    <div class="articleHeader" fxLayout="column" fxLayoutAlign="center center">
+        <div class="articleHeaderOverlay">
+        <h2>{{article.slug | titlecase}}</h2>
+        <h3>{{article.date | date : 'full'}}</h3>
+
+        </div>
+    </div>
+    <div class="articleContainer" fxLayout="row wrap" >
+        <div class="article" fxLayout="column wrap" fxFlex="3">
+
+            <div *ngIf="article" [innerHtml]="article.content.rendered"></div>
+        </div>
+        <div class="sidebar" fxLayout="column wrap" fxFlex="1">
+            <div class="articles" *ngIf="articles" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxFlex="100"
+                fxFill>
+                <div class="article" fxLayout="column wrap" *ngFor="let article of articles"
+                    [routerLink]="['/article/', article.id, article.slug]" (click)="loadArticle(article)">
+                    <mat-card>
+                        <mat-card-content>
+
+                            <h3>{{article.slug | titlecase}}</h3>
+                            <h6>Posted on {{article.date}}</h6>
+                            <div>
+                                <div [innerHtml]="article.excerpt.rendered | slice:0:250"></div>
+                            </div>
+
+                        </mat-card-content>
+
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

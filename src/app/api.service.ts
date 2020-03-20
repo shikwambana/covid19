@@ -6,6 +6,7 @@ import { HttpClientModule, HttpClient, HttpHeaders } from "@angular/common/http"
 })
 export class ApiService {
   myheaders: HttpHeaders;
+  article;
 
   constructor(private http: HttpClient) {
     this.myheaders = new HttpHeaders();
@@ -30,6 +31,13 @@ export class ApiService {
     //   console.log(httpOptions)
     //   return this.http.get(' https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php', httpOptions)
     return this.http.get('https://coronavirus-19-api.herokuapp.com/countries')
+  }
 
+  //======================================
+  //==============ARTICLES================
+  //======================================
+
+  getArticle(id){
+    return this.http.get('http://www.nicd.ac.za/wp-json/wp/v2/posts/' + id )
   }
 }

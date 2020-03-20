@@ -1,19 +1,21 @@
-<!-- <div class="articles" fxLayout="row wrap" fxLayoutAlign="space-around center" fxFlex="100" fxFill>
-    <div class="article" fxLayout="column wrap" *ngFor="let article of articles" (click)="openArticle(article)"
-        >
-        <mat-card>
-            <mat-card-content>
-
-                <h3>{{article.title.rendered}}</h3>
-                <h6>Posted on {{article.date}}</h6>
-                <div>
-                   <span>{{article.excerpt.rendered}}</span> 
-                    <div [innerHtml]="article.excerpt.rendered | slice:0:250"></div>
-                </div>
-
-
-            </mat-card-content>
-
-        </mat-card>
+<div class="articlesContainer" fxLayout="column wrap">
+    <div fxLayout="row wrap" fxLayoutAlign="center center" style="text-align: center">
+        <h2>Updates from the National Institue of Communicable Disease <a href="http://www.nicd.ac.za/">(NICD)</a></h2>
     </div>
-</div> -->
+    <div class="articles" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxFlex="100" fxFill>
+        <div class="article" [routerLink]="['/article/', article.id, article.slug]" [state]="{ data: article }" fxLayout="column wrap" *ngFor="let article of articles" (click)="openArticle(article)">
+            <mat-card>
+                <mat-card-content>
+    
+                    <h3>{{article.slug | titlecase}}</h3>
+                    <h6>Posted on {{article.date}}</h6>
+                    <div>
+                        <div [innerHtml]="article.excerpt.rendered | slice:0:250"></div>
+                    </div>
+    
+                </mat-card-content>
+    
+            </mat-card>
+        </div>
+    </div>
+</div>
