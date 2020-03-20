@@ -1,0 +1,10 @@
+.articles {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.article { 
+    max-width: 330px;
+    margin: 10px;
+    min-width: 330px;
+}
