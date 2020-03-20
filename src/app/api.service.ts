@@ -11,28 +11,25 @@ export class ApiService {
     this.myheaders = new HttpHeaders();
   }
 
+  getNICDArcticles() {
+    return this.http.get('http://www.nicd.ac.za/wp-json/wp/v2/posts')
+  }
+
+  getAllCases() {
+    return this.http.get('https://coronavirus-19-api.herokuapp.com/all')
+  }
+
   getCoronaData() {
 
-    //     let httpOptions = {
-    //       headers: new HttpHeaders({
-    //         'Access-Control-Allow-Headers' : 'Content-Type,Access-Control-Allow-Methods, Accept, Access-Control-Allow-Headers,Access-Control-Allow-Origin,',
-    //         'Content-Type': 'application/json',
-    //         'Accept': '*',
-    //         'Access-Control-Allow-Origin': 'http://localhost/4200/',
-    //         'Access-Control-Allow-Methods' : 'GET'
-    //       })
-    //     }
-    // console.log(httpOptions)
-    //     return this.http.get('https://corona.lmao.ninja/all', httpOptions)
+    //   let httpOptions = {
+    //     headers: new HttpHeaders({
+    //       'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
+    //       'x-rapidapi-key': '2aa7627439msh8a6774bc46bfaf0p1b460bjsn649d533044fa'
+    //     })
+    //   }
+    //   console.log(httpOptions)
+    //   return this.http.get(' https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php', httpOptions)
+    return this.http.get('https://coronavirus-19-api.herokuapp.com/countries')
 
-
-    let httpOptions = {
-      headers: new HttpHeaders({
-        'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
-        'x-rapidapi-key': '2aa7627439msh8a6774bc46bfaf0p1b460bjsn649d533044fa'
-      })
-    }
-    console.log(httpOptions)
-    return this.http.get(' https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php', httpOptions)
   }
 }

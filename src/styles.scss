@@ -1,23 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css?family=Baloo+Thambi+2&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap');
 
 $primary: #00838f;
 $light: #4fb3bf;
-$dark: #005662;
+$dark: #3a3a3a;
 
 html,
 body {
   height: 100%;
-//   background-image: linear-gradient($dark,$light);
+  //   background-image: linear-gradient($dark,$light);
   background-repeat: no-repeat;
 }
 body {
   margin: 0;
-  font-family: "Baloo Thambi 2", cursive;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .caseNumber {
-    font-size: 6vw;
+  font-size: 6vw;
 }
 .navabr {
   background-color: $primary;
@@ -30,15 +30,16 @@ body {
 }
 
 .casesTitle {
-// display: flex;
+  // display: flex;
   margin: 0 auto !important;
   background: $light;
   padding: 15px 40px;
   color: white;
 }
 
-.casesTitle p {
-    margin: 0 !important;
+.casesTitle p,
+.casesTitle h2 {
+  margin: 0 !important;
 }
 
 .blockContainers,
@@ -53,12 +54,13 @@ body {
   margin: 15px;
   color: white;
   border: 1px solid $light;
-//   max-width: 350px;
+
   h3 {
     background: $light;
     margin: 0 !important;
     padding: 10px;
   }
+
   p {
     font-size: 3vw;
     margin: 0 !important;
@@ -66,24 +68,45 @@ body {
   }
 }
 
-
 .social {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 30px 30px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 30px 30px;
 }
 
 .social a {
-    text-decoration: none;
-    color: $primary;
+  text-decoration: none;
+  color: $primary;
+}
+
+.searchBar {
+  display: flex;  
+  margin-top: 20px !important;
+  // border: 1px $dark solid;
+  padding-left: 2px;
+  max-width: 220px;
+  margin: 10px auto;
+  border-radius: 5px;
+  box-shadow: 0 -2px 5px -1px rgba(0, 0, 0, 0.15), 0 0px 2px 0px rgba(0, 0, 0, 0.15), 0 4px 4px rgba(0, 0, 0, 0.15),
+    0 5px 8px rgba(0, 0, 0, 0.15);
+}
+
+.searchBar input,
+.searchBar input:focus,
+.mat-option-text {
+  border: none;
+  outline: none;
+  // text-align: center !important;
+  height: 30px;
+  font-size: 15px;
+  padding-left: 10px;
 }
 
 @media only screen and (max-width: 600px) {
-
-    .caseNumber {
-        font-size: 10vw;
-    }
+  .caseNumber {
+    font-size: 10vw;
+  }
   h3 {
     font-size: 3vw;
   }
@@ -92,4 +115,35 @@ body {
     font-size: 7vw !important;
   }
 
+  .casesTitle p {
+    font-size: 15px !important;
+  }
+}
+
+.logo {
+  width: 40px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 10px;
+}
+//===============================
+// animation
+//===============================
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInDown {
+  animation: fadeInDown 0.5s;
 }
