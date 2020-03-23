@@ -11,6 +11,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { InfoComponent } from './info/info.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { InfoComponent } from './info/info.component';
     MatExpansionModule,
     MatMenuModule,
     FormsModule, 
+    NgxChartsModule,
     ReactiveFormsModule
   ],
   providers: [],

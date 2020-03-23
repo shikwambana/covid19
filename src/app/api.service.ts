@@ -21,18 +21,16 @@ export class ApiService {
   }
 
   getCoronaData() {
-
-    //   let httpOptions = {
-    //     headers: new HttpHeaders({
-    //       'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
-    //       'x-rapidapi-key': '2aa7627439msh8a6774bc46bfaf0p1b460bjsn649d533044fa'
-    //     })
-    //   }
-    //   console.log(httpOptions)
-    //   return this.http.get(' https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php', httpOptions)
     return this.http.get('https://coronavirus-19-api.herokuapp.com/countries')
   }
 
+  //======================================
+  //==============South Africa============
+  //======================================
+
+  getConfirmedCaseTimeLine(){
+    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/covid19za_timeline_confirmed.csv', {responseType: 'text'})
+  }
   //======================================
   //==============ARTICLES================
   //======================================

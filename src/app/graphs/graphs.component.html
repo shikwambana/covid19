@@ -1,1 +1,33 @@
-<p>graphs works!</p>
+<div>
+    <div class="articleHeader" fxLayout="column" fxLayoutAlign="center center">
+        <div class="articleHeaderOverlay">
+            <h2 class="fadeInDown">Data on Covid-19</h2>
+            <div style="display: none;">
+                <div class="lds-ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div fxLayout="column wrap" fxLayoutAlign="center center">
+        <h3 style="text-align: center;">
+            Number of new Cases per Day vs Total number of Cases
+        </h3>
+        <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [showXAxisLabel]="showXAxisLabel" [xAxis]="xAxis"
+            [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="graph">
+        </ngx-charts-line-chart>
+
+        <div style="padding-left: 40px;" fxLayout="column wrap" fxLayoutAlign="center center">
+        <p style="color: #4fb3bf;margin: 0">
+            Total number of Cases
+        </p>
+        <p style="color: #5AA454;margin: 0">
+            Number of new Cases per Day
+        </p>
+        </div>
+        
+    </div>
+
+</div>

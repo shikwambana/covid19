@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from "../api.service";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-graphs',
@@ -6,55 +8,115 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./graphs.component.scss']
 })
 export class GraphsComponent implements OnInit {
+  timelineCases: any[];
+  data: any[] = [];
+  graph: { name: string; series: any[]; }[];
+  confirmedCases: any[] = [];
 
-  test = {"id":16587,"date":"2020-03-19T15:21:11","date_gmt":"2020-03-19T13:21:11","guid":{"rendered":"http:\/\/www.nicd.ac.za\/?p=16587"},"modified":"2020-03-19T15:21:11","modified_gmt":"2020-03-19T13:21:11","slug":"covid-19-update-21","status":"publish","type":"post","link":"http:\/\/www.nicd.ac.za\/covid-19-update-21\/","title":{"rendered":"COVID-19 update"},"content":{"rendered":"<p>Following the expansion of national-wide routine testing for SARS-CoV-2 in public and private laboratories, the National Institute for Communicable Diseases (NICD), a division of the National Health Laboratory Service, will start to transition to functioning as a reference and surveillance laboratory for COVID-19. This will include resolving and troubleshooting indeterminate and other unusual results as well as providing other reference laboratory functions. In addition, the NICD will conduct testing on routine surveillance samples to monitor the possible spread of\u00a0 COVID-19 across the country. Sequencing of early isolates of SARS-CoV-2 is underway and this information will be shared as soon possible.<\/p>\n<p>As of 19 March 2020, the NICD confirms 34 new COVID-19 cases bringing the total number of COVID-19 cases to 150 people, the majority of whom are based in Gauteng, Western Cape and KwaZulu-Natal provinces respectively. Of the 34 newly confirmed COVID-19 cases, the majority are imported and two are locally transmitted. Contact tracing of all persons that the patients might have come into contact with is underway. The provincial breakdown of the new cases is as follows:<\/p>\n<p><strong>\u00a0Gauteng Province <\/strong><\/p>\n<ul>\n<li>A 41-year-old female who travelled to the Democratic Republic of Congo<\/li>\n<li>A 43-year-old female who travelled to the Democratic Republic of Congo<\/li>\n<li>A 37-year-old female with no international travel history<\/li>\n<li>A 54-year-old female who travelled to the United Kingdom<\/li>\n<li>A 58-year-old male who travelled to the United Kingdom<\/li>\n<li>A 38-year-old male who travelled to France<\/li>\n<li>A 70-year-old female who travelled to the United States of America<\/li>\n<li>A 30-year-old male who travelled to Spain<\/li>\n<li>A 45-year-old male who travelled to the Democratic Republic of Congo<\/li>\n<li>An 85-year-old male who travelled to Switzerland<\/li>\n<li>A 64-year-old male who travelled to Vietnam and Thailand<\/li>\n<li>A 41-year-old male who travelled to the Netherlands<\/li>\n<li>A 23-year-old male with pending travel history<\/li>\n<li>A 5-year-old female with pending travel history<\/li>\n<li>A 44-year-old male with pending travel history<\/li>\n<\/ul>\n<p><strong>KwaZulu-Natal Province <\/strong><\/p>\n<ul>\n<li>A 71-year-old female who travelled to the United Kingdom<\/li>\n<li>A 26-year-old male who travelled to Mexico and the United States of America<\/li>\n<li>A 29-year-old female with pending travel history<\/li>\n<\/ul>\n<p><strong>Mpumalanga Province <\/strong><\/p>\n<ul>\n<li>A 56-year-old female who travelled to France<\/li>\n<\/ul>\n<p><strong>Western Cape Province <\/strong><\/p>\n<ul>\n<li>A 53-year-old female who travelled to the United Kingdom<\/li>\n<li>A 30-year-old female who travelled to the Netherlands and Qatar<\/li>\n<li>A 45-year-old male who travelled to Mexico<\/li>\n<li>A 70-year-old female who travelled to the United States of America<\/li>\n<li>A 25-year-old female who travelled to the United Kingdom<\/li>\n<li>A 37-year-old female who travelled to the United Kingdom<\/li>\n<li>A 43-year-old female who travelled to the United States of America<\/li>\n<li>A 31-year-old male who travelled to Spain and the Netherlands<\/li>\n<li>A 53-year-old female who travelled to Switzerland, Austria, Czech Republic and Germany<\/li>\n<li>A 22-year-old female who travelled to the United Kingdom<\/li>\n<li>A 63-year-old male who travelled to Switzerland, Czech Republic and Germany<\/li>\n<li>A 22-year-old male who travelled to Spain and the Netherlands<\/li>\n<li>A 32-year-old male who travelled to the United States of America<\/li>\n<li>A 37-year-old male with pending travel history<\/li>\n<li>A 34-year-old male with pending travel history<\/li>\n<\/ul>\n","protected":false},"excerpt":{"rendered":"<p>Following the expansion of national-wide routine testing for SARS-CoV-2 in public and private laboratories, the National Institute for Communicable Diseases (NICD), a division of the National Health Laboratory Service, will start to transition to functioning as a reference and surveillance laboratory for COVID-19. This will include resolving and troubleshooting indeterminate and other unusual results as [&hellip;]<\/p>\n","protected":false},"author":11,"featured_media":15750,"comment_status":"open","ping_status":"open","sticky":false,"template":"","format":"standard","meta":[],"categories":[11],"tags":[],"_links":{"self":[{"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/posts\/16587"}],"collection":[{"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/posts"}],"about":[{"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/types\/post"}],"author":[{"embeddable":true,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/users\/11"}],"replies":[{"embeddable":true,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/comments?post=16587"}],"version-history":[{"count":2,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/posts\/16587\/revisions"}],"predecessor-version":[{"id":16589,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/posts\/16587\/revisions\/16589"}],"wp:featuredmedia":[{"embeddable":true,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/media\/15750"}],"wp:attachment":[{"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/media?parent=16587"}],"wp:term":[{"taxonomy":"category","embeddable":true,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/categories?post=16587"},{"taxonomy":"post_tag","embeddable":true,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/tags?post=16587"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}
-  constructor() { }
+  // options
+  legend: boolean = true;
+  showLabels: boolean = true;
+  animations: boolean = true;
+  xAxis: boolean = true;
+  yAxis: boolean = true;
+  showYAxisLabel: boolean = true;
+  showXAxisLabel: boolean = true;
+  xAxisLabel: string = 'Date';
+  yAxisLabel: string = 'Confirmed Cases';
+  timeline: boolean = true;
+  view: any[] = [350, 400];
+  colorScheme = {
+    domain: ['#5AA454', '#4fb3bf', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+  };
 
-  dayObj = {
-    date : '',
-    totalNoToday : 0,
-    newCases: 0,
-    cases : [
-      {
-        'province' : '',
-        'info' : [
-          {
-            age: 0,
-            gender : '',
-            travelled: ''
-          }
-        ]
-      }
-    ]
-  }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.extractData()
   }
 
-  extractData(){
+  extractData() {
+    this.api.getConfirmedCaseTimeLine().subscribe(res => {
+      this.csvJSON(res)
+    })
+  }
 
-    //get the date
+  // convert csv to json
+  csvJSON(csv) {
+    var lines = csv.split("\n");
+    var result = [];
+    var headers = lines[0].split(",");
 
-    const dateReg = /[1-2][0-9] \w* 2020/;
+    // loop through all the lines excpet the first 1 (index = 0) 
+    for (var i = 1; i < lines.length; i++) {
+      var obj = {};
+      var currentline = lines[i].split(",");
 
-    let str = this.test.content.rendered.match(dateReg)
-    console.log(str)
-    console.log(new Date(str[0]))
+      // loop through the skipped line (headers = lines[0])
+      for (var j = 0; j < headers.length; j++) {
+        obj[headers[j]] = currentline[j];
+      }
 
-    //get the total number of people 
+      result.push(obj);
+    }
+    // call filter function
+    result.pop();
+    console.log(result)
+    this.timelineCases = result;
 
-    const totalNo = /\d{1,10}(?= people)/;
+    // this.data = 
+    this.buildData();
+  }
 
-    let stri = this.test.content.rendered.match(totalNo)
-    console.log(Number(stri[0]))
+  buildData() {
 
-  //get the province then store the data 
-    
-    const province = /\w*(?= Province)/
+    this.timelineCases.forEach(info => {
 
-    let strin = this.test.content.rendered.match(province)
-    console.log(strin[0])
+      let item = this.timelineCases.filter(obj => {
+        return obj['date'] === info['date']
+      })
 
+      let obj = {
+        value: item.length,
+        name: item[0]['date']
+      }
+      console.log(!this.data.includes(obj))
+
+      if (!this.data.some(info => info['name'] === obj['name'])) {
+        this.data.push(obj)
+      }
+
+    });
+
+    this.graph = [{
+      name: "Confirmed Cases",
+      series: this.data
+    }]
+
+    console.log(this.data)
+
+    let tempData = this.data
+    let arr = []
+
+    for (var i = 0; i < tempData.length; i++) {
+      if (!tempData[i - 1]) {
+        this.confirmedCases.push(tempData[i])
+      } else {
+        let temp = 0;
+        for (var j = i; j >= 0; j--) {
+          temp += tempData[j]['value'];
+        }
+        let obj = {
+          name: tempData[i]['name'],
+          value: temp
+        }
+        this.confirmedCases.push(obj)
+      }
+    }
+    this.graph.push({
+      name: "Total Cases per Day",
+      series: this.confirmedCases
+    })
+    console.log(this.confirmedCases)
   }
 }
