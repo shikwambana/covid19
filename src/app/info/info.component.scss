@@ -1,0 +1,26 @@
+mat-chip-list-wrapper {
+    display: inline-flex !important;
+    padding: 30px 0;
+}
+
+h1, h2, h3, h4 {
+    margin: 0 !important;
+}
+
+.numbers p {
+    margin: 0 !important;
+}
+
+.numberCard {
+    background-color: #00838f;
+    color: white;
+    padding: 20px;
+    box-shadow: 5px 5px 10px 1px #4fb3bf;
+    margin: 10px;
+    min-width: 130px;
+
+}
+
+mat-expansion-panel {
+    margin: 0px 12px;
+}

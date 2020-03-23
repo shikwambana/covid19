@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap");
 
 $primary: #00838f;
 $light: #4fb3bf;
@@ -13,7 +13,12 @@ body {
 }
 body {
   margin: 0;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+a {
+  color: $light;
+  text-decoration: none;
 }
 
 .caseNumber {
@@ -45,6 +50,7 @@ body {
 .blockContainers,
 .content {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .blockInfo {
@@ -54,6 +60,7 @@ body {
   margin: 15px;
   color: white;
   border: 1px solid $light;
+  min-width: 100px;
 
   h3 {
     background: $light;
@@ -62,7 +69,7 @@ body {
   }
 
   p {
-    font-size: 3vw;
+    font-size: 5vw;
     margin: 0 !important;
     color: black;
   }
@@ -81,7 +88,7 @@ body {
 }
 
 .searchBar {
-  display: flex;  
+  display: flex;
   margin-top: 20px !important;
   // border: 1px $dark solid;
   padding-left: 2px;
@@ -111,9 +118,9 @@ body {
     font-size: 3vw;
   }
 
-  p {
-    font-size: 7vw !important;
-  }
+  // .casesTitle p {
+  //   font-size: 7vw !important;
+  // }
 
   .casesTitle p {
     font-size: 15px !important;
@@ -125,9 +132,85 @@ body {
   height: auto;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   padding: 5px 10px;
 }
+
+.menuBtn {
+  width: 40px;
+  height: auto;
+  top: 0;
+  right: 0;
+  position: absolute;
+  margin: 10px;
+  background: none;
+  border: none;
+  color: white;
+  outline: none;
+}
+
+.menuBtn:active{
+  box-shadow: 0px 0px 3px 1px $light;
+}
+
+.infoBtn {
+  height: 30px;
+  width: 30px;
+  font-size: 34px;
+  color: $light;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.mat-tab-body {
+  padding: 12px;
+}
+
+.articleContainer {
+  display: flex;
+  padding: 20px;
+  // flex-wrap: wrap;
+}
+
+.articleHeader {
+  text-align: center;
+  background: url("./assets/corvid19numbers.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  // height: 190px;
+  // padding: 90px 0;
+}
+
+.articleHeader h2 {
+  font-size: 3vw;
+}
+
+.articleHeader h3 {
+  font-size: 2vw;
+}
+
+.articleHeaderOverlay {
+  background: #000000c7;
+  padding: 30px;
+}
+
+.articleHeader h2,
+.articleHeader h3 {
+  margin: 0 !important;
+  color: white;
+}
+
+.article {
+  padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .articleContainer {
+    flex-wrap: wrap;
+  }
+}
+
 //===============================
 // animation
 //===============================
@@ -146,4 +229,71 @@ body {
 
 .fadeInDown {
   animation: fadeInDown 0.5s;
+}
+
+/// Loader
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid $light;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+@keyframes bounce {
+  from,
+  20%,
+  53%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0);
+  }
+
+  40%,
+  43% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.bounce {
+  animation: bounce 1s;
+  transform-origin: center bottom;
 }
