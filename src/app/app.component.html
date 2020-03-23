@@ -1,7 +1,14 @@
+<button class="menuBtn" mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+<mat-menu #menu="matMenu">
+  <button [routerLink]="['/']" mat-menu-item>Home</button>
+  <button [routerLink]="['/information']" mat-menu-item>Information</button>
+</mat-menu>
 <div class="navabr">
     <h1 [routerLink]="['/']" style="cursor: pointer;">Corvid19 Cases</h1>
 </div>
 <a href="https://shikwambana.info" target="_blank">
     <img class="logo" src="../assets/Alphie Shikwambana new logo_.png">
 </a>
+
+<!-- <mat-icon [routerLink]="['/information']" class="infoBtn bounce">info_outline</mat-icon> -->
 <router-outlet></router-outlet>

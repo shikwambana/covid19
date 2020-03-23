@@ -8,6 +8,8 @@
                 style="padding: 4px 0;display: flex;cursor: pointer;">
                 <mat-icon>clear</mat-icon>
                 </div>
+<mat-icon [routerLink]="['/information']" class="infoBtn bounce">info_outline</mat-icon>
+
             </div>
             <mat-autocomplete (optionSelected)="updateCountry($event.option.value,searchTerm)" autoActiveFirstOption
                 #countryResult="matAutocomplete">
@@ -71,8 +73,8 @@
             </mat-card-content>
         </mat-card>
 
-        <div class="articlesContainer" #articles id="articles" fxLayout="column wrap">
-            <app-articles></app-articles>
-        </div>
+            <!-- <div class="articlesContainer" #articles id="articles" fxLayout="column wrap">
+                <app-articles></app-articles>
+            </div> -->
     </div>
 </div>
