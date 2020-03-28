@@ -11,6 +11,11 @@
 <mat-icon [routerLink]="['/information']" class="infoBtn bounce">info_outline</mat-icon>
 
             </div>
+            <div fxLayout="row nowrap" style="overflow-x: auto; overflow-y: hidden; width: 300px;margin: 0 auto;" class="countriesChipList">
+                <mat-chip-list *ngIf="countries">
+                    <mat-chip (click)="updateCountry(country.country,searchTerm)" *ngFor="let country of countries">{{country.country}}</mat-chip>
+                  </mat-chip-list>
+            </div>
             <mat-autocomplete (optionSelected)="updateCountry($event.option.value,searchTerm)" autoActiveFirstOption
                 #countryResult="matAutocomplete">
                 <mat-option *ngFor="let option of filteredOptions" #selectedCountry [value]="option.country">

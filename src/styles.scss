@@ -75,6 +75,17 @@ a {
   }
 }
 
+.mat-chip-list-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap !important;
+}
+
+.mat-chip {
+  overflow: inherit !important;
+  margin: 10px 4px !important;
+}
+
 .social {
   position: absolute;
   bottom: 0;
