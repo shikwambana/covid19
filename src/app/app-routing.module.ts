@@ -9,7 +9,7 @@ import { InfoComponent } from './info/info.component';
 const routes: Routes = [
   { path: '', component : HomeComponent},
   { path: 'article/:articleID/:articleTitle', component: ArticleComponent},
-  { path: 'thenumbers', component: GraphsComponent},
+  { path: 'corvid19statistics', component: GraphsComponent},
   { path: 'information', component: InfoComponent, children : [
     { path: ':section', component: InfoComponent}
   ]}
