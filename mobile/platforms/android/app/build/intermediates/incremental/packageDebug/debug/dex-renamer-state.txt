@@ -1,0 +1,4 @@
+#Sat Mar 28 04:15:05 CAT 2020
+base.0=C\:\\Users\\Neutrinos\\Documents\\corvid19\\mobile\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
