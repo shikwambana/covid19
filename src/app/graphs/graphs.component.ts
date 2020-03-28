@@ -19,7 +19,7 @@ export class GraphsComponent implements OnInit {
   public lineChartType = 'line';
   public lineChartLegend = true;
   public lineChartData = [
-    { data: [], label: 'Cases per Day' },
+    { data: [], label: 'Total Cases' },
     { data: [], label: 'New Cases per Day' }
   ];
   public lineChartOptions: (ChartOptions) = {

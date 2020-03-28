@@ -14,7 +14,7 @@
     <div fxLayout="row wrap" fxLayoutAlign="center center" class="graphsContainer" fxFlex="100">
         
         <div fxLayout="column" fxLayoutAlign="center center" class="graphContainer">
-            <div  style="max-width: 700px;" *ngIf="pieChartData">
+            <div  style="max-width: 700px;"  *ngIf="pieChartData">
                 <h2 style="text-align: center;">Number of Cases per Province</h2>
                 <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [colors]="pieChartColors"
                     [plugins]="pieChartPlugins" [options]="pieChartOptions" [legend]="pieChartLegend"
