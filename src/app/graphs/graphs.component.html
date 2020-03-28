@@ -1,7 +1,7 @@
 <div>
     <div class="articleHeader" fxLayout="column" fxLayoutAlign="center center">
         <div class="articleHeaderOverlay">
-            <h2 class="fadeInDown">Data on Covid-19</h2>
+            <h2 class="fadeInDown">South African Stats</h2>
             <div style="display: none;">
                 <div class="lds-ripple">
                     <div></div>
@@ -11,23 +11,49 @@
         </div>
     </div>
 
-    <div fxLayout="column wrap" fxLayoutAlign="center center">
-        <h3 style="text-align: center;">
-            Number of new Cases per Day vs Total number of Cases
-        </h3>
-        <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [showXAxisLabel]="showXAxisLabel" [xAxis]="xAxis"
-            [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="graph">
-        </ngx-charts-line-chart>
-
-        <div style="padding-left: 40px;" fxLayout="column wrap" fxLayoutAlign="center center">
-        <p style="color: #4fb3bf;margin: 0">
-            Total number of Cases
-        </p>
-        <p style="color: #5AA454;margin: 0">
-            Number of new Cases per Day
-        </p>
-        </div>
+    <div fxLayout="row wrap" fxLayoutAlign="center center" class="graphsContainer" fxFlex="100">
         
+        <div fxLayout="column" fxLayoutAlign="center center" class="graphContainer">
+            <div  *ngIf="pieChartData">
+                <h2 style="text-align: center;">Number of Cases per Province</h2>
+                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [colors]="pieChartColors"
+                    [plugins]="pieChartPlugins" [options]="pieChartOptions" [legend]="pieChartLegend"
+                    [chartType]="pieChartType"></canvas>
+            </div>
+
+            <div fxLayout="row wrap" style="display: flex; margin: 20px 0;">
+                <h5 style="margin: 14px;">Chart Type: </h5>
+                <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                    <mat-button-toggle [checked]="true" (click)="changeProvGraph('bar')" value="line">Bar Graph
+                    </mat-button-toggle>
+                    <mat-button-toggle (click)="changeProvGraph('pie')" value="pie">Pie Chart</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="center center" class="graphContainer">
+
+            <div  *ngIf="genderChartData" >
+                <h2 style="text-align: center;">Gender</h2>
+                <canvas baseChart [data]="genderChartData" [labels]="genderChartLabels" [colors]="genderChartColors"
+                    [options]="pieChartOptions" [legend]="genderChartLegend" [chartType]="genderChartType"></canvas>
+            </div>
+        </div>
     </div>
 
+    <div fxLayout="column" style="margin: 30px;" fxLayoutAlign="center center">
+        <div style="max-width: 700px;" *ngIf="lineChartLabels">
+        <h2 style="text-align: center;">Timeline of New and Total Cases</h2>
+            <canvas baseChart width="200" height="200" [datasets]="lineChartData" [labels]="lineChartLabels"
+                [options]="lineChartOptions" [legend]="lineChartLegend" [chartType]="lineChartType"></canvas>
+        </div>
+        <div fxLayout="row wrap" style="display: flex; margin: 20px 0;">
+            <h5 style="margin: 14px;">Chart Type: </h5>
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle [checked]="true" (click)="changeGraph('line')" value="line">Line Graph
+                </mat-button-toggle>
+                <mat-button-toggle (click)="changeGraph('bar')" value="bar">Bar Graph</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+    </div>
 </div>

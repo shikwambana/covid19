@@ -1,0 +1,10 @@
+.graphsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 30px;
+}
+
+.graphContainer {
+    flex: 1;
+}

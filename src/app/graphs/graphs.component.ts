@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../api.service";
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartOptions } from 'chart.js';
+import { Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-graphs',
@@ -10,24 +11,64 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 export class GraphsComponent implements OnInit {
   timelineCases: any[];
   data: any[] = [];
-  graph: { name: string; series: any[]; }[];
   confirmedCases: any[] = [];
 
-  // options
-  legend: boolean = true;
-  showLabels: boolean = true;
-  animations: boolean = true;
-  xAxis: boolean = true;
-  yAxis: boolean = true;
-  showYAxisLabel: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Date';
-  yAxisLabel: string = 'Confirmed Cases';
-  timeline: boolean = true;
-  view: any[] = [350, 400];
-  colorScheme = {
-    domain: ['#5AA454', '#4fb3bf', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
-  };
+  //============================================================================
+  // Line chart
+  public lineChartLabels = [];
+  public lineChartType = 'line';
+  public lineChartLegend = true;
+  public lineChartData = [
+    { data: [], label: 'Cases per Day' },
+    { data: [], label: 'New Cases per Day' }
+  ];
+  public lineChartOptions: (ChartOptions) = {
+    responsive: true
+  }
+  provinces: any[] = [];
+  listOfProvinces = ['GP', 'KZN', 'WC', 'LP', 'EC', 'FS', 'NC', 'NW', 'MP', 'UNK']
+  gender = [{name:'Male',value:'male'},{name:'Female',value:'female'},{name:'Not Specified',value:'not specified'}]
+
+  //==================================================================================
+  // Province chart
+
+  public pieChartLabels: Label[] = [];
+  public pieChartData: number[] = [];
+  public pieChartType = 'bar';
+  public pieChartLegend = false;
+  public pieChartColors = [
+    {
+      backgroundColor: ['#520180','#56d4c3','#af92bf','#4cda31','#b96ae8','#52c7f5','#46a291','#131d7a','#c35647','#669fbc'],
+    },
+  ];
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label;
+        },
+      },
+    }
+  }
+
+  //============================================================================
+  // gender type chart
+  public genderChartLabels: Label[] = [];
+  public genderChartData: number[] = [];
+  public genderChartType = 'pie';
+  public genderChartLegend = true;
+  public genderChartColors = [
+    {
+      backgroundColor: ['#52c7f5','#4ec054'],
+    },
+  ];
+
+  genderType: any[] = [];
 
   constructor(private api: ApiService) { }
 
@@ -64,9 +105,57 @@ export class GraphsComponent implements OnInit {
     console.log(result)
     this.timelineCases = result;
 
-    // this.data = 
+    this.sortByProvince()
     this.buildData();
   }
+
+  sortByProvince() {
+
+    this.listOfProvinces.forEach(prov => {
+
+      let item = this.timelineCases.filter(obj => {
+        return obj['province'] === prov
+      })
+
+      let obj = {
+        y: item.length,
+        label: item[0]['province']
+      }
+
+      this.provinces.push(obj)
+    })
+
+    this.pieChartLabels = this.provinces.map(res => {
+      return res['label']
+    })
+
+    this.pieChartData = this.provinces.map(res => {
+      return res['y']
+    })
+
+    this.gender.forEach(gender =>{
+      let item = this.timelineCases.filter(obj =>{
+        return obj['gender'] === gender['value']
+      })
+
+      let obj = {
+        y: item.length,
+        label: item[0]['gender']
+      }
+
+      this.genderType.push(obj)
+    })
+
+    this.genderChartLabels = this.genderType.map(res => {
+      return res['label']
+    })
+
+    this.genderChartData = this.genderType.map(res => {
+      return res['y']
+    })
+    console.log(this.genderType)
+  }
+
 
   buildData() {
 
@@ -77,21 +166,15 @@ export class GraphsComponent implements OnInit {
       })
 
       let obj = {
-        value: item.length,
-        name: item[0]['date']
+        y: item.length,
+        label: item[0]['date']
       }
-      console.log(!this.data.includes(obj))
 
-      if (!this.data.some(info => info['name'] === obj['name'])) {
+      if (!this.data.some(info => info['label'] === obj['label'])) {
         this.data.push(obj)
       }
 
     });
-
-    this.graph = [{
-      name: "Confirmed Cases",
-      series: this.data
-    }]
 
     console.log(this.data)
 
@@ -104,19 +187,36 @@ export class GraphsComponent implements OnInit {
       } else {
         let temp = 0;
         for (var j = i; j >= 0; j--) {
-          temp += tempData[j]['value'];
+          temp += tempData[j]['y'];
         }
         let obj = {
-          name: tempData[i]['name'],
-          value: temp
+          label: tempData[i]['label'],
+          y: temp
         }
         this.confirmedCases.push(obj)
       }
     }
-    this.graph.push({
-      name: "Total Cases per Day",
-      series: this.confirmedCases
+
+    this.lineChartLabels = this.confirmedCases.map(res => {
+      return res['label']
     })
-    console.log(this.confirmedCases)
+
+    this.lineChartData[0]['data'] = this.confirmedCases.map(res => {
+      return res['y']
+    })
+
+    this.lineChartData[1]['data'] = this.data.map(res => {
+      return res['y']
+    })
+
+    console.log(this.lineChartLabels, this.lineChartData)
+  }
+
+  changeGraph(type){
+    this.lineChartType = type;
+  }
+
+  changeProvGraph(type){
+    this.pieChartType = type;
   }
 }
