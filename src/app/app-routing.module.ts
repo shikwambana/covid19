@@ -10,7 +10,7 @@ import { HopitalsComponent } from './hopitals/hopitals.component';
 const routes: Routes = [
   { path: '', component : HomeComponent},
   { path: 'article/:articleID/:articleTitle', component: ArticleComponent},
-  { path: 'corvid19statistics', component: GraphsComponent},
+  { path: 'covid19statistics', component: GraphsComponent},
   { path: 'hospitals', component: HopitalsComponent},
   { path: 'information', component: InfoComponent, children : [
     { path: ':section', component: InfoComponent}
