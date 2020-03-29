@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   updated;
   searchCountry = new FormControl();
   filteredOptions //: Observable<string[]>;
+  noInternet = false;
 
   constructor(private api: ApiService) { }
 
@@ -41,6 +42,8 @@ export class HomeComponent implements OnInit {
         this.showCountryData("South Africa")
       }
     }, err => {
+      this.noInternet = true
+      alert('Check internet connection and reload')
       console.log(err)
     })
   }
@@ -58,7 +61,6 @@ export class HomeComponent implements OnInit {
   updateCountry(country, element) {
     console.log('got it', country)
     this.showCountryData(country)
-    this.hideKeyboard(element)
   }
 
   clearText() {

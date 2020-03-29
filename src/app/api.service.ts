@@ -29,8 +29,13 @@ export class ApiService {
   //======================================
 
   getConfirmedCaseTimeLine(){
-    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/covid19za_timeline_confirmed.csv', {responseType: 'text'})
+    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/covid19za_timeline_confirmed.csv', {responseType: 'text'});
   }
+
+  getHospitals(){
+    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/health_system_za_public_hospitals.csv', {responseType: 'text'});
+  }
+
   //======================================
   //==============ARTICLES================
   //======================================

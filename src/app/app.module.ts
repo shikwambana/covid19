@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'; 
-import { MatCardModule, MatAutocompleteModule, MatMenuModule, MatButtonToggleModule, MatIconModule, MatTabsModule, MatExpansionModule, MatChipsModule } from '@angular/material';
+import { MatCardModule, MatAutocompleteModule, MatMenuModule, MatButtonToggleModule, MatIconModule, MatFormFieldModule,MatInputModule, MatTableModule, MatPaginatorModule, MatTabsModule, MatExpansionModule, MatChipsModule } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
@@ -13,6 +13,7 @@ import { GraphsComponent } from './graphs/graphs.component';
 import { InfoComponent } from './info/info.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartsModule } from 'ng2-charts';
+import { HopitalsComponent } from './hopitals/hopitals.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ChartsModule } from 'ng2-charts';
     ArticlesComponent,
     ArticleComponent,
     GraphsComponent,
-    InfoComponent
+    InfoComponent,
+    HopitalsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,10 @@ import { ChartsModule } from 'ng2-charts';
     MatExpansionModule,
     MatMenuModule,
     MatButtonToggleModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatFormFieldModule, 
+    MatInputModule,
     FormsModule, 
     NgxChartsModule,
     ChartsModule,

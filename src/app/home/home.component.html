@@ -1,20 +1,23 @@
 <div class="container" fxLayout="row wrap" fxLayout.lt-md="column" fxFlex="100" fxFill>
     <div fxLayout="column wrap">
-        <div style="padding-top: 10px;" fxLayout="column wrap" style="text-align: center;" fxLayoutAlign="space-evenly center">
+        <div style="padding-top: 10px;" fxLayout="column wrap" style="text-align: center;"
+            fxLayoutAlign="space-evenly center">
             <div class="searchBar fadeInDown" fxLayout="row nowrap" fxLayoutAlign="center start" fxFlex="100">
-                <input MatInput type="text" style="max-width: 170px;" placeholder="Search for a Country" matInput [formControl]="searchCountry"
-                    [matAutocomplete]="countryResult" #searchTerm>
+                <input MatInput type="text" style="max-width: 170px;" placeholder="Search for a Country" matInput
+                    [formControl]="searchCountry" [matAutocomplete]="countryResult" #searchTerm>
                 <div fxLayout="column wrap" fxLayoutAlign="center center" fxFlex="10" (click)="clearText()"
-                style="padding: 4px 0;display: flex;cursor: pointer;">
-                <mat-icon>clear</mat-icon>
+                    style="padding: 4px 0;display: flex;cursor: pointer;">
+                    <mat-icon>clear</mat-icon>
                 </div>
-<mat-icon [routerLink]="['/information']" class="infoBtn bounce">info_outline</mat-icon>
+                <mat-icon [routerLink]="['/information']" class="infoBtn bounce">info_outline</mat-icon>
 
             </div>
-            <div fxLayout="row nowrap" style="overflow-x: auto; overflow-y: hidden; width: 300px;margin: 0 auto;" class="countriesChipList">
+            <div fxLayout="row nowrap" style="overflow-x: auto; overflow-y: hidden; width: 300px;margin: 0 auto;"
+                class="countriesChipList">
                 <mat-chip-list *ngIf="countries">
-                    <mat-chip [disableRipple]="true" (click)="updateCountry(country.country,searchTerm)" *ngFor="let country of countries">{{country.country}}</mat-chip>
-                  </mat-chip-list>
+                    <mat-chip [disableRipple]="true" (click)="updateCountry(country.country,searchTerm);clearText()"
+                        *ngFor="let country of countries">{{country.country}}</mat-chip>
+                </mat-chip-list>
             </div>
             <mat-autocomplete (optionSelected)="updateCountry($event.option.value,searchTerm)" autoActiveFirstOption
                 #countryResult="matAutocomplete">
@@ -25,7 +28,11 @@
         </div>
         <mat-card>
             <div *ngIf="!data" style="margin: 0 auto;text-align: center;">
-                <div class="lds-ripple"><div></div><div></div></div>
+                <div class="lds-ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+                <p *ngIf="noInternet">Cannot Reach Network</p>
             </div>
             <!-- <mat-card-header > -->
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
@@ -34,7 +41,7 @@
                     <h2>{{data.country}}</h2>
                     <p>Number of Reported Cases</p>
                 </div>
-                <div fxLayout="column wrap"  fxFlex="1">
+                <div fxLayout="column wrap" fxFlex="1">
                     <mat-card-subtitle class="caseNumber">{{data.cases}}</mat-card-subtitle>
                     <p>Cases per one million : {{data.casesPerOneMillion}}</p>
                     <!-- <div fxLayout="row" fxLayoutAlign="center center">
@@ -78,8 +85,13 @@
             </mat-card-content>
         </mat-card>
 
-            <div class="articlesContainer" #articles id="articles" fxLayout="column wrap">
-                <app-graphs></app-graphs>
-            </div>
+        <div class="articlesContainer" #articles id="articles" fxLayout="column wrap">
+            <app-graphs></app-graphs>
+        </div>
+
+        <button class="searchHospital" [routerLink]="['/hospitals']">
+            <mat-icon style="padding: 10px 1px;margin-right: 6px;">search</mat-icon>
+            <p>Hospitals</p>
+        </button>
     </div>
 </div>

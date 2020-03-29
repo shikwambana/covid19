@@ -108,6 +108,7 @@ a {
   border-radius: 5px;
   box-shadow: 0 -2px 5px -1px rgba(0, 0, 0, 0.15), 0 0px 2px 0px rgba(0, 0, 0, 0.15), 0 4px 4px rgba(0, 0, 0, 0.15),
     0 5px 8px rgba(0, 0, 0, 0.15);
+    padding: 1px;
 }
 
 .searchBar input,
@@ -119,6 +120,7 @@ a {
   height: 30px;
   font-size: 15px;
   padding-left: 10px;
+  padding-top: 3px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -158,6 +160,26 @@ a {
   border: none;
   color: white;
   outline: none;
+}
+
+.searchHospital {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+  z-index: 5;
+  display: flex;
+  padding: 2px 10px;
+  border-radius: 15px;
+  background: $light;
+  color: white;
+  border: none;
+  outline: none;
+  box-shadow: 2px 2px 5px 0px #717171;
+}
+
+.searchHospital:active {
+  box-shadow: inset 2px 2px 5px 0px #717171;
 }
 
 .menuBtn:active{

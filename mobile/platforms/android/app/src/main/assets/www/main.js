@@ -318,7 +318,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<button class=\"menuBtn\" mat-button [matMenuTriggerFor]=\"menu\"><mat-icon>menu</mat-icon></button>\n<mat-menu #menu=\"matMenu\">\n  <button [routerLink]=\"['/']\" mat-menu-item>Home</button>\n  <button [routerLink]=\"['/information']\" mat-menu-item>Information</button>\n  <button [routerLink]=\"['/corvid19statistics']\" mat-menu-item>statistics</button>\n</mat-menu>\n<div class=\"navabr\">\n    <h1 [routerLink]=\"['/']\" style=\"cursor: pointer;\">Covid19 Cases</h1>\n</div>\n<a href=\"https://shikwambana.info\" target=\"_blank\">\n    <img class=\"logo\" src=\"../assets/Alphie Shikwambana new logo_.png\">\n</a>\n\n<!-- <mat-icon [routerLink]=\"['/information']\" class=\"infoBtn bounce\">info_outline</mat-icon> -->\n<router-outlet></router-outlet>");
+/* harmony default export */ __webpack_exports__["default"] = ("<button class=\"menuBtn\" mat-button [matMenuTriggerFor]=\"menu\"><mat-icon>menu</mat-icon></button>\n<mat-menu #menu=\"matMenu\">\n  <button [routerLink]=\"['/']\" mat-menu-item>Home</button>\n  <button [routerLink]=\"['/hospitals']\" mat-menu-item>Find a Hospital</button>\n  <button [routerLink]=\"['/information']\" mat-menu-item>Information</button>\n  <button [routerLink]=\"['/corvid19statistics']\" mat-menu-item>statistics</button>\n</mat-menu>\n<div class=\"navabr\">\n    <h1 [routerLink]=\"['/']\" style=\"cursor: pointer;\">Covid19 Cases</h1>\n</div>\n<a href=\"https://shikwambana.info\" target=\"_blank\">\n    <img class=\"logo\" src=\"../assets/Alphie Shikwambana new logo_.png\">\n</a>\n\n<!-- <mat-icon [routerLink]=\"['/information']\" class=\"infoBtn bounce\">info_outline</mat-icon> -->\n<router-outlet></router-outlet>");
 
 /***/ }),
 
@@ -370,7 +370,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\" fxLayout=\"row wrap\" fxLayout.lt-md=\"column\" fxFlex=\"100\" fxFill>\r\n    <div fxLayout=\"column wrap\">\r\n        <div style=\"padding-top: 10px;\" fxLayout=\"column wrap\" style=\"text-align: center;\" fxLayoutAlign=\"space-evenly center\">\r\n            <div class=\"searchBar fadeInDown\" fxLayout=\"row nowrap\" fxLayoutAlign=\"center start\" fxFlex=\"100\">\r\n                <input MatInput type=\"text\" style=\"max-width: 170px;\" placeholder=\"Search for a Country\" matInput [formControl]=\"searchCountry\"\r\n                    [matAutocomplete]=\"countryResult\" #searchTerm>\r\n                <div fxLayout=\"column wrap\" fxLayoutAlign=\"center center\" fxFlex=\"10\" (click)=\"clearText()\"\r\n                style=\"padding: 4px 0;display: flex;cursor: pointer;\">\r\n                <mat-icon>clear</mat-icon>\r\n                </div>\r\n<mat-icon [routerLink]=\"['/information']\" class=\"infoBtn bounce\">info_outline</mat-icon>\r\n\r\n            </div>\r\n            <div fxLayout=\"row nowrap\" style=\"overflow-x: auto; overflow-y: hidden; width: 300px;margin: 0 auto;\" class=\"countriesChipList\">\r\n                <mat-chip-list *ngIf=\"countries\">\r\n                    <mat-chip [disableRipple]=\"true\" (click)=\"updateCountry(country.country,searchTerm)\" *ngFor=\"let country of countries\">{{country.country}}</mat-chip>\r\n                  </mat-chip-list>\r\n            </div>\r\n            <mat-autocomplete (optionSelected)=\"updateCountry($event.option.value,searchTerm)\" autoActiveFirstOption\r\n                #countryResult=\"matAutocomplete\">\r\n                <mat-option *ngFor=\"let option of filteredOptions\" #selectedCountry [value]=\"option.country\">\r\n                    {{ option.country }}\r\n                </mat-option>\r\n            </mat-autocomplete>\r\n        </div>\r\n        <mat-card>\r\n            <div *ngIf=\"!data\" style=\"margin: 0 auto;text-align: center;\">\r\n                <div class=\"lds-ripple\"><div></div><div></div></div>\r\n            </div>\r\n            <!-- <mat-card-header > -->\r\n            <!-- <div mat-card-avatar class=\"example-header-image\"></div> -->\r\n            <div class=\"casesTitle\" fxLayout=\"row wrap\" style=\"text-align: center;\" *ngIf=\"data\">\r\n                <div fxLayout=\"column wrap\" fxFlex=\"1\">\r\n                    <h2>{{data.country}}</h2>\r\n                    <p>Number of Reported Cases</p>\r\n                </div>\r\n                <div fxLayout=\"column wrap\"  fxFlex=\"1\">\r\n                    <mat-card-subtitle class=\"caseNumber\">{{data.cases}}</mat-card-subtitle>\r\n                    <p>Cases per one million : {{data.casesPerOneMillion}}</p>\r\n                    <!-- <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\r\n                    <p>Updated on {{updated}}</p>\r\n                    <mat-icon (click)=\"getInfo()\">refresh</mat-icon>\r\n                    </div> -->\r\n                </div>\r\n            </div>\r\n\r\n            <!-- </mat-card-header> -->\r\n\r\n            <mat-card-content class=\"blockContainers\" fxLayout=\"column wrap\" *ngIf=\"data\">\r\n                <div class=\"content\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-evenly center\">\r\n                    <div class=\"blockInfo\" fxLayout=\"column wrap\">\r\n                        <h3>New Cases Today</h3>\r\n                        <p>{{data.todayCases}}</p>\r\n                    </div>\r\n                    <div class=\"blockInfo\" fxLayout=\"column wrap\">\r\n                        <h3>Active Cases</h3>\r\n                        <p>{{data.active}}</p>\r\n                    </div>\r\n                    <div class=\"blockInfo\" fxLayout=\"column wrap\">\r\n                        <h3>New Deaths Today</h3>\r\n                        <p>{{data.todayDeaths}}</p>\r\n                    </div>\r\n                </div>\r\n                <div class=\"content\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-evenly center\">\r\n                    <div class=\"blockInfo\" fxLayout=\"column wrap\">\r\n                        <h3>Recovered</h3>\r\n                        <p>{{data.recovered}}</p>\r\n                    </div>\r\n                    <div class=\"blockInfo\" fxLayout=\"column wrap\">\r\n                        <h3>Critical Cases</h3>\r\n                        <p>{{data.critical}}</p>\r\n                    </div>\r\n                    <div class=\"blockInfo\" fxLayout=\"column wrap\">\r\n                        <h3>Deaths</h3>\r\n                        <p>{{data.deaths}}</p>\r\n                    </div>\r\n                </div>\r\n            </mat-card-content>\r\n        </mat-card>\r\n\r\n            <div class=\"articlesContainer\" #articles id=\"articles\" fxLayout=\"column wrap\">\r\n                <app-graphs></app-graphs>\r\n            </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\" fxLayout=\"row wrap\" fxLayout.lt-md=\"column\" fxFlex=\"100\" fxFill>\r\n    <div fxLayout=\"column wrap\">\r\n        <div style=\"padding-top: 10px;\" fxLayout=\"column wrap\" style=\"text-align: center;\"\r\n            fxLayoutAlign=\"space-evenly center\">\r\n            <div class=\"searchBar fadeInDown\" fxLayout=\"row nowrap\" fxLayoutAlign=\"center start\" fxFlex=\"100\">\r\n                <input MatInput type=\"text\" style=\"max-width: 170px;\" placeholder=\"Search for a Country\" matInput\r\n                    [formControl]=\"searchCountry\" [matAutocomplete]=\"countryResult\" #searchTerm>\r\n                <div fxLayout=\"column wrap\" fxLayoutAlign=\"center center\" fxFlex=\"10\" (click)=\"clearText()\"\r\n                    style=\"padding: 4px 0;display: flex;cursor: pointer;\">\r\n                    <mat-icon>clear</mat-icon>\r\n                </div>\r\n                <mat-icon [routerLink]=\"['/information']\" class=\"infoBtn bounce\">info_outline</mat-icon>\r\n\r\n            </div>\r\n            <div fxLayout=\"row nowrap\" style=\"overflow-x: auto; overflow-y: hidden; width: 300px;margin: 0 auto;\"\r\n                class=\"countriesChipList\">\r\n                <mat-chip-list *ngIf=\"countries\">\r\n                    <mat-chip [disableRipple]=\"true\" (click)=\"updateCountry(country.country,searchTerm);clearText()\"\r\n                        *ngFor=\"let country of countries\">{{country.country}}</mat-chip>\r\n                </mat-chip-list>\r\n            </div>\r\n            <mat-autocomplete (optionSelected)=\"updateCountry($event.option.value,searchTerm)\" autoActiveFirstOption\r\n                #countryResult=\"matAutocomplete\">\r\n                <mat-option *ngFor=\"let option of filteredOptions\" #selectedCountry [value]=\"option.country\">\r\n                    {{ option.country }}\r\n                </mat-option>\r\n            </mat-autocomplete>\r\n        </div>\r\n        <mat-card>\r\n            <div *ngIf=\"!data\" style=\"margin: 0 auto;text-align: center;\">\r\n                <div class=\"lds-ripple\">\r\n                    <div></div>\r\n                    <div></div>\r\n                </div>\r\n                <p *ngIf=\"noInternet\">Cannot Reach Network</p>\r\n            </div>\r\n            <!-- <mat-card-header > -->\r\n            <!-- <div mat-card-avatar class=\"example-header-image\"></div> -->\r\n            <div class=\"casesTitle\" fxLayout=\"row wrap\" style=\"text-align: center;\" *ngIf=\"data\">\r\n                <div fxLayout=\"column wrap\" fxFlex=\"1\">\r\n                    <h2>{{data.country}}</h2>\r\n                    <p>Number of Reported Cases</p>\r\n                </div>\r\n                <div fxLayout=\"column wrap\" fxFlex=\"1\">\r\n                    <mat-card-subtitle class=\"caseNumber\">{{data.cases}}</mat-card-subtitle>\r\n                    <p>Cases per one million : {{data.casesPerOneMillion}}</p>\r\n                    <!-- <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\r\n                    <p>Updated on {{updated}}</p>\r\n                    <mat-icon (click)=\"getInfo()\">refresh</mat-icon>\r\n                    </div> -->\r\n                </div>\r\n            </div>\r\n\r\n            <!-- </mat-card-header> -->\r\n\r\n            <mat-card-content class=\"blockContainers\" fxLayout=\"column wrap\" *ngIf=\"data\">\r\n                <div class=\"content\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-evenly center\">\r\n                    <div class=\"blockInfo\" fxLayout=\"column wrap\">\r\n                        <h3>New Cases Today</h3>\r\n                        <p>{{data.todayCases}}</p>\r\n                    </div>\r\n                    <div class=\"blockInfo\" fxLayout=\"column wrap\">\r\n                        <h3>Active Cases</h3>\r\n                        <p>{{data.active}}</p>\r\n                    </div>\r\n                    <div class=\"blockInfo\" fxLayout=\"column wrap\">\r\n                        <h3>New Deaths Today</h3>\r\n                        <p>{{data.todayDeaths}}</p>\r\n                    </div>\r\n                </div>\r\n                <div class=\"content\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-evenly center\">\r\n                    <div class=\"blockInfo\" fxLayout=\"column wrap\">\r\n                        <h3>Recovered</h3>\r\n                        <p>{{data.recovered}}</p>\r\n                    </div>\r\n                    <div class=\"blockInfo\" fxLayout=\"column wrap\">\r\n                        <h3>Critical Cases</h3>\r\n                        <p>{{data.critical}}</p>\r\n                    </div>\r\n                    <div class=\"blockInfo\" fxLayout=\"column wrap\">\r\n                        <h3>Deaths</h3>\r\n                        <p>{{data.deaths}}</p>\r\n                    </div>\r\n                </div>\r\n            </mat-card-content>\r\n        </mat-card>\r\n\r\n        <div class=\"articlesContainer\" #articles id=\"articles\" fxLayout=\"column wrap\">\r\n            <app-graphs></app-graphs>\r\n        </div>\r\n\r\n        <button class=\"searchHospital\" [routerLink]=\"['/hospitals']\">\r\n            <mat-icon style=\"padding: 10px 1px;margin-right: 6px;\">search</mat-icon>\r\n            <p>Hospitals</p>\r\n        </button>\r\n    </div>\r\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/hopitals/hopitals.component.html":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/hopitals/hopitals.component.html ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayout=\"column wrap\" fxLayoutAlign=\"stretch center\" fxFlex=\"100\">\n    <div class=\"mat-elevation-z8\" fxFlex=\"80\">\n        <div style=\"margin: 0 30px;\" fxLayout=\"row nowrap\" fxLayoutAlign=\"center start\" fxFlex=\"100\">\n            <h3>Find a Hospital near you: </h3>\n            <mat-form-field style=\"min-width: 300px;\">\n                <!-- <mat-label>Filter</mat-label> -->\n                <input matInput (keyup)=\"applyFilter($event)\" placeholder=\"Filter\">\n\n            </mat-form-field>\n        </div>\n\n        <div *ngIf=\"!dataSource\" style=\"margin: 0 auto;text-align: center;\">\n            <div class=\"lds-ripple\">\n                <div></div>\n                <div></div>\n            </div>\n            <p *ngIf=\"noInternet\">Cannot Reach Network</p>\n        </div>\n        <div class=\"hospitalContainer\" *ngIf=\"dataSource\">\n            <table mat-table [dataSource]=\"dataSource\" style=\"width: 100%;\" class=\"mat-elevation-z8\">\n\n                <ng-container matColumnDef=\"Name\" sticky>\n                    <th mat-header-cell *matHeaderCellDef> Name </th>\n                    <td mat-cell *matCellDef=\"let element\"> {{element.Name}} </td>\n                </ng-container>\n\n                <ng-container matColumnDef=\"Province\">\n                    <th mat-header-cell *matHeaderCellDef> Province </th>\n                    <td mat-cell *matCellDef=\"let element\"> {{element.Province}} </td>\n                </ng-container>\n\n                <ng-container matColumnDef=\"District\">\n                    <th mat-header-cell *matHeaderCellDef> District </th>\n                    <td mat-cell *matCellDef=\"let element\"> {{element.district}} </td>\n                </ng-container>\n\n                <ng-container matColumnDef=\"Subdistrict\">\n                    <th mat-header-cell *matHeaderCellDef> Subdistrict </th>\n                    <td mat-cell *matCellDef=\"let element\"> {{element.subdistrict}} </td>\n                </ng-container>\n\n                <ng-container matColumnDef=\"Category\">\n                    <th mat-header-cell *matHeaderCellDef> Category </th>\n                    <td mat-cell *matCellDef=\"let element\"> {{element.Category}} </td>\n                </ng-container>\n\n                <ng-container matColumnDef=\"Long\">\n                    <th mat-header-cell *matHeaderCellDef> Long </th>\n                    <td mat-cell *matCellDef=\"let element\"> {{element.Long}} </td>\n                </ng-container>\n\n                <ng-container matColumnDef=\"Lat\">\n                    <th mat-header-cell *matHeaderCellDef> Lat </th>\n                    <td mat-cell *matCellDef=\"let element\"> {{element.Lat}} </td>\n                </ng-container>\n\n\n\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n            </table>\n\n            <mat-paginator [pageSizeOptions]=\"[ 10, 20, 25, 50, 100]\" showFirstLastButtons></mat-paginator>\n        </div>\n\n\n        <!-- <div>\n            <mat-accordion>\n                <mat-expansion-panel *ngFor=\"let element of dataSource1.data\">\n                  <mat-expansion-panel-header>\n                    <mat-panel-title>\n                        Name : {{element.Name}}\n                    </mat-panel-title>\n                    <mat-panel-description>\n                        District : {{element.district}}\n                      </mat-panel-description>\n                  </mat-expansion-panel-header>\n              \n                  <div class=\"content\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-evenly center\">\n                    <div>\n                       Province : {{element.Province}} \n                       Subdistrict : {{element.subdistrict}}\n                    </div>\n                    <div>\n                       Category : {{element.Category}}\n                    </div>\n                  </div>\n        \n                </mat-expansion-panel>\n            </mat-accordion>\n        </div> \n\n        <mat-paginator [pageSizeOptions]=\"[ 10, 20, 25, 50, 100]\" showFirstLastButtons></mat-paginator> -->\n\n    </div>\n</div>");
 
 /***/ }),
 
@@ -671,6 +684,9 @@ var ApiService = /** @class */ (function () {
     ApiService.prototype.getConfirmedCaseTimeLine = function () {
         return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/covid19za_timeline_confirmed.csv', { responseType: 'text' });
     };
+    ApiService.prototype.getHospitals = function () {
+        return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/health_system_za_public_hospitals.csv', { responseType: 'text' });
+    };
     //======================================
     //==============ARTICLES================
     //======================================
@@ -709,6 +725,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _article_article_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./article/article.component */ "./src/app/article/article.component.ts");
 /* harmony import */ var _graphs_graphs_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./graphs/graphs.component */ "./src/app/graphs/graphs.component.ts");
 /* harmony import */ var _info_info_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./info/info.component */ "./src/app/info/info.component.ts");
+/* harmony import */ var _hopitals_hopitals_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./hopitals/hopitals.component */ "./src/app/hopitals/hopitals.component.ts");
+
 
 
 
@@ -720,6 +738,7 @@ var routes = [
     { path: '', component: _home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] },
     { path: 'article/:articleID/:articleTitle', component: _article_article_component__WEBPACK_IMPORTED_MODULE_4__["ArticleComponent"] },
     { path: 'corvid19statistics', component: _graphs_graphs_component__WEBPACK_IMPORTED_MODULE_5__["GraphsComponent"] },
+    { path: 'hospitals', component: _hopitals_hopitals_component__WEBPACK_IMPORTED_MODULE_7__["HopitalsComponent"] },
     { path: 'information', component: _info_info_component__WEBPACK_IMPORTED_MODULE_6__["InfoComponent"], children: [
             { path: ':section', component: _info_info_component__WEBPACK_IMPORTED_MODULE_6__["InfoComponent"] }
         ] }
@@ -811,6 +830,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _info_info_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./info/info.component */ "./src/app/info/info.component.ts");
 /* harmony import */ var _swimlane_ngx_charts__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @swimlane/ngx-charts */ "./node_modules/@swimlane/ngx-charts/fesm5/swimlane-ngx-charts.js");
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/fesm5/ng2-charts.js");
+/* harmony import */ var _hopitals_hopitals_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./hopitals/hopitals.component */ "./src/app/hopitals/hopitals.component.ts");
+
 
 
 
@@ -838,7 +859,8 @@ var AppModule = /** @class */ (function () {
                 _articles_articles_component__WEBPACK_IMPORTED_MODULE_10__["ArticlesComponent"],
                 _article_article_component__WEBPACK_IMPORTED_MODULE_11__["ArticleComponent"],
                 _graphs_graphs_component__WEBPACK_IMPORTED_MODULE_12__["GraphsComponent"],
-                _info_info_component__WEBPACK_IMPORTED_MODULE_13__["InfoComponent"]
+                _info_info_component__WEBPACK_IMPORTED_MODULE_13__["InfoComponent"],
+                _hopitals_hopitals_component__WEBPACK_IMPORTED_MODULE_16__["HopitalsComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -853,6 +875,10 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatExpansionModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatMenuModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatButtonToggleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatPaginatorModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatTableModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatFormFieldModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatInputModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_9__["FormsModule"],
                 _swimlane_ngx_charts__WEBPACK_IMPORTED_MODULE_14__["NgxChartsModule"],
                 ng2_charts__WEBPACK_IMPORTED_MODULE_15__["ChartsModule"],
@@ -1267,6 +1293,7 @@ var HomeComponent = /** @class */ (function () {
     function HomeComponent(api) {
         this.api = api;
         this.searchCountry = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
+        this.noInternet = false;
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1292,6 +1319,8 @@ var HomeComponent = /** @class */ (function () {
                 _this.showCountryData("South Africa");
             }
         }, function (err) {
+            _this.noInternet = true;
+            alert('Check internet connection and reload');
             console.log(err);
         });
     };
@@ -1305,7 +1334,6 @@ var HomeComponent = /** @class */ (function () {
     HomeComponent.prototype.updateCountry = function (country, element) {
         console.log('got it', country);
         this.showCountryData(country);
-        this.hideKeyboard(element);
     };
     HomeComponent.prototype.clearText = function () {
         this.searchCountry.patchValue('');
@@ -1331,6 +1359,104 @@ var HomeComponent = /** @class */ (function () {
         })
     ], HomeComponent);
     return HomeComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/hopitals/hopitals.component.scss":
+/*!**************************************************!*\
+  !*** ./src/app/hopitals/hopitals.component.scss ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (".hospitalContainer {\n  overflow: auto;\n}\n\ntd.mat-column-star {\n  width: 20px;\n  padding-right: 8px;\n}\n\nth.mat-column-position,\ntd.mat-column-position {\n  padding-left: 8px;\n}\n\n.mat-table-sticky:first-child {\n  border-right: 1px solid #e0e0e0;\n  padding-left: 15px !important;\n}\n\ntd.mat-cell {\n  min-width: 120px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9waXRhbHMvQzpcXFVzZXJzXFxOZXV0cmlub3NcXERvY3VtZW50c1xcY29ydmlkMTkvc3JjXFxhcHBcXGhvcGl0YWxzXFxob3BpdGFscy5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvaG9waXRhbHMvaG9waXRhbHMuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFFRSxjQUFBO0FDQUY7O0FER0E7RUFDRSxXQUFBO0VBQ0Esa0JBQUE7QUNBRjs7QURHQTs7RUFFRSxpQkFBQTtBQ0FGOztBREdBO0VBQ0UsK0JBQUE7RUFDQSw2QkFBQTtBQ0FGOztBREdBO0VBQ0UsZ0JBQUE7QUNBRiIsImZpbGUiOiJzcmMvYXBwL2hvcGl0YWxzL2hvcGl0YWxzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmhvc3BpdGFsQ29udGFpbmVyIHtcclxuICAvLyBtYXgtd2lkdGg6IDEwMDBweDtcclxuICBvdmVyZmxvdzogYXV0bztcclxufVxyXG5cclxudGQubWF0LWNvbHVtbi1zdGFyIHtcclxuICB3aWR0aDogMjBweDtcclxuICBwYWRkaW5nLXJpZ2h0OiA4cHg7XHJcbn1cclxuXHJcbnRoLm1hdC1jb2x1bW4tcG9zaXRpb24sXHJcbnRkLm1hdC1jb2x1bW4tcG9zaXRpb24ge1xyXG4gIHBhZGRpbmctbGVmdDogOHB4O1xyXG59XHJcblxyXG4ubWF0LXRhYmxlLXN0aWNreTpmaXJzdC1jaGlsZCB7XHJcbiAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgI2UwZTBlMDtcclxuICBwYWRkaW5nLWxlZnQ6IDE1cHggIWltcG9ydGFudDtcclxufVxyXG5cclxudGQubWF0LWNlbGwge1xyXG4gIG1pbi13aWR0aDogMTIwcHg7XHJcbn1cclxuXHJcbi8vIC5tYXQtdGFibGUtc3RpY2t5Omxhc3QtY2hpbGQge1xyXG4vLyAgIGJvcmRlci1sZWZ0OiAxcHggc29saWQgI2UwZTBlMDtcclxuLy8gfVxyXG5cclxuLy8gQG1lZGlhIG9ubHkgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA2MDBweCkge1xyXG4vLyAgICAgdGFibGUsIG1hdC1wYWdpbmF0b3Ige1xyXG4vLyAgICAgICAgIGRpc3BsYXk6IG5vbmU7XHJcbi8vICAgICB9XHJcbi8vIH1cclxuIiwiLmhvc3BpdGFsQ29udGFpbmVyIHtcbiAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbnRkLm1hdC1jb2x1bW4tc3RhciB7XG4gIHdpZHRoOiAyMHB4O1xuICBwYWRkaW5nLXJpZ2h0OiA4cHg7XG59XG5cbnRoLm1hdC1jb2x1bW4tcG9zaXRpb24sXG50ZC5tYXQtY29sdW1uLXBvc2l0aW9uIHtcbiAgcGFkZGluZy1sZWZ0OiA4cHg7XG59XG5cbi5tYXQtdGFibGUtc3RpY2t5OmZpcnN0LWNoaWxkIHtcbiAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgI2UwZTBlMDtcbiAgcGFkZGluZy1sZWZ0OiAxNXB4ICFpbXBvcnRhbnQ7XG59XG5cbnRkLm1hdC1jZWxsIHtcbiAgbWluLXdpZHRoOiAxMjBweDtcbn0iXX0= */");
+
+/***/ }),
+
+/***/ "./src/app/hopitals/hopitals.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/hopitals/hopitals.component.ts ***!
+  \************************************************/
+/*! exports provided: HopitalsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HopitalsComponent", function() { return HopitalsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api.service */ "./src/app/api.service.ts");
+/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm5/table.es5.js");
+/* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/paginator */ "./node_modules/@angular/material/esm5/paginator.es5.js");
+
+
+
+
+
+var HopitalsComponent = /** @class */ (function () {
+    function HopitalsComponent(api) {
+        this.api = api;
+        this.displayedColumns = ['Name', 'Province', 'District', 'Subdistrict', 'Category', 'Long', 'Lat',];
+        this.noInternet = false;
+        //: MatTableDataSource<any>  = new MatTableDataSource<any>(this.hospitals);
+        this.paginator = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["QueryList"]();
+    }
+    HopitalsComponent.prototype.ngOnInit = function () {
+        this.extractData();
+    };
+    HopitalsComponent.prototype.applyFilter = function (event) {
+        var filterValue = event.target.value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    };
+    HopitalsComponent.prototype.extractData = function () {
+        var _this = this;
+        this.api.getHospitals().subscribe(function (res) {
+            _this.csvJSON(res);
+        }, function (err) {
+            _this.noInternet = true;
+            alert('Check internet connection and reload');
+        });
+    };
+    // convert csv to json
+    HopitalsComponent.prototype.csvJSON = function (csv) {
+        var lines = csv.split("\n");
+        var result = [];
+        var headers = lines[0].split(",");
+        // loop through all the lines excpet the first 1 (index = 0) 
+        for (var i = 1; i < lines.length; i++) {
+            var obj = {};
+            var currentline = lines[i].split(",");
+            // loop through the skipped line (headers = lines[0])
+            for (var j = 0; j < headers.length; j++) {
+                obj[headers[j]] = currentline[j];
+            }
+            result.push(obj);
+        }
+        // call filter function
+        result.pop();
+        this.hospitals = result;
+        this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatTableDataSource"](this.hospitals);
+        this.dataSource.paginator = this.paginator.toArray()[0];
+    };
+    HopitalsComponent.ctorParameters = function () { return [
+        { type: _api_service__WEBPACK_IMPORTED_MODULE_2__["ApiService"] }
+    ]; };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])(_angular_material_paginator__WEBPACK_IMPORTED_MODULE_4__["MatPaginator"])
+    ], HopitalsComponent.prototype, "paginator", void 0);
+    HopitalsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-hopitals',
+            template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./hopitals.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/hopitals/hopitals.component.html")).default,
+            styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./hopitals.component.scss */ "./src/app/hopitals/hopitals.component.scss")).default]
+        })
+    ], HopitalsComponent);
+    return HopitalsComponent;
 }());
 
 
