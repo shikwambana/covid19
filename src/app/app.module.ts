@@ -11,7 +11,6 @@ import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { InfoComponent } from './info/info.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartsModule } from 'ng2-charts';
 import { HopitalsComponent } from './hopitals/hopitals.component';
 
@@ -43,7 +42,6 @@ import { HopitalsComponent } from './hopitals/hopitals.component';
     MatFormFieldModule, 
     MatInputModule,
     FormsModule, 
-    NgxChartsModule,
     ChartsModule,
     ReactiveFormsModule
   ],

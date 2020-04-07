@@ -21,24 +21,24 @@
                     [chartType]="pieChartType"></canvas>
             </div>
 
-            <div fxLayout="row wrap" style="display: flex; margin: 20px 0;">
+            <!-- <div fxLayout="row wrap" style="display: flex; margin: 20px 0;">
                 <h5 style="margin: 14px;">Chart Type: </h5>
                 <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
                     <mat-button-toggle [checked]="true" (click)="changeProvGraph('bar')" value="line">Bar Graph
                     </mat-button-toggle>
                     <mat-button-toggle (click)="changeProvGraph('pie')" value="pie">Pie Chart</mat-button-toggle>
                 </mat-button-toggle-group>
-            </div>
+            </div> -->
         </div>
 
-        <div fxLayout="column" fxLayoutAlign="center center" class="graphContainer">
+        <!-- <div fxLayout="column" fxLayoutAlign="center center" class="graphContainer">
 
             <div  style="max-width: 700px;" *ngIf="genderChartData" >
                 <h2 style="text-align: center;">Gender</h2>
                 <canvas baseChart [data]="genderChartData" [labels]="genderChartLabels" [colors]="genderChartColors"
                     [options]="pieChartOptions" [legend]="genderChartLegend" [chartType]="genderChartType"></canvas>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div fxLayout="column" style="margin: 30px;" fxLayoutAlign="center center">
@@ -47,13 +47,13 @@
             <canvas baseChart width="200" height="200" [datasets]="lineChartData" [labels]="lineChartLabels"
                 [options]="lineChartOptions" [legend]="lineChartLegend" [chartType]="lineChartType"></canvas>
         </div>
-        <div fxLayout="row wrap" style="display: flex; margin: 20px 0;">
+        <!-- <div fxLayout="row wrap" style="display: flex; margin: 20px 0;">
             <h5 style="margin: 14px;">Chart Type: </h5>
             <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
                 <mat-button-toggle [checked]="true" (click)="changeGraph('line')" value="line">Line Graph
                 </mat-button-toggle>
                 <mat-button-toggle (click)="changeGraph('bar')" value="bar">Bar Graph</mat-button-toggle>
             </mat-button-toggle-group>
-        </div>
+        </div> -->
     </div>
 </div>

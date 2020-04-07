@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../api.service";
 import { ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-graphs',
@@ -12,7 +13,7 @@ export class GraphsComponent implements OnInit {
   timelineCases: any[];
   data: any[] = [];
   confirmedCases: any[] = [];
-
+  casePerProvince;
   //============================================================================
   // Line chart
   public lineChartLabels = [];
@@ -20,13 +21,14 @@ export class GraphsComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartData = [
     { data: [], label: 'Total Cases' },
-    { data: [], label: 'New Cases per Day' }
+    // { data: [], label: 'New Cases per Day' }
   ];
   public lineChartOptions: (ChartOptions) = {
     responsive: true
   }
   provinces: any[] = [];
   listOfProvinces = ['GP', 'KZN', 'WC', 'LP', 'EC', 'FS', 'NC', 'NW', 'MP', 'UNK']
+  SAProvinces = ['EC', 'FS', 'GP', 'KZN', 'LP', 'MP', 'NC', 'NW', 'WC', 'UNKNOWN']
   gender = [{name:'Male',value:'male'},{name:'Female',value:'female'},{name:'Not Specified',value:'not specified'}]
 
   //==================================================================================
@@ -77,8 +79,22 @@ export class GraphsComponent implements OnInit {
   }
 
   extractData() {
-    this.api.getConfirmedCaseTimeLine().subscribe(res => {
-      this.csvJSON(res)
+    // this.api.getConfirmedCaseTimeLine().subscribe(res => {
+    //   this.csvJSON(res)
+    // })
+
+    this.api.getProvinces().subscribe(res =>{
+      let data = this.csvJSON(res);
+      this.casePerProvince = data;
+      this.lineChartLabels = data.map(res =>{
+        return res['date']
+      })
+      console.log(data)
+      this.lineChartData[0]['data'] = data.map(res =>{
+        return res['total']
+      })
+
+      this.calcByProvince();
     })
   }
 
@@ -102,11 +118,25 @@ export class GraphsComponent implements OnInit {
     }
     // call filter function
     result.pop();
-    console.log(result)
-    this.timelineCases = result;
+    // console.log(result)
+    // this.timelineCases = result;
 
-    this.sortByProvince()
-    this.buildData();
+    // this.sortByProvince()
+    // this.buildData();
+
+    return result
+  }
+
+  calcByProvince(){
+    let data = []
+    this.SAProvinces.forEach(element => {
+      data.push(this.casePerProvince[this.casePerProvince.length-2][element])
+    });
+
+    console.log(data)
+    this.pieChartData = data;
+    this.pieChartLabels = this.SAProvinces;
+
   }
 
   sortByProvince() {
