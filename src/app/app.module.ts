@@ -13,6 +13,7 @@ import { GraphsComponent } from './graphs/graphs.component';
 import { InfoComponent } from './info/info.component';
 import { ChartsModule } from 'ng2-charts';
 import { HopitalsComponent } from './hopitals/hopitals.component';
+import { NewhomeComponent } from './newhome/newhome.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HopitalsComponent } from './hopitals/hopitals.component';
     ArticleComponent,
     GraphsComponent,
     InfoComponent,
-    HopitalsComponent
+    HopitalsComponent,
+    NewhomeComponent
   ],
   imports: [
     BrowserModule,

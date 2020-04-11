@@ -34,8 +34,7 @@
                 </div>
                 <p *ngIf="noInternet">Cannot Reach Network</p>
             </div>
-            <!-- <mat-card-header > -->
-            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+            
             <div class="casesTitle" fxLayout="row wrap" style="text-align: center;" *ngIf="data">
                 <div fxLayout="column wrap" fxFlex="1">
                     <h2>{{data.country}}</h2>
@@ -44,14 +43,13 @@
                 <div fxLayout="column wrap" fxFlex="1">
                     <mat-card-subtitle class="caseNumber">{{data.cases}}</mat-card-subtitle>
                     <p>Cases per one million : {{data.casesPerOneMillion}}</p>
-                    <!-- <div fxLayout="row" fxLayoutAlign="center center">
-                    <p>Updated on {{updated}}</p>
+                    <div fxLayout="row" fxLayoutAlign="center center">
                     <mat-icon (click)="getInfo()">refresh</mat-icon>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 
-            <!-- </mat-card-header> -->
+            
 
             <mat-card-content class="blockContainers" fxLayout="column wrap" *ngIf="data">
                 <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
@@ -85,6 +83,7 @@
             </mat-card-content>
         </mat-card>
 
+        
         <div class="articlesContainer" #articles id="articles" fxLayout="column wrap">
             <app-graphs></app-graphs>
         </div>

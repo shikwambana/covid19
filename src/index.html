@@ -2,14 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Covid19 | Corona virus cases in each affected country | number of deaths and recoveries</title>
+  <title>Covid19 | Corona virus cases in each affected country | number of deaths and recoveries in South Africa | NICD | Department of Health</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="./assets/Alphie Shikwambana new logo_.png">
+  <link rel="icon" type="image/png" href="./assets/covid19_favicon.png">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <app-root></app-root>
 </body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAAuXOO7ZhE-MqY_Eo5qBdzIUhxvZj4LKY",
+    authDomain: "corona-count.firebaseapp.com",
+    databaseURL: "https://corona-count.firebaseio.com",
+    projectId: "corona-count",
+    storageBucket: "corona-count.appspot.com",
+    messagingSenderId: "866545498263",
+    appId: "1:866545498263:web:2eacd5b9ddec5506c211d2",
+    measurementId: "G-Q9E8DMJX16"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
 </html>

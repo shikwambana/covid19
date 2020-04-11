@@ -1,19 +1,14 @@
 <div fxLayout="column wrap" fxLayoutAlign="stretch center" fxFlex="100">
     <div class="mat-elevation-z8" fxFlex="80">
         <div style="margin: 0 30px;" fxLayout="row nowrap" fxLayoutAlign="center start" fxFlex="100">
-            <h3>Find a Hospital near you: </h3>
-            <mat-form-field >
-                <!-- <mat-label>Filter</mat-label> -->
+            <h3 style="text-align: center;">Find a Hospital near you: </h3>
+            <div class="searchBar fadeInDown" fxLayout="row nowrap" fxLayoutAlign="center start" fxFlex="100">
                 <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
-
-            </mat-form-field>
+            </div>
         </div>
 
         <div *ngIf="!dataSource" style="margin: 0 auto;text-align: center;">
-            <div class="lds-ripple">
-                <div></div>
-                <div></div>
-            </div>
+            <p>Fetching list of Hospitals...</p>
             <p *ngIf="noInternet">Cannot Reach Network</p>
         </div>
         <div class="hospitalContainer" *ngIf="dataSource">
@@ -60,37 +55,8 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
 
-            <mat-paginator [pageSizeOptions]="[ 10, 20, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+            <!-- <mat-paginator [pageSizeOptions]="[ 10, 20, 25, 50, 100]" showFirstLastButtons></mat-paginator> -->
         </div>
-
-
-        <!-- <div>
-            <mat-accordion>
-                <mat-expansion-panel *ngFor="let element of dataSource1.data">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Name : {{element.Name}}
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        District : {{element.district}}
-                      </mat-panel-description>
-                  </mat-expansion-panel-header>
-              
-                  <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-                    <div>
-                       Province : {{element.Province}} 
-                       Subdistrict : {{element.subdistrict}}
-                    </div>
-                    <div>
-                       Category : {{element.Category}}
-                    </div>
-                  </div>
-        
-                </mat-expansion-panel>
-            </mat-accordion>
-        </div> 
-
-        <mat-paginator [pageSizeOptions]="[ 10, 20, 25, 50, 100]" showFirstLastButtons></mat-paginator> -->
 
     </div>
 </div>

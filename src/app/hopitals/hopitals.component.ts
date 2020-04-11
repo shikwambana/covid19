@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ApiService } from "../api.service";
-import {MatTableDataSource} from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-hopitals',
@@ -10,16 +9,17 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 export class HopitalsComponent implements OnInit {
   hospitals: any[];
-  displayedColumns: string[] = ['Name','Province','District','Subdistrict', 'Category','Long','Lat', ];
-  dataSource = new MatTableDataSource(this.hospitals);
+  displayedColumns: string[] = ['Name', 'Province', 'District', 'Subdistrict', 'Category', 'Long', 'Lat',];
+  dataSource: MatTableDataSource<any>;
   noInternet = false;
-  //: MatTableDataSource<any>  = new MatTableDataSource<any>(this.hospitals);
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   constructor(private api: ApiService) { }
 
   ngOnInit() {
+    
+  }
+
+  ngAfterViewInit(){
     this.extractData()
-    this.dataSource.paginator = this.paginator;
   }
 
   applyFilter(event: Event) {
@@ -30,7 +30,7 @@ export class HopitalsComponent implements OnInit {
   extractData() {
     this.api.getHospitals().subscribe(res => {
       this.csvJSON(res)
-    },err=>{
+    }, err => {
       this.noInternet = true
       alert('Check internet connection and reload')
     })
@@ -57,7 +57,6 @@ export class HopitalsComponent implements OnInit {
     result.pop();
     this.hospitals = result;
     this.dataSource = new MatTableDataSource(this.hospitals);
-    this.dataSource.paginator = this.paginator;
   }
 
 }
