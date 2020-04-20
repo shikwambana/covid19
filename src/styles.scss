@@ -23,6 +23,9 @@ a {
 
 .caseNumber {
   font-size: 6vw;
+  margin: 0;
+  color: rgba(0,0,0,.54);
+  font-weight: inherit;
 }
 .navabr {
   background-color: $primary;
@@ -52,6 +55,7 @@ a {
 .content {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .blockInfo {
@@ -268,6 +272,11 @@ a {
   }
 }
 
+.mat-button-toggle-checked {
+  background-color: $light;
+  color: white !important;
+}
+
 //===============================
 // animation
 //===============================
@@ -286,6 +295,22 @@ a {
 
 .fadeInDown {
   animation: fadeInDown 0.5s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInUp {
+  animation: fadeInUp .5s;
 }
 
 /// Loader

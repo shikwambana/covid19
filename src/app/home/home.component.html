@@ -28,42 +28,47 @@
         </div>
         <mat-card>
             <div *ngIf="!data" style="margin: 0 auto;text-align: center;">
-                <div class="lds-ripple">
-                    <div></div>
-                    <div></div>
+                <div class="loadingPicture">
+                    <img src="../../assets/covid19cases.today-loader.png" alt="">
+                    <p>Fetching Data from World Health Organisation</p>
                 </div>
                 <p *ngIf="noInternet">Cannot Reach Network</p>
             </div>
-            
-            <div class="casesTitle" fxLayout="row wrap" style="text-align: center;" *ngIf="data">
+
+            <div class="casesTitle fadeInDown" fxLayout="row wrap" style="text-align: center;" *ngIf="data">
                 <div fxLayout="column wrap" fxFlex="1">
                     <h2>{{data.country}}</h2>
-                    <p>Number of Reported Cases</p>
+                    <p>Number of Confirmed Cases</p>
                 </div>
                 <div fxLayout="column wrap" fxFlex="1">
-                    <mat-card-subtitle class="caseNumber">{{data.cases}}</mat-card-subtitle>
-                    <p>Cases per one million : {{data.casesPerOneMillion}}</p>
+                    <h1 class="caseNumber">{{data.cases}}</h1>
+                    <p>Total Tests Conducted : {{data.tests}}</p>
+                    <p>{{percent | number:'1.1-1'}}% are positive</p>
                     <div fxLayout="row" fxLayoutAlign="center center">
-                    <mat-icon (click)="getInfo()">refresh</mat-icon>
+                        <!-- <mat-icon (click)="getInfo()">refresh</mat-icon> -->
                     </div>
                 </div>
             </div>
 
-            
 
-            <mat-card-content class="blockContainers" fxLayout="column wrap" *ngIf="data">
+
+            <div class="blockContainers fadeInUp" fxLayout="column wrap" *ngIf="data">
                 <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
                     <div class="blockInfo" fxLayout="column wrap">
                         <h3>New Cases Today</h3>
                         <p>{{data.todayCases}}</p>
                     </div>
                     <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Active Cases</h3>
-                        <p>{{data.active}}</p>
-                    </div>
-                    <div class="blockInfo" fxLayout="column wrap">
                         <h3>New Deaths Today</h3>
                         <p>{{data.todayDeaths}}</p>
+                    </div>
+                    <div class="blockInfo" fxLayout="column wrap">
+                        <h3>Critical Cases</h3>
+                        <p>{{data.critical}}</p>
+                    </div>
+                    <div class="blockInfo" fxLayout="column wrap">
+                        <h3>Cases Per OneMillion</h3>
+                        <p>{{data.casesPerOneMillion}}</p>
                     </div>
                 </div>
                 <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
@@ -72,20 +77,42 @@
                         <p>{{data.recovered}}</p>
                     </div>
                     <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Critical Cases</h3>
-                        <p>{{data.critical}}</p>
+                        <h3>Active Cases</h3>
+                        <p>{{data.active}}</p>
                     </div>
                     <div class="blockInfo" fxLayout="column wrap">
                         <h3>Deaths</h3>
                         <p>{{data.deaths}}</p>
                     </div>
+                    <div class="blockInfo" fxLayout="column wrap">
+                        <h3>Deaths Per OneMillion</h3>
+                        <p>{{data.deathsPerOneMillion}}</p>
+                    </div>
                 </div>
-            </mat-card-content>
+            </div>
         </mat-card>
 
         
-        <div class="articlesContainer" #articles id="articles" fxLayout="column wrap">
+        <!-- <div class="articlesContainer" #articles id="articles" fxLayout="column wrap">
             <app-graphs></app-graphs>
+        </div> -->
+
+        <div class="graphContainer">
+            <div style="max-width: 700px;margin: 0 auto;" *ngIf="lineChartLabels && data">
+                <h2 style="text-align: center;">Timeline for {{data.country}}</h2>
+                <canvas baseChart width="200" height="200" [datasets]="lineChartData" [labels]="lineChartLabels"
+                    [options]="lineChartOptions" [legend]="lineChartLegend" [chartType]="lineChartType"></canvas>
+            </div>
+    
+            <div fxLayout="row wrap" style="display: flex; margin: 20px 0;justify-content: center;">
+                <h5 style="margin: 14px;">Toggle Chart: </h5>
+                <mat-button-toggle-group [multiple]='true' name="fontStyle" aria-label="Font Style">
+                    <mat-button-toggle [checked]="true" (click)="changeGraph(0)" value="line">Cases
+                    </mat-button-toggle>
+                    <mat-button-toggle [checked]="true" (click)="changeGraph(1)" value="deaths">Deaths</mat-button-toggle>
+                    <mat-button-toggle [checked]="true" (click)="changeGraph(2)" value="recovered">Recovered</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
         </div>
 
     </div>

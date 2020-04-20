@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../api.service";
 import { FormControl } from "@angular/forms";
+import { ChartOptions } from 'chart.js';
+import { Label } from 'ng2-charts';
+import { ObjectUnsubscribedError } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +17,26 @@ export class HomeComponent implements OnInit {
   searchCountry = new FormControl();
   filteredOptions //: Observable<string[]>;
   noInternet = false;
+  percent: number;
+
+  //============================================================================
+  // Line chart
+  public lineChartLabels = [];
+  public lineChartType = 'line';
+  public lineChartLegend = true;
+  public lineChartData = [
+    { data: [], label: 'cases' },
+    { data: [], label: 'deaths' },
+    { data: [], label: 'recovered' },
+  ];
+  backupdata = [
+    { data: [], label: 'cases' },
+    { data: [], label: 'deaths' },
+    { data: [], label: 'recovered' },
+  ];
+  public lineChartOptions: (ChartOptions) = {
+    responsive: true
+  }
 
   constructor(private api: ApiService) { }
 
@@ -27,15 +50,11 @@ export class HomeComponent implements OnInit {
   private _filter(value: string) {
     const filterValue = value.toLowerCase();
     this.filteredOptions = this.countries.filter(option => { return option.country.toLowerCase().includes(filterValue) });
-
-    console.log(value, this.filteredOptions)
   }
 
   getInfo() {
-    this.api.getCoronaData().subscribe(res => {
+    this.api.getAllCountries().subscribe(res => {
       this.countries = res;
-      console.log(res)
-      // this.updated = res['statistic_taken_at']
       if (sessionStorage.getItem('country')) {
         this.showCountryData(sessionStorage.getItem('country'));
       } else {
@@ -53,13 +72,46 @@ export class HomeComponent implements OnInit {
     this.data = this.countries.filter(country => {
       return country['country'] == selected
     })
-    this.data = this.data[0];
+    if (this.data[0]) {
+      this.data = this.data[0];
+      this.percent = ((this.data.cases / this.data.tests) * 100);
+      sessionStorage.setItem('country', this.data['country'])
 
-    sessionStorage.setItem('country', this.data['country'])
+      this.getHistoricData(this.data['country'])
+    }
+
+  }
+  getHistoricData(country) {
+    this.api.getHistoricalData(country).subscribe(res => {
+      console.log(res)
+      for (var i = 0; i < 3; i++) {
+        this.lineChartData[i]['data'] = Object.keys(res['timeline'][this.lineChartData[i]['label']]).map((key) => {
+          
+          return res['timeline'][this.lineChartData[i]['label']][key];
+        })
+      }
+
+      for(var i =0; i < 3; i++){
+        this.backupdata[i]['data'] = this.lineChartData[i]['data'];
+      }
+      // if (this.backupdata.length == 0) {
+      //   this.backupdata = this.lineChartData;
+      // }
+      console.log(this.lineChartData, this.backupdata)
+
+
+      this.lineChartLabels = Object.keys(res['timeline']['cases']).map((key) => {
+        return key
+      })
+
+      console.log(this.lineChartLabels)
+
+    }, err => {
+      console.log(err)
+    })
   }
 
   updateCountry(country, element) {
-    console.log('got it', country)
     this.showCountryData(country)
   }
 
@@ -67,14 +119,16 @@ export class HomeComponent implements OnInit {
     this.searchCountry.patchValue('')
   }
 
-  hideKeyboard(element) {
-    element.attr('readonly', 'readonly'); // Force keyboard to hide on input field.
-    element.attr('disabled', 'true'); // Force keyboard to hide on textarea field.
-    setTimeout(function() {
-        element.blur();  //actually close the keyboard
-        // Remove readonly attribute after keyboard is hidden.
-        element.removeAttr('readonly');
-        element.removeAttr('disabled');
-    }, 100);
-}
+  changeGraph(index) {
+
+    let backup = this.backupdata;
+
+    if (this.lineChartData[index]['data'].length !== 0) {
+      this.lineChartData[index]['data'] = []
+    } else {
+      this.lineChartData[index]['data'] = backup[index]['data']
+    }
+
+  }
+
 }

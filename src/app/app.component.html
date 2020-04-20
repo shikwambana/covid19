@@ -3,7 +3,7 @@
   <button [routerLink]="['/']" mat-menu-item>Home</button>
   <button [routerLink]="['/hospitals']" mat-menu-item>Find a Hospital</button>
   <button [routerLink]="['/information']" mat-menu-item>Information</button>
-  <button [routerLink]="['/covid19statistics']" mat-menu-item>statistics</button>
+  <!-- <button [routerLink]="['/covid19statistics']" mat-menu-item>statistics</button> -->
 </mat-menu>
 <div class="navabr">
     <h1 [routerLink]="['/']" style="cursor: pointer;">Covid19 Cases</h1>
@@ -14,10 +14,10 @@
       <div class="menuItem" routerLinkActive="activeMenu" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/covid19statistics']"><mat-icon>insert_chart</mat-icon><p>SA Stats</p></div>
     </div>
 </div>
-<a href="https://shikwambana.info" target="_blank">
-    <img class="logo" src="../assets/Alphie Shikwambana new logo_.png">
-</a>
-<div style="padding-bottom: 45px;">
+<!-- <a href="https://shikwambana.info" target="_blank">
+    <img class="logo" src="../assets/covid19cases.today.png">
+</a> -->
+<div style="padding-bottom: 50px;">
 <router-outlet></router-outlet>
 
 </div>

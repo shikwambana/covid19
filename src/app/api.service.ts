@@ -47,4 +47,16 @@ export class ApiService {
   getArticle(id){
     return this.http.get('http://www.nicd.ac.za/wp-json/wp/v2/posts/' + id )
   }
+
+  //======================================
+  //==========corona.lmao.ninja===========
+  //======================================
+
+  getAllCountries(){
+    return this.http.get('https://corona.lmao.ninja/v2/countries?yesterday=false&sort=cases')
+  }
+
+  getHistoricalData(country){
+    return this.http.get(`https://corona.lmao.ninja/v2/historical/${country}?lastdays=50`)
+  }
 }
