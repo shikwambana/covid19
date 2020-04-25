@@ -51,9 +51,9 @@
             </div>
 
 
-            <div *ngIf="data">
+            <div *ngIf="data" class="newUInumbers fadeInUp">
                 <h3>At a glance</h3>
-                <div class="NumberBlock">
+                <div class="NumberBlock fadeInUp">
                     <fa-icon [icon]="faHandHoldingMedical"></fa-icon>
                     <h3>New Cases Today</h3>
                     <div class="caseNumberBlock">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
 
-                <div class="NumberBlock">
+                <div class="NumberBlock fadeInUp">
                     <fa-icon [icon]="faSkull"></fa-icon>
                     <h3>New Deaths Today</h3>
                     <div class="caseNumberBlock">
@@ -103,6 +103,40 @@
                 </div>
             </div>
 
+            
+
+            <div class="blockContainers fadeInUp" fxLayout="column wrap" *ngIf="data">
+                <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+                    <div class="blockInfo" fxLayout="column wrap">
+                        <h3>New Cases Today</h3>
+                        <p>{{data.todayCases}}</p>
+                    </div>
+                    <div class="blockInfo" fxLayout="column wrap">
+
+                        <h3>New Deaths Today</h3>
+                        <p>{{data.todayDeaths}}</p>
+                    </div>
+                    <div class="blockInfo" fxLayout="column wrap">
+                        <h3>Critical Cases</h3>
+                        <p>{{data.critical}}</p>
+                    </div>
+                </div>
+                <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+                    <div class="blockInfo" fxLayout="column wrap">
+                        <h3>Recovered</h3>
+                        <p>{{data.recovered}}</p>
+                    </div>
+                    <div class="blockInfo" fxLayout="column wrap">
+                        <h3>Active Cases</h3>
+                        <p>{{data.active}}</p>
+                    </div>
+                    <div class="blockInfo" fxLayout="column wrap">
+                        <h3>Deaths</h3>
+                        <p>{{data.deaths}}</p>
+                    </div>
+                </div>
+            </div>
+
             <div *ngIf="data">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -138,38 +172,6 @@
                 </mat-expansion-panel>
 
             </div>
-
-            <!-- <div class="blockContainers fadeInUp" fxLayout="column wrap" *ngIf="data">
-                <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>New Cases Today</h3>
-                        <p>{{data.todayCases}}</p>
-                    </div>
-                    <div class="blockInfo" fxLayout="column wrap">
-
-                        <h3>New Deaths Today</h3>
-                        <p>{{data.todayDeaths}}</p>
-                    </div>
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Critical Cases</h3>
-                        <p>{{data.critical}}</p>
-                    </div>
-                </div>
-                <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Recovered</h3>
-                        <p>{{data.recovered}}</p>
-                    </div>
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Active Cases</h3>
-                        <p>{{data.active}}</p>
-                    </div>
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Deaths</h3>
-                        <p>{{data.deaths}}</p>
-                    </div>
-                </div>
-            </div> -->
         </mat-card>
 
         <div class="graphContainer">

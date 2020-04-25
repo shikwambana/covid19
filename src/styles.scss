@@ -253,6 +253,12 @@ a {
   padding: 10px;
 }
 
+@media only screen and (min-width: 600px) {
+  .newUInumbers {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .articleContainer {
     flex-wrap: wrap;
@@ -269,6 +275,10 @@ a {
     width: 100%;
     z-index: 5;
     box-shadow: 0px -1px 14px 5px #b5b5b5c7;
+  }
+
+  .blockContainers {
+    display: none;
   }
 }
 
@@ -308,7 +318,7 @@ a {
 .caseNumberBlock {
   padding: 10px;
   box-shadow: 5px 5px 5px rgba(121, 117, 117, 0.33), -5px 0px 5px #2aa6b58a;  //#63cdda70;
-  min-width: 90px;
+  width: 120px;
   text-align: center;
 }
 
