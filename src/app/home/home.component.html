@@ -2,7 +2,7 @@
     <div fxLayout="column wrap">
         <div style="padding-top: 10px;" fxLayout="column wrap" style="text-align: center;"
             fxLayoutAlign="space-evenly center">
-            <div class="searchBar fadeInDown" fxLayout="row nowrap" fxLayoutAlign="center start" fxFlex="100">
+            <div class="searchBar fadeIn" fxLayout="row nowrap" fxLayoutAlign="center start" fxFlex="100">
                 <input MatInput type="text" style="max-width: 170px;" placeholder="Search for a Country" matInput
                     [formControl]="searchCountry" [matAutocomplete]="countryResult" #searchTerm>
                 <div fxLayout="column wrap" fxLayoutAlign="center center" fxFlex="10" (click)="clearText()"
@@ -29,13 +29,13 @@
         <mat-card>
             <div *ngIf="!data" style="margin: 0 auto;text-align: center;">
                 <div class="loadingPicture">
-                    <img src="../../assets/covid19cases.today-loader.png" alt="">
+                    <!-- <img src="../../assets/covid19cases.today-loader.png" alt=""> -->
                     <p>Fetching Data from World Health Organisation</p>
                 </div>
                 <p *ngIf="noInternet">Cannot Reach Network</p>
             </div>
 
-            <div class="casesTitle fadeInDown" fxLayout="row wrap" style="text-align: center;" *ngIf="data">
+            <div class="casesTitle fadeIn" fxLayout="row wrap" style="text-align: center;" *ngIf="data">
                 <div fxLayout="column wrap" fxFlex="1">
                     <h2>{{data.country}}</h2>
                     <p>Number of Confirmed Cases</p>
@@ -66,10 +66,6 @@
                         <h3>Critical Cases</h3>
                         <p>{{data.critical}}</p>
                     </div>
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Cases Per OneMillion</h3>
-                        <p>{{data.casesPerOneMillion}}</p>
-                    </div>
                 </div>
                 <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
                     <div class="blockInfo" fxLayout="column wrap">
@@ -83,10 +79,6 @@
                     <div class="blockInfo" fxLayout="column wrap">
                         <h3>Deaths</h3>
                         <p>{{data.deaths}}</p>
-                    </div>
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Deaths Per OneMillion</h3>
-                        <p>{{data.deathsPerOneMillion}}</p>
                     </div>
                 </div>
             </div>
@@ -104,7 +96,7 @@
                     [options]="lineChartOptions" [legend]="lineChartLegend" [chartType]="lineChartType"></canvas>
             </div>
     
-            <div fxLayout="row wrap" style="display: flex; margin: 20px 0;justify-content: center;">
+            <div fxLayout="row wrap" style="display: flex; margin: 20px 0;justify-content: center;" *ngIf="lineChartLabels && data">
                 <h5 style="margin: 14px;">Toggle Chart: </h5>
                 <mat-button-toggle-group [multiple]='true' name="fontStyle" aria-label="Font Style">
                     <mat-button-toggle [checked]="true" (click)="changeGraph(0)" value="line">Cases
