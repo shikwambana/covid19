@@ -51,14 +51,102 @@
             </div>
 
 
+            <div *ngIf="data">
+                <h3>At a glance</h3>
+                <div class="NumberBlock">
+                    <fa-icon [icon]="faHandHoldingMedical"></fa-icon>
+                    <h3>New Cases Today</h3>
+                    <div class="caseNumberBlock">
+                        <p>{{data.todayCases}}</p>
+                    </div>
+                </div>
 
-            <div class="blockContainers fadeInUp" fxLayout="column wrap" *ngIf="data">
+                <div class="NumberBlock">
+                    <fa-icon [icon]="faSkull"></fa-icon>
+                    <h3>New Deaths Today</h3>
+                    <div class="caseNumberBlock">
+                        <p>{{data.todayDeaths}}</p>
+                    </div>
+                </div>
+
+                <div class="NumberBlock">
+                    <fa-icon [icon]="faProcedures"></fa-icon>
+                    <h3>Critical Cases</h3>
+                    <div class="caseNumberBlock">
+                        <p>{{data.critical}}</p>
+                    </div>
+                </div>
+
+                <h3>Overall Numbers</h3>
+                <div class="NumberBlock">
+                    <fa-icon [icon]="faUserCheck"></fa-icon>
+                    <h3>Recovered</h3>
+                    <div class="caseNumberBlock">
+                        <p>{{data.recovered}}</p>
+                    </div>
+                </div>
+
+                <div class="NumberBlock">
+                    <fa-icon [icon]="faLungsVirus"></fa-icon>
+                    <h3>Active Cases</h3>
+                    <div class="caseNumberBlock">
+                        <p>{{data.active}}</p>
+                    </div>
+                </div>
+
+                <div class="NumberBlock">
+                    <fa-icon [icon]="faSkullCrossbones"></fa-icon>
+                    <h3>Total Deaths</h3>
+                    <div class="caseNumberBlock">
+                        <p>{{data.deaths}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="data">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title style="color: #4fb3bf;">
+                            More information on {{data.country}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p><strong> {{data.country}}'s Flag:</strong></p>
+                    <img src="{{data.countryInfo.flag}}" alt="{{data.country}} flag">
+
+                    <p>Continent : <strong>{{data.continent}}</strong></p>
+                    <p>Total Cases : <strong>{{data.cases}}</strong></p>
+                    <p>Cases per one million : <strong>{{data.casesPerOneMillion}}</strong> 
+                        <fa-icon style="margin-left: 5px;" (click)="info = !info" [icon]="faQuestionCircle"></fa-icon>
+                    </p>
+                    <div *ngIf="info" class="fadeInDown">
+                        <p>A basic measure of the corona virus frequency is a rate, which takes into account the number
+                            of cases or deaths and the population size. This is known as the 'cases per one million'</p>
+                        <p>For example, {{data.country}} has {{data.casesPerOneMillion}} cases per one million, that
+                            means for every one million people, {{data.casesPerOneMillion}} have the corona virus</p>
+                    </div>
+
+                    <p>Total Deaths : <strong>{{data.deaths}}</strong></p>
+                    <p>Deaths per one million : <strong>{{data.deathsPerOneMillion}}</strong></p>
+
+                    <p>Total Tests : <strong>{{data.tests}}</strong></p>
+                    <p>Tests per one million : <strong>{{data.testsPerOneMillion}}</strong> 
+                    <br>
+
+                    <a href="https://www.google.com/maps/@{{data.countryInfo.lat}},{{data.countryInfo.long}},4z" target="_blank"><p>View {{data.country}} on Google Maps</p></a>
+                   
+                   
+                </mat-expansion-panel>
+
+            </div>
+
+            <!-- <div class="blockContainers fadeInUp" fxLayout="column wrap" *ngIf="data">
                 <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
                     <div class="blockInfo" fxLayout="column wrap">
                         <h3>New Cases Today</h3>
                         <p>{{data.todayCases}}</p>
                     </div>
                     <div class="blockInfo" fxLayout="column wrap">
+
                         <h3>New Deaths Today</h3>
                         <p>{{data.todayDeaths}}</p>
                     </div>
@@ -81,13 +169,8 @@
                         <p>{{data.deaths}}</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </mat-card>
-
-        
-        <!-- <div class="articlesContainer" #articles id="articles" fxLayout="column wrap">
-            <app-graphs></app-graphs>
-        </div> -->
 
         <div class="graphContainer">
             <div style="max-width: 700px;margin: 0 auto;" *ngIf="lineChartLabels && data">
@@ -95,14 +178,17 @@
                 <canvas baseChart width="200" height="200" [datasets]="lineChartData" [labels]="lineChartLabels"
                     [options]="lineChartOptions" [legend]="lineChartLegend" [chartType]="lineChartType"></canvas>
             </div>
-    
-            <div fxLayout="row wrap" style="display: flex; margin: 20px 0;justify-content: center;" *ngIf="lineChartLabels && data">
+
+            <div fxLayout="row wrap" style="display: flex; margin: 20px 0;justify-content: center;"
+                *ngIf="lineChartLabels && data">
                 <h5 style="margin: 14px;">Toggle Chart: </h5>
                 <mat-button-toggle-group [multiple]='true' name="fontStyle" aria-label="Font Style">
                     <mat-button-toggle [checked]="true" (click)="changeGraph(0)" value="line">Cases
                     </mat-button-toggle>
-                    <mat-button-toggle [checked]="true" (click)="changeGraph(1)" value="deaths">Deaths</mat-button-toggle>
-                    <mat-button-toggle [checked]="true" (click)="changeGraph(2)" value="recovered">Recovered</mat-button-toggle>
+                    <mat-button-toggle [checked]="true" (click)="changeGraph(1)" value="deaths">Deaths
+                    </mat-button-toggle>
+                    <mat-button-toggle [checked]="true" (click)="changeGraph(2)" value="recovered">Recovered
+                    </mat-button-toggle>
                 </mat-button-toggle-group>
             </div>
         </div>

@@ -4,6 +4,7 @@
 $primary: #00838f;
 $light: #4fb3bf;
 $dark: #3a3a3a;
+$lightBlack : rgba(0, 0, 0, 0.54);
 
 html,
 body {
@@ -24,7 +25,7 @@ a {
 .caseNumber {
   font-size: 6vw;
   margin: 0;
-  color: rgba(0,0,0,.54);
+  color: $lightBlack;
   font-weight: inherit;
 }
 .navabr {
@@ -258,8 +259,7 @@ a {
   }
 
   .menuItem {
-    
-  padding-right: 0px;
+    padding-right: 0px;
   }
 
   .menuIcons {
@@ -277,6 +277,45 @@ a {
   color: white !important;
 }
 
+.NumberBlock {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: $light;
+  margin: 5px 0;
+  max-height: 60px;
+  padding: 0px 20px;
+}
+
+.NumberBlock h3 {
+  font-size: 4vw;
+  font-weight: 500;
+  margin: 20px 0;
+}
+
+.NumberBlock p {
+  font-size: 6vw;
+  margin: 5px !important;
+  color: $lightBlack;
+}
+
+.NumberBlock fa-icon {
+  padding: 18px 0;
+  font-size: 25px;
+  color: $lightBlack;
+}
+
+.caseNumberBlock {
+  padding: 10px;
+  box-shadow: 5px 5px 5px rgba(121, 117, 117, 0.33), -5px 0px 5px #2aa6b58a;  //#63cdda70;
+  min-width: 90px;
+  text-align: center;
+}
+
+.caseNumberBlock p {
+  color: white;
+}
+
 //===============================
 // animation
 //===============================
@@ -292,7 +331,7 @@ a {
 }
 
 .fadeIn {
-  animation: fadeIn .5s;
+  animation: fadeIn 0.5s;
 }
 
 @keyframes fadeInDown {
@@ -324,7 +363,7 @@ a {
 }
 
 .fadeInUp {
-  animation: fadeInUp .5s;
+  animation: fadeInUp 0.5s;
 }
 
 /// Loader

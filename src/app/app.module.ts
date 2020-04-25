@@ -14,6 +14,7 @@ import { InfoComponent } from './info/info.component';
 import { ChartsModule } from 'ng2-charts';
 import { HopitalsComponent } from './hopitals/hopitals.component';
 import { NewhomeComponent } from './newhome/newhome.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { NewhomeComponent } from './newhome/newhome.component';
     MatInputModule,
     FormsModule, 
     ChartsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

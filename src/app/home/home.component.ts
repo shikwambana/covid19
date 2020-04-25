@@ -4,6 +4,8 @@ import { FormControl } from "@angular/forms";
 import { ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { ObjectUnsubscribedError } from 'rxjs';
+import { faSkull, faHandHoldingMedical, faProcedures, 
+      faUserCheck, faLungsVirus, faSkullCrossbones, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +13,15 @@ import { ObjectUnsubscribedError } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  //===================
+  faSkull = faSkull;
+  faSkullCrossbones = faSkullCrossbones;
+  faHandHoldingMedical = faHandHoldingMedical;
+  faProcedures = faProcedures;
+  faUserCheck = faUserCheck;
+  faLungsVirus = faLungsVirus;
+  faQuestionCircle = faQuestionCircle;
+  info : boolean = false;
   data: any;
   countries;
   updated;
@@ -76,7 +87,7 @@ export class HomeComponent implements OnInit {
       this.data = this.data[0];
       this.percent = ((this.data.cases / this.data.tests) * 100);
       sessionStorage.setItem('country', this.data['country'])
-
+      console.log(this.data)
       this.getHistoricData(this.data['country'])
     }
 
@@ -86,12 +97,12 @@ export class HomeComponent implements OnInit {
       console.log(res)
       for (var i = 0; i < 3; i++) {
         this.lineChartData[i]['data'] = Object.keys(res['timeline'][this.lineChartData[i]['label']]).map((key) => {
-          
+
           return res['timeline'][this.lineChartData[i]['label']][key];
         })
       }
 
-      for(var i =0; i < 3; i++){
+      for (var i = 0; i < 3; i++) {
         this.backupdata[i]['data'] = this.lineChartData[i]['data'];
       }
       // if (this.backupdata.length == 0) {
