@@ -11,6 +11,7 @@ body {
   height: 100%;
   //   background-image: linear-gradient($dark,$light);
   background-repeat: no-repeat;
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
 body {
   margin: 0;
@@ -253,11 +254,6 @@ a {
   padding: 10px;
 }
 
-@media only screen and (min-width: 600px) {
-  .newUInumbers {
-    display: none;
-  }
-}
 
 @media only screen and (max-width: 600px) {
   .articleContainer {
@@ -287,6 +283,24 @@ a {
   color: white !important;
 }
 
+
+@media only screen and (max-width: 800px) {
+  .newUInumbers {
+    flex-direction: column !important;
+  }
+}
+
+.newUInumbers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.newUIContainer {
+  flex: 1;
+  margin: 10px;
+}
+
 .NumberBlock {
   display: flex;
   justify-content: space-between;
@@ -294,17 +308,17 @@ a {
   background-color: $light;
   margin: 5px 0;
   max-height: 60px;
-  padding: 0px 20px;
+  padding-left: 20px;
 }
 
 .NumberBlock h3 {
-  font-size: 4vw;
+  // font-size: 4vw;
   font-weight: 500;
-  margin: 20px 0;
+  margin: 15px 0;
 }
 
 .NumberBlock p {
-  font-size: 6vw;
+  // font-size: 6vw;
   margin: 5px !important;
   color: $lightBlack;
 }
@@ -318,7 +332,7 @@ a {
 .caseNumberBlock {
   padding: 10px;
   box-shadow: 5px 5px 5px rgba(121, 117, 117, 0.33), -5px 0px 5px #2aa6b58a;  //#63cdda70;
-  width: 120px;
+  min-width: 80px;
   text-align: center;
 }
 

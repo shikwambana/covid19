@@ -52,92 +52,64 @@
 
 
             <div *ngIf="data" class="newUInumbers fadeInUp">
-                <h3>At a glance</h3>
-                <div class="NumberBlock fadeInUp">
-                    <fa-icon [icon]="faHandHoldingMedical"></fa-icon>
-                    <h3>New Cases Today</h3>
-                    <div class="caseNumberBlock">
-                        <p>{{data.todayCases}}</p>
-                    </div>
-                </div>
-
-                <div class="NumberBlock fadeInUp">
-                    <fa-icon [icon]="faSkull"></fa-icon>
-                    <h3>New Deaths Today</h3>
-                    <div class="caseNumberBlock">
-                        <p>{{data.todayDeaths}}</p>
-                    </div>
-                </div>
-
-                <div class="NumberBlock">
-                    <fa-icon [icon]="faProcedures"></fa-icon>
-                    <h3>Critical Cases</h3>
-                    <div class="caseNumberBlock">
-                        <p>{{data.critical}}</p>
-                    </div>
-                </div>
-
-                <h3>Overall Numbers</h3>
-                <div class="NumberBlock">
-                    <fa-icon [icon]="faUserCheck"></fa-icon>
-                    <h3>Recovered</h3>
-                    <div class="caseNumberBlock">
-                        <p>{{data.recovered}}</p>
-                    </div>
-                </div>
-
-                <div class="NumberBlock">
-                    <fa-icon [icon]="faLungsVirus"></fa-icon>
-                    <h3>Active Cases</h3>
-                    <div class="caseNumberBlock">
-                        <p>{{data.active}}</p>
-                    </div>
-                </div>
-
-                <div class="NumberBlock">
-                    <fa-icon [icon]="faSkullCrossbones"></fa-icon>
-                    <h3>Total Deaths</h3>
-                    <div class="caseNumberBlock">
-                        <p>{{data.deaths}}</p>
-                    </div>
-                </div>
-            </div>
-
-            
-
-            <div class="blockContainers fadeInUp" fxLayout="column wrap" *ngIf="data">
-                <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-                    <div class="blockInfo" fxLayout="column wrap">
+                <div class="newUIContainer">
+                    <h3>At a glance</h3>
+                    <div class="NumberBlock fadeInUp">
+                        <fa-icon [icon]="faHandHoldingMedical"></fa-icon>
                         <h3>New Cases Today</h3>
-                        <p>{{data.todayCases}}</p>
+                        <div class="caseNumberBlock">
+                            <p>{{data.todayCases}}</p>
+                        </div>
                     </div>
-                    <div class="blockInfo" fxLayout="column wrap">
 
+                    <div class="NumberBlock fadeInUp">
+                        <fa-icon [icon]="faSkull"></fa-icon>
                         <h3>New Deaths Today</h3>
-                        <p>{{data.todayDeaths}}</p>
+                        <div class="caseNumberBlock">
+                            <p>{{data.todayDeaths}}</p>
+                        </div>
                     </div>
-                    <div class="blockInfo" fxLayout="column wrap">
+
+                    <div class="NumberBlock">
+                        <fa-icon [icon]="faProcedures"></fa-icon>
                         <h3>Critical Cases</h3>
-                        <p>{{data.critical}}</p>
+                        <div class="caseNumberBlock">
+                            <p>{{data.critical}}</p>
+                        </div>
                     </div>
+
                 </div>
-                <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-                    <div class="blockInfo" fxLayout="column wrap">
+
+                <div class="newUIContainer">
+                    <h3>Overall Numbers</h3>
+                    <div class="NumberBlock">
+                        <fa-icon [icon]="faUserCheck"></fa-icon>
                         <h3>Recovered</h3>
-                        <p>{{data.recovered}}</p>
+                        <div class="caseNumberBlock">
+                            <p>{{data.recovered}}</p>
+                        </div>
                     </div>
-                    <div class="blockInfo" fxLayout="column wrap">
+
+                    <div class="NumberBlock">
+                        <fa-icon [icon]="faLungsVirus"></fa-icon>
                         <h3>Active Cases</h3>
-                        <p>{{data.active}}</p>
+                        <div class="caseNumberBlock">
+                            <p>{{data.active}}</p>
+                        </div>
                     </div>
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Deaths</h3>
-                        <p>{{data.deaths}}</p>
+
+                    <div class="NumberBlock">
+                        <fa-icon [icon]="faSkullCrossbones"></fa-icon>
+                        <h3>Total Deaths</h3>
+                        <div class="caseNumberBlock">
+                            <p>{{data.deaths}}</p>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
-            <div *ngIf="data">
+            <div *ngIf="data" style="margin-top: 15px;">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title style="color: #4fb3bf;">
@@ -149,7 +121,7 @@
 
                     <p>Continent : <strong>{{data.continent}}</strong></p>
                     <p>Total Cases : <strong>{{data.cases}}</strong></p>
-                    <p>Cases per one million : <strong>{{data.casesPerOneMillion}}</strong> 
+                    <p>Cases per one million : <strong>{{data.casesPerOneMillion}}</strong>
                         <fa-icon style="margin-left: 5px;" (click)="info = !info" [icon]="faQuestionCircle"></fa-icon>
                     </p>
                     <div *ngIf="info" class="fadeInDown">
@@ -163,12 +135,15 @@
                     <p>Deaths per one million : <strong>{{data.deathsPerOneMillion}}</strong></p>
 
                     <p>Total Tests : <strong>{{data.tests}}</strong></p>
-                    <p>Tests per one million : <strong>{{data.testsPerOneMillion}}</strong> 
-                    <br>
+                    <p>Tests per one million : <strong>{{data.testsPerOneMillion}}</strong>
+                        <br>
 
-                    <a href="https://www.google.com/maps/@{{data.countryInfo.lat}},{{data.countryInfo.long}},4z" target="_blank"><p>View {{data.country}} on Google Maps</p></a>
-                   
-                   
+                        <a href="https://www.google.com/maps/@{{data.countryInfo.lat}},{{data.countryInfo.long}},6z"
+                            target="_blank">
+                            <p>View {{data.country}} on Google Maps</p>
+                        </a>
+
+
                 </mat-expansion-panel>
 
             </div>
