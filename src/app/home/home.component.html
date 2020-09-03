@@ -15,7 +15,7 @@
             <div fxLayout="row nowrap" style="overflow-x: auto; overflow-y: hidden; width: 300px;margin: 0 auto;"
                 class="countriesChipList">
                 <mat-chip-list *ngIf="countries">
-                    <mat-chip [disableRipple]="true" (click)="updateCountry(country.country,searchTerm);clearText()"
+                    <mat-chip style="cursor: pointer;" [disableRipple]="true" (click)="updateCountry(country.country,searchTerm);clearText()"
                         *ngFor="let country of countries">{{country.country}}</mat-chip>
                 </mat-chip-list>
             </div>
@@ -35,15 +35,24 @@
                 <p *ngIf="noInternet">Cannot Reach Network</p>
             </div>
 
+            <div style="text-align: end;margin: 10px 0;" *ngIf="data">
+                View Yesterday's Cases  <mat-slide-toggle (change)="getInfo()" [(ngModel)]="isYesterday" ></mat-slide-toggle>
+            </div>
+
             <div class="casesTitle fadeIn" fxLayout="row wrap" style="text-align: center;" *ngIf="data">
                 <div fxLayout="column wrap" fxFlex="1">
                     <h2>{{data.country}}</h2>
                     <p>Number of Confirmed Cases</p>
                 </div>
                 <div fxLayout="column wrap" fxFlex="1">
-                    <h1 class="caseNumber">{{data.cases}}</h1>
-                    <p>Total Tests Conducted : {{data.tests}}</p>
-                    <p>{{percent | number:'1.1-1'}}% are positive</p>
+                    <h1 class="caseNumber">{{data.cases |  number:'':'en-US'}}</h1>
+                    <div *ngIf="data.tests !== 0">
+                        <p>Tests Conducted : {{data.tests |  number:'':'en-US'}}</p>
+                        <p>{{percent | number:'1.1-1'}}% are positive</p>
+                    </div>
+                    <div *ngIf="data.tests == 0">
+                        <p>This country does not share the number of tests it conducts</p>
+                    </div>
                     <div fxLayout="row" fxLayoutAlign="center center">
                         <!-- <mat-icon (click)="getInfo()">refresh</mat-icon> -->
                     </div>
@@ -58,7 +67,7 @@
                         <fa-icon [icon]="faHandHoldingMedical"></fa-icon>
                         <h3>New Cases Today</h3>
                         <div class="caseNumberBlock">
-                            <p>{{data.todayCases}}</p>
+                            <p>{{data.todayCases  |  number:'':'en-US'}}</p>
                         </div>
                     </div>
 
@@ -66,7 +75,7 @@
                         <fa-icon [icon]="faSkull"></fa-icon>
                         <h3>New Deaths Today</h3>
                         <div class="caseNumberBlock">
-                            <p>{{data.todayDeaths}}</p>
+                            <p>{{data.todayDeaths  |  number:'':'en-US'}}</p>
                         </div>
                     </div>
 
@@ -74,7 +83,7 @@
                         <fa-icon [icon]="faProcedures"></fa-icon>
                         <h3>Critical Cases</h3>
                         <div class="caseNumberBlock">
-                            <p>{{data.critical}}</p>
+                            <p>{{data.critical  |  number:'':'en-US'}}</p>
                         </div>
                     </div>
 
@@ -86,7 +95,7 @@
                         <fa-icon [icon]="faUserCheck"></fa-icon>
                         <h3>Recovered</h3>
                         <div class="caseNumberBlock">
-                            <p>{{data.recovered}}</p>
+                            <p>{{data.recovered  |  number:'':'en-US'}}</p>
                         </div>
                     </div>
 
@@ -94,7 +103,7 @@
                         <fa-icon [icon]="faLungsVirus"></fa-icon>
                         <h3>Active Cases</h3>
                         <div class="caseNumberBlock">
-                            <p>{{data.active}}</p>
+                            <p>{{data.active  |  number:'':'en-US'}}</p>
                         </div>
                     </div>
 
@@ -102,7 +111,7 @@
                         <fa-icon [icon]="faSkullCrossbones"></fa-icon>
                         <h3>Total Deaths</h3>
                         <div class="caseNumberBlock">
-                            <p>{{data.deaths}}</p>
+                            <p>{{data.deaths  |  number:'':'en-US'}}</p>
                         </div>
                     </div>
                 </div>
@@ -117,25 +126,27 @@
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <p><strong> {{data.country}}'s Flag:</strong></p>
-                    <img src="{{data.countryInfo.flag}}" alt="{{data.country}} flag">
+                    <img style="box-shadow: 6px 9px 10px 3px #cacaca;" src="{{data.countryInfo.flag}}"
+                        alt="{{data.country}} flag">
 
                     <p>Continent : <strong>{{data.continent}}</strong></p>
-                    <p>Total Cases : <strong>{{data.cases}}</strong></p>
-                    <p>Cases per one million : <strong>{{data.casesPerOneMillion}}</strong>
-                        <fa-icon style="margin-left: 5px;" (click)="info = !info" [icon]="faQuestionCircle"></fa-icon>
+                    <p>Total Population : <strong>{{data.population |  number:'':'en-US'}}</strong></p>
+                    <p>Total Cases : <strong>{{data.cases |  number:'':'en-US'}}</strong></p>
+                    <p>Cases per one million : <strong>{{data.casesPerOneMillion |  number:'':'en-US'}}</strong>
+                        <fa-icon style="margin-left: 15px;color: #4fb3bf;cursor: pointer;" (click)="info = !info" [icon]="faQuestionCircle"></fa-icon>
                     </p>
                     <div *ngIf="info" class="fadeInDown">
                         <p>A basic measure of the corona virus frequency is a rate, which takes into account the number
                             of cases or deaths and the population size. This is known as the 'cases per one million'</p>
-                        <p>For example, {{data.country}} has {{data.casesPerOneMillion}} cases per one million, that
-                            means for every one million people, {{data.casesPerOneMillion}} have the corona virus</p>
+                        <p>For example, {{data.country}} has {{data.casesPerOneMillion |  number:'':'en-US'}} cases per one million, that
+                            means for every one million people, {{data.casesPerOneMillion |  number:'':'en-US'}} have the corona virus</p>
                     </div>
 
-                    <p>Total Deaths : <strong>{{data.deaths}}</strong></p>
-                    <p>Deaths per one million : <strong>{{data.deathsPerOneMillion}}</strong></p>
+                    <p>Total Deaths : <strong>{{data.deaths |  number:'':'en-US'}}</strong></p>
+                    <p>Deaths per one million : <strong>{{data.deathsPerOneMillion |  number:'':'en-US'}}</strong></p>
 
-                    <p>Total Tests : <strong>{{data.tests}}</strong></p>
-                    <p>Tests per one million : <strong>{{data.testsPerOneMillion}}</strong>
+                    <p>Total Tests : <strong>{{data.tests |  number:'':'en-US'}}</strong></p>
+                    <p>Tests per one million : <strong>{{data.testsPerOneMillion |  number:'':'en-US'}}</strong>
                         <br>
 
                         <a href="https://www.google.com/maps/@{{data.countryInfo.lat}},{{data.countryInfo.long}},6z"
@@ -149,7 +160,11 @@
             </div>
         </mat-card>
 
-        <div class="graphContainer">
+        <div class="graphContainer" *ngIf="showGraph">
+
+            <div style="max-width: 700px;margin: 0 auto;" *ngIf="lineChartLabels && data && isSA">
+                <app-graphs></app-graphs>
+            </div>
             <div style="max-width: 700px;margin: 0 auto;" *ngIf="lineChartLabels && data">
                 <h2 style="text-align: center;">Timeline for {{data.country}}</h2>
                 <canvas baseChart width="200" height="200" [datasets]="lineChartData" [labels]="lineChartLabels"
@@ -159,7 +174,7 @@
             <div fxLayout="row wrap" style="display: flex; margin: 20px 0;justify-content: center;"
                 *ngIf="lineChartLabels && data">
                 <h5 style="margin: 14px;">Toggle Chart: </h5>
-                <mat-button-toggle-group [multiple]='true' name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle-group [multiple]='true' name="fontStyle" aria-label="Font Style" [(ngModel)]="selected">
                     <mat-button-toggle [checked]="true" (click)="changeGraph(0)" value="line">Cases
                     </mat-button-toggle>
                     <mat-button-toggle [checked]="true" (click)="changeGraph(1)" value="deaths">Deaths

@@ -13,6 +13,9 @@ import { faSkull, faHandHoldingMedical, faProcedures,
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  isSA : boolean = false;
+  isYesterday = false;
   //===================
   faSkull = faSkull;
   faSkullCrossbones = faSkullCrossbones;
@@ -29,7 +32,8 @@ export class HomeComponent implements OnInit {
   filteredOptions //: Observable<string[]>;
   noInternet = false;
   percent: number;
-
+  showGraph = true;
+  selected : boolean =  true;
   //============================================================================
   // Line chart
   public lineChartLabels = [];
@@ -64,7 +68,8 @@ export class HomeComponent implements OnInit {
   }
 
   getInfo() {
-    this.api.getAllCountries().subscribe(res => {
+
+    this.api.getAllCountries(this.isYesterday).subscribe(res => {
       this.countries = res;
       if (sessionStorage.getItem('country')) {
         this.showCountryData(sessionStorage.getItem('country'));
@@ -77,6 +82,7 @@ export class HomeComponent implements OnInit {
       console.log(err)
     })
   }
+  
 
   showCountryData(selected) {
 
@@ -86,6 +92,11 @@ export class HomeComponent implements OnInit {
     if (this.data[0]) {
       this.data = this.data[0];
       this.percent = ((this.data.cases / this.data.tests) * 100);
+      if(this.data.country == "South Africa"){
+        this.isSA = true;
+      }else{
+        this.isSA = false
+      }
       sessionStorage.setItem('country', this.data['country'])
       console.log(this.data)
       this.getHistoricData(this.data['country'])
@@ -93,6 +104,7 @@ export class HomeComponent implements OnInit {
 
   }
   getHistoricData(country) {
+    this.selected = null;
     this.api.getHistoricalData(country).subscribe(res => {
       console.log(res)
       for (var i = 0; i < 3; i++) {
@@ -116,9 +128,11 @@ export class HomeComponent implements OnInit {
       })
 
       console.log(this.lineChartLabels)
+      this.showGraph = true;
 
     }, err => {
       console.log(err)
+      this.showGraph = false;
     })
   }
 

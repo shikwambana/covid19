@@ -11,22 +11,33 @@
             <p>Fetching list of Hospitals...</p>
             <p *ngIf="noInternet">Cannot Reach Network</p>
         </div>
+
+        <!-- <div class="provinces">
+            <div class="province" *ngFor="let province of provinces">
+                <h5>{{province.province}}</h5>
+                <p>{{province.number}} <span style="font-size: xx-small;">Hospitals</span></p>
+            </div>
+        </div> -->
+
         <div class="hospitalContainer" *ngIf="dataSource">
             <table mat-table [dataSource]="dataSource" style="width: 100%;" class="mat-elevation-z8">
 
                 <ng-container matColumnDef="Name" sticky>
                     <th mat-header-cell *matHeaderCellDef> Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="Province">
-                    <th mat-header-cell *matHeaderCellDef> Province </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Province}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.Name}} <br>
+                        <a href="https://www.google.com/maps/@{{element.Lat}},{{element.Long}},18.5z"
+                            target="_blank">Get Location <mat-icon style="font-size: 15px;">location_on</mat-icon></a>
+                    </td>
                 </ng-container>
 
                 <ng-container matColumnDef="District">
                     <th mat-header-cell *matHeaderCellDef> District </th>
                     <td mat-cell *matCellDef="let element"> {{element.district}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Province">
+                    <th mat-header-cell *matHeaderCellDef> Province </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Province}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="Subdistrict">
@@ -54,8 +65,6 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-
-            <!-- <mat-paginator [pageSizeOptions]="[ 10, 20, 25, 50, 100]" showFirstLastButtons></mat-paginator> -->
         </div>
 
     </div>

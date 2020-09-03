@@ -22,6 +22,24 @@ td.mat-cell {
   min-width: 120px;
 }
 
+.provinces {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.province {
+  background: #4fb3bf;
+  padding: 8px;
+  margin: 5px;
+  min-width: 80px;
+}
+
+.province h5, .province p {
+  margin: 0;
+  color: white  ;
+}
+
 // .mat-table-sticky:last-child {
 //   border-left: 1px solid #e0e0e0;
 // }

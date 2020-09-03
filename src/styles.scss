@@ -4,7 +4,7 @@
 $primary: #00838f;
 $light: #4fb3bf;
 $dark: #3a3a3a;
-$lightBlack : rgba(0, 0, 0, 0.54);
+$lightBlack: rgba(0, 0, 0, 0.54);
 
 html,
 body {
@@ -38,6 +38,16 @@ a {
   text-align: center;
   color: white;
   outline: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .navabr .mat-icon {
+    padding: 5px 0px;
+  }
+
+  .globalCases {
+    display: none;
+  }
 }
 
 .casesTitle {
@@ -185,7 +195,7 @@ a {
   outline: none;
   cursor: pointer;
   padding-bottom: 10px;
-  padding-right: 15px;
+  padding: 5px;
 }
 
 .activeMenu {
@@ -254,7 +264,6 @@ a {
   padding: 10px;
 }
 
-
 @media only screen and (max-width: 600px) {
   .articleContainer {
     flex-wrap: wrap;
@@ -276,13 +285,24 @@ a {
   .blockContainers {
     display: none;
   }
+
+  .caseNumberBlock {
+    padding: 15px 10px !important;
+  }
+
+  .NumberBlock h3 {
+    margin: 22px 0 !important;
+  }
+
+  .numbers {
+    display: none !important;
+  }
 }
 
 .mat-button-toggle-checked {
-  background-color: $light;
-  color: white !important;
+  background-color: #4fb3bf;
+  color: white;
 }
-
 
 @media only screen and (max-width: 800px) {
   .newUInumbers {
@@ -331,9 +351,10 @@ a {
 
 .caseNumberBlock {
   padding: 10px;
-  box-shadow: 5px 5px 5px rgba(121, 117, 117, 0.33), -5px 0px 5px #2aa6b58a;  //#63cdda70;
+  // box-shadow: 5px 5px 5px rgba(121, 117, 117, 0.33), -5px 0px 5px #2aa6b58a;  //#63cdda70;
   min-width: 80px;
   text-align: center;
+  border-left: 1px #245258 solid;
 }
 
 .caseNumberBlock p {
@@ -455,4 +476,12 @@ a {
 .bounce {
   animation: bounce 1s;
   transform-origin: center bottom;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: $primary;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: $light;
 }

@@ -8,3 +8,22 @@
 .graphContainer {
     flex: 1;
 }
+
+.provincesNumber {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.provincesNumber p {
+    margin: 0px;
+    padding: 2px;
+}
+
+.provinceNumber {
+    text-align: center;
+    margin: 2px;
+    color: white;
+    border-radius: 2px;
+    padding: 2px;
+}

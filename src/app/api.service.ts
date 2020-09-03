@@ -28,35 +28,41 @@ export class ApiService {
   //==============South Africa============
   //======================================
 
-  getConfirmedCaseTimeLine(){
-    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/covid19za_timeline_confirmed.csv', {responseType: 'text'});
+  getConfirmedCaseTimeLine() {
+    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/covid19za_timeline_confirmed.csv', { responseType: 'text' });
   }
 
-  getProvinces(){
-    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/covid19za_provincial_cumulative_timeline_confirmed.csv', {responseType: 'text'});
+  getProvinces() {
+    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/covid19za_provincial_cumulative_timeline_confirmed.csv', { responseType: 'text' });
   }
 
-  getHospitals(){
-    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/health_system_za_public_hospitals.csv', {responseType: 'text'});
+  getHospitals() {
+    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/health_system_za_public_hospitals.csv', { responseType: 'text' });
   }
 
   //======================================
   //==============ARTICLES================
   //======================================
 
-  getArticle(id){
-    return this.http.get('http://www.nicd.ac.za/wp-json/wp/v2/posts/' + id )
+  getArticle(id) {
+    return this.http.get('http://www.nicd.ac.za/wp-json/wp/v2/posts/' + id)
   }
 
   //======================================
   //==========corona.lmao.ninja===========
   //======================================
 
-  getAllCountries(){
-    return this.http.get('https://corona.lmao.ninja/v2/countries?yesterday=false&sort=cases')
+  getAllCountries(yesterday?) {
+    if (yesterday) {
+      return this.http.get('https://corona.lmao.ninja/v2/countries?yesterday=true&sort=cases')
+    } else {
+      return this.http.get('https://corona.lmao.ninja/v2/countries?yesterday=false&sort=cases')
+    }
   }
 
-  getHistoricalData(country){
+  getYesterday() { }
+
+  getHistoricalData(country) {
     return this.http.get(`https://corona.lmao.ninja/v2/historical/${country}?lastdays=50`)
   }
 }

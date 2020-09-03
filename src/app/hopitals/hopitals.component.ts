@@ -7,10 +7,47 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './hopitals.component.html',
   styleUrls: ['./hopitals.component.scss']
 })
-export class HopitalsComponent implements OnInit {
+export class HopitalsComponent implements OnInit, AfterViewInit {
   hospitals: any[];
   displayedColumns: string[] = ['Name', 'Province', 'District', 'Subdistrict', 'Category', 'Long', 'Lat',];
-  dataSource: MatTableDataSource<any>;
+  provinces = [
+    {
+      province: 'Gauteng',
+      number: 0
+    },
+    {
+      province: 'Limpopo',
+      number: 0
+    },
+    {
+      province: 'KwaZuluNatal',
+      number: 0
+    },
+    {
+      province: 'Free State',
+      number: 0
+    },
+    {
+      province: 'Mpumalanga',
+      number: 0
+    },
+    {
+      province: 'North West',
+      number: 0
+    },
+    {
+      province: 'Eastern Cape',
+      number: 0
+    },
+    {
+      province: 'Western Cape',
+      number: 0
+    },
+    {
+      province: 'Northern Cape',
+      number: 0
+    }]
+  dataSource;
   noInternet = false;
   constructor(private api: ApiService) { }
 
@@ -57,6 +94,24 @@ export class HopitalsComponent implements OnInit {
     result.pop();
     this.hospitals = result;
     this.dataSource = new MatTableDataSource(this.hospitals);
+    console.log(result)
   }
 
+  sortHospitals(){
+
+    if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(this.showPosition)
+    }
+
+    for(var i=0; i< this.provinces.length; i++){
+      let result = this.hospitals.filter(item =>{
+        return item['Province'] == this.provinces[i]['province']
+      })
+      this.provinces[i]['number'] = result.length;
+    }
+  }
+
+  showPosition(position){
+    console.log(position)
+  }
 }

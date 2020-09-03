@@ -14,6 +14,7 @@ export class GraphsComponent implements OnInit {
   data: any[] = [];
   confirmedCases: any[] = [];
   casePerProvince;
+  provinces
   //============================================================================
   // Line chart
   public lineChartLabels = [];
@@ -26,9 +27,9 @@ export class GraphsComponent implements OnInit {
   public lineChartOptions: (ChartOptions) = {
     responsive: true
   }
-  provinces: any[] = [];
+  anotherList = [];
   listOfProvinces = ['GP', 'KZN', 'WC', 'LP', 'EC', 'FS', 'NC', 'NW', 'MP', 'UNK']
-  SAProvinces = ['EC', 'FS', 'GP', 'KZN', 'LP', 'MP', 'NC', 'NW', 'WC', 'UNKNOWN']
+  SAProvinces = ['EC', 'FS', 'GP', 'KZN', 'LP', 'MP', 'NC', 'NW', 'WC']
   gender = [{name:'Male',value:'male'},{name:'Female',value:'female'},{name:'Not Specified',value:'not specified'}]
 
   //==================================================================================
@@ -129,14 +130,21 @@ export class GraphsComponent implements OnInit {
 
   calcByProvince(){
     let data = []
-    this.SAProvinces.forEach(element => {
+    
+    this.SAProvinces.forEach((element,index) => {
       data.push(this.casePerProvince[this.casePerProvince.length-2][element])
+
+      this.anotherList.push({
+        name: element,
+        number: this.casePerProvince[this.casePerProvince.length-2][element],
+        color: this.pieChartColors[0].backgroundColor[index]
+      })
     });
 
-    console.log(data)
     this.pieChartData = data;
     this.pieChartLabels = this.SAProvinces;
-
+    this.anotherList.pop()
+    console.log(this.anotherList)
   }
 
   sortByProvince() {
@@ -154,7 +162,6 @@ export class GraphsComponent implements OnInit {
 
       this.provinces.push(obj)
     })
-
     this.pieChartLabels = this.provinces.map(res => {
       return res['label']
     })
