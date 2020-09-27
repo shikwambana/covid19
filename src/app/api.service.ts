@@ -21,23 +21,48 @@ export class ApiService {
   }
 
   getCoronaData() {
-
-    //   let httpOptions = {
-    //     headers: new HttpHeaders({
-    //       'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
-    //       'x-rapidapi-key': '2aa7627439msh8a6774bc46bfaf0p1b460bjsn649d533044fa'
-    //     })
-    //   }
-    //   console.log(httpOptions)
-    //   return this.http.get(' https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php', httpOptions)
     return this.http.get('https://coronavirus-19-api.herokuapp.com/countries')
+  }
+
+  //======================================
+  //==============South Africa============
+  //======================================
+
+  getConfirmedCaseTimeLine() {
+    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/covid19za_timeline_confirmed.csv', { responseType: 'text' });
+  }
+
+  getProvinces() {
+    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/covid19za_provincial_cumulative_timeline_confirmed.csv', { responseType: 'text' });
+  }
+
+  getHospitals() {
+    return this.http.get('https://raw.githubusercontent.com/dsfsi/covid19za/master/data/health_system_za_public_hospitals.csv', { responseType: 'text' });
   }
 
   //======================================
   //==============ARTICLES================
   //======================================
 
-  getArticle(id){
-    return this.http.get('http://www.nicd.ac.za/wp-json/wp/v2/posts/' + id )
+  getArticle(id) {
+    return this.http.get('http://www.nicd.ac.za/wp-json/wp/v2/posts/' + id)
+  }
+
+  //======================================
+  //==========corona.lmao.ninja===========
+  //======================================
+
+  getAllCountries(yesterday?) {
+    if (yesterday) {
+      return this.http.get('https://corona.lmao.ninja/v2/countries?yesterday=true&sort=cases')
+    } else {
+      return this.http.get('https://corona.lmao.ninja/v2/countries?yesterday=false&sort=cases')
+    }
+  }
+
+  getYesterday() { }
+
+  getHistoricalData(country) {
+    return this.http.get(`https://corona.lmao.ninja/v2/historical/${country}?lastdays=50`)
   }
 }

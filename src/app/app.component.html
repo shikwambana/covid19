@@ -1,14 +1,26 @@
-<button class="menuBtn" mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+<!-- <button class="menuBtn" mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button> -->
 <mat-menu #menu="matMenu">
   <button [routerLink]="['/']" mat-menu-item>Home</button>
+  <button [routerLink]="['/hospitals']" mat-menu-item>Find a Hospital</button>
   <button [routerLink]="['/information']" mat-menu-item>Information</button>
+  <!-- <button [routerLink]="['/covid19statistics']" mat-menu-item>statistics</button> -->
 </mat-menu>
 <div class="navabr">
-    <h1 [routerLink]="['/']" style="cursor: pointer;">Corvid19 Cases</h1>
+    <h1 [routerLink]="['/']" style="cursor: pointer;">Covid19Cases</h1>
+    <div fxLayout="row wrap" fxFlex="100" class="menuIcons" fxFlexAlign="center" fxLayoutAlign="space-around start">
+      <div class="menuItem" routerLinkActive="activeMenu" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/']"><mat-icon>home</mat-icon><p>Home</p></div>
+      <div class="menuItem" routerLinkActive="activeMenu" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/hospitals']"><mat-icon>local_hospital</mat-icon><p>Hospitals</p></div>
+      <div class="menuItem" routerLinkActive="activeMenu" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/information']"><mat-icon>info_outline</mat-icon><p>Info</p></div>
+      
+      <a href="https://shikwambana.info" target="_blank"><div  class="menuItem" ><mat-icon>build</mat-icon><p>Dev</p></div></a>
+      
+      <!-- <div class="menuItem" routerLinkActive="activeMenu" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/covid19statistics']"><mat-icon>insert_chart</mat-icon><p>SA Stats</p></div> -->
+    </div>
 </div>
-<a href="https://shikwambana.info" target="_blank">
-    <img class="logo" src="../assets/Alphie Shikwambana new logo_.png">
-</a>
-
-<!-- <mat-icon [routerLink]="['/information']" class="infoBtn bounce">info_outline</mat-icon> -->
+<!-- <a href="https://shikwambana.info" target="_blank">
+    <img class="logo" src="../assets/covid19cases.today.png">
+</a> -->
+<div style="padding-bottom: 50px;">
 <router-outlet></router-outlet>
+
+</div>

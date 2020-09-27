@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from "../api.service";
+import { ChartOptions } from 'chart.js';
+import { Label } from 'ng2-charts';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-graphs',
@@ -6,55 +10,250 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./graphs.component.scss']
 })
 export class GraphsComponent implements OnInit {
-
-  test = {"id":16587,"date":"2020-03-19T15:21:11","date_gmt":"2020-03-19T13:21:11","guid":{"rendered":"http:\/\/www.nicd.ac.za\/?p=16587"},"modified":"2020-03-19T15:21:11","modified_gmt":"2020-03-19T13:21:11","slug":"covid-19-update-21","status":"publish","type":"post","link":"http:\/\/www.nicd.ac.za\/covid-19-update-21\/","title":{"rendered":"COVID-19 update"},"content":{"rendered":"<p>Following the expansion of national-wide routine testing for SARS-CoV-2 in public and private laboratories, the National Institute for Communicable Diseases (NICD), a division of the National Health Laboratory Service, will start to transition to functioning as a reference and surveillance laboratory for COVID-19. This will include resolving and troubleshooting indeterminate and other unusual results as well as providing other reference laboratory functions. In addition, the NICD will conduct testing on routine surveillance samples to monitor the possible spread of\u00a0 COVID-19 across the country. Sequencing of early isolates of SARS-CoV-2 is underway and this information will be shared as soon possible.<\/p>\n<p>As of 19 March 2020, the NICD confirms 34 new COVID-19 cases bringing the total number of COVID-19 cases to 150 people, the majority of whom are based in Gauteng, Western Cape and KwaZulu-Natal provinces respectively. Of the 34 newly confirmed COVID-19 cases, the majority are imported and two are locally transmitted. Contact tracing of all persons that the patients might have come into contact with is underway. The provincial breakdown of the new cases is as follows:<\/p>\n<p><strong>\u00a0Gauteng Province <\/strong><\/p>\n<ul>\n<li>A 41-year-old female who travelled to the Democratic Republic of Congo<\/li>\n<li>A 43-year-old female who travelled to the Democratic Republic of Congo<\/li>\n<li>A 37-year-old female with no international travel history<\/li>\n<li>A 54-year-old female who travelled to the United Kingdom<\/li>\n<li>A 58-year-old male who travelled to the United Kingdom<\/li>\n<li>A 38-year-old male who travelled to France<\/li>\n<li>A 70-year-old female who travelled to the United States of America<\/li>\n<li>A 30-year-old male who travelled to Spain<\/li>\n<li>A 45-year-old male who travelled to the Democratic Republic of Congo<\/li>\n<li>An 85-year-old male who travelled to Switzerland<\/li>\n<li>A 64-year-old male who travelled to Vietnam and Thailand<\/li>\n<li>A 41-year-old male who travelled to the Netherlands<\/li>\n<li>A 23-year-old male with pending travel history<\/li>\n<li>A 5-year-old female with pending travel history<\/li>\n<li>A 44-year-old male with pending travel history<\/li>\n<\/ul>\n<p><strong>KwaZulu-Natal Province <\/strong><\/p>\n<ul>\n<li>A 71-year-old female who travelled to the United Kingdom<\/li>\n<li>A 26-year-old male who travelled to Mexico and the United States of America<\/li>\n<li>A 29-year-old female with pending travel history<\/li>\n<\/ul>\n<p><strong>Mpumalanga Province <\/strong><\/p>\n<ul>\n<li>A 56-year-old female who travelled to France<\/li>\n<\/ul>\n<p><strong>Western Cape Province <\/strong><\/p>\n<ul>\n<li>A 53-year-old female who travelled to the United Kingdom<\/li>\n<li>A 30-year-old female who travelled to the Netherlands and Qatar<\/li>\n<li>A 45-year-old male who travelled to Mexico<\/li>\n<li>A 70-year-old female who travelled to the United States of America<\/li>\n<li>A 25-year-old female who travelled to the United Kingdom<\/li>\n<li>A 37-year-old female who travelled to the United Kingdom<\/li>\n<li>A 43-year-old female who travelled to the United States of America<\/li>\n<li>A 31-year-old male who travelled to Spain and the Netherlands<\/li>\n<li>A 53-year-old female who travelled to Switzerland, Austria, Czech Republic and Germany<\/li>\n<li>A 22-year-old female who travelled to the United Kingdom<\/li>\n<li>A 63-year-old male who travelled to Switzerland, Czech Republic and Germany<\/li>\n<li>A 22-year-old male who travelled to Spain and the Netherlands<\/li>\n<li>A 32-year-old male who travelled to the United States of America<\/li>\n<li>A 37-year-old male with pending travel history<\/li>\n<li>A 34-year-old male with pending travel history<\/li>\n<\/ul>\n","protected":false},"excerpt":{"rendered":"<p>Following the expansion of national-wide routine testing for SARS-CoV-2 in public and private laboratories, the National Institute for Communicable Diseases (NICD), a division of the National Health Laboratory Service, will start to transition to functioning as a reference and surveillance laboratory for COVID-19. This will include resolving and troubleshooting indeterminate and other unusual results as [&hellip;]<\/p>\n","protected":false},"author":11,"featured_media":15750,"comment_status":"open","ping_status":"open","sticky":false,"template":"","format":"standard","meta":[],"categories":[11],"tags":[],"_links":{"self":[{"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/posts\/16587"}],"collection":[{"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/posts"}],"about":[{"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/types\/post"}],"author":[{"embeddable":true,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/users\/11"}],"replies":[{"embeddable":true,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/comments?post=16587"}],"version-history":[{"count":2,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/posts\/16587\/revisions"}],"predecessor-version":[{"id":16589,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/posts\/16587\/revisions\/16589"}],"wp:featuredmedia":[{"embeddable":true,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/media\/15750"}],"wp:attachment":[{"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/media?parent=16587"}],"wp:term":[{"taxonomy":"category","embeddable":true,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/categories?post=16587"},{"taxonomy":"post_tag","embeddable":true,"href":"http:\/\/www.nicd.ac.za\/wp-json\/wp\/v2\/tags?post=16587"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}
-  constructor() { }
-
-  dayObj = {
-    date : '',
-    totalNoToday : 0,
-    newCases: 0,
-    cases : [
-      {
-        'province' : '',
-        'info' : [
-          {
-            age: 0,
-            gender : '',
-            travelled: ''
-          }
-        ]
-      }
-    ]
+  timelineCases: any[];
+  data: any[] = [];
+  confirmedCases: any[] = [];
+  casePerProvince;
+  provinces
+  //============================================================================
+  // Line chart
+  public lineChartLabels = [];
+  public lineChartType = 'line';
+  public lineChartLegend = true;
+  public lineChartData = [
+    { data: [], label: 'Total Cases' },
+    // { data: [], label: 'New Cases per Day' }
+  ];
+  public lineChartOptions: (ChartOptions) = {
+    responsive: true
   }
+  anotherList = [];
+  listOfProvinces = ['GP', 'KZN', 'WC', 'LP', 'EC', 'FS', 'NC', 'NW', 'MP', 'UNK']
+  SAProvinces = ['EC', 'FS', 'GP', 'KZN', 'LP', 'MP', 'NC', 'NW', 'WC']
+  gender = [{name:'Male',value:'male'},{name:'Female',value:'female'},{name:'Not Specified',value:'not specified'}]
+
+  //==================================================================================
+  // Province chart
+
+  public pieChartLabels: Label[] = [];
+  public pieChartData: number[] = [];
+  public pieChartType = 'bar';
+  public pieChartLegend = false;
+  public pieChartColors = [
+    {
+      backgroundColor: ['#520180','#56d4c3','#af92bf','#4cda31','#b96ae8','#52c7f5','#46a291','#131d7a','#c35647','#669fbc'],
+    },
+  ];
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label;
+        },
+      },
+    }
+  }
+
+  //============================================================================
+  // gender type chart
+  public genderChartLabels: Label[] = [];
+  public genderChartData: number[] = [];
+  public genderChartType = 'pie';
+  public genderChartLegend = true;
+  public genderChartColors = [
+    {
+      backgroundColor: ['#52c7f5','#4ec054'],
+    },
+  ];
+
+  genderType: any[] = [];
+
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.extractData()
   }
 
-  extractData(){
+  extractData() {
+    // this.api.getConfirmedCaseTimeLine().subscribe(res => {
+    //   this.csvJSON(res)
+    // })
 
-    //get the date
+    this.api.getProvinces().subscribe(res =>{
+      let data = this.csvJSON(res);
+      this.casePerProvince = data;
+      this.lineChartLabels = data.map(res =>{
+        return res['date']
+      })
+      console.log(data)
+      this.lineChartData[0]['data'] = data.map(res =>{
+        return res['total']
+      })
 
-    const dateReg = /[1-2][0-9] \w* 2020/;
+      this.calcByProvince();
+    })
+  }
 
-    let str = this.test.content.rendered.match(dateReg)
-    console.log(str)
-    console.log(new Date(str[0]))
+  // convert csv to json
+  csvJSON(csv) {
+    var lines = csv.split("\n");
+    var result = [];
+    var headers = lines[0].split(",");
 
-    //get the total number of people 
+    // loop through all the lines excpet the first 1 (index = 0) 
+    for (var i = 1; i < lines.length; i++) {
+      var obj = {};
+      var currentline = lines[i].split(",");
 
-    const totalNo = /\d{1,10}(?= people)/;
+      // loop through the skipped line (headers = lines[0])
+      for (var j = 0; j < headers.length; j++) {
+        obj[headers[j]] = currentline[j];
+      }
 
-    let stri = this.test.content.rendered.match(totalNo)
-    console.log(Number(stri[0]))
+      result.push(obj);
+    }
+    // call filter function
+    result.pop();
+    // console.log(result)
+    // this.timelineCases = result;
 
-  //get the province then store the data 
+    // this.sortByProvince()
+    // this.buildData();
+
+    return result
+  }
+
+  calcByProvince(){
+    let data = []
     
-    const province = /\w*(?= Province)/
+    this.SAProvinces.forEach((element,index) => {
+      data.push(this.casePerProvince[this.casePerProvince.length-2][element])
 
-    let strin = this.test.content.rendered.match(province)
-    console.log(strin[0])
+      this.anotherList.push({
+        name: element,
+        number: this.casePerProvince[this.casePerProvince.length-2][element],
+        color: this.pieChartColors[0].backgroundColor[index]
+      })
+    });
 
+    this.pieChartData = data;
+    this.pieChartLabels = this.SAProvinces;
+    this.anotherList.pop()
+    console.log(this.anotherList)
+  }
+
+  sortByProvince() {
+
+    this.listOfProvinces.forEach(prov => {
+
+      let item = this.timelineCases.filter(obj => {
+        return obj['province'] === prov
+      })
+
+      let obj = {
+        y: item.length,
+        label: item[0]['province']
+      }
+
+      this.provinces.push(obj)
+    })
+    this.pieChartLabels = this.provinces.map(res => {
+      return res['label']
+    })
+
+    this.pieChartData = this.provinces.map(res => {
+      return res['y']
+    })
+
+    this.gender.forEach(gender =>{
+      let item = this.timelineCases.filter(obj =>{
+        return obj['gender'] === gender['value']
+      })
+
+      let obj = {
+        y: item.length,
+        label: item[0]['gender']
+      }
+
+      this.genderType.push(obj)
+    })
+
+    this.genderChartLabels = this.genderType.map(res => {
+      return res['label']
+    })
+
+    this.genderChartData = this.genderType.map(res => {
+      return res['y']
+    })
+    console.log(this.genderType)
+  }
+
+
+  buildData() {
+
+    this.timelineCases.forEach(info => {
+
+      let item = this.timelineCases.filter(obj => {
+        return obj['date'] === info['date']
+      })
+
+      let obj = {
+        y: item.length,
+        label: item[0]['date']
+      }
+
+      if (!this.data.some(info => info['label'] === obj['label'])) {
+        this.data.push(obj)
+      }
+
+    });
+
+    console.log(this.data)
+
+    let tempData = this.data
+    let arr = []
+
+    for (var i = 0; i < tempData.length; i++) {
+      if (!tempData[i - 1]) {
+        this.confirmedCases.push(tempData[i])
+      } else {
+        let temp = 0;
+        for (var j = i; j >= 0; j--) {
+          temp += tempData[j]['y'];
+        }
+        let obj = {
+          label: tempData[i]['label'],
+          y: temp
+        }
+        this.confirmedCases.push(obj)
+      }
+    }
+
+    this.lineChartLabels = this.confirmedCases.map(res => {
+      return res['label']
+    })
+
+    this.lineChartData[0]['data'] = this.confirmedCases.map(res => {
+      return res['y']
+    })
+
+    this.lineChartData[1]['data'] = this.data.map(res => {
+      return res['y']
+    })
+
+    console.log(this.lineChartLabels, this.lineChartData)
+  }
+
+  changeGraph(type){
+    this.lineChartType = type;
+  }
+
+  changeProvGraph(type){
+    this.pieChartType = type;
   }
 }

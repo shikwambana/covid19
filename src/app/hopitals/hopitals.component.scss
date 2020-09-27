@@ -1,0 +1,51 @@
+.hospitalContainer {
+  // max-width: 1000px;
+  overflow: auto;
+}
+
+td.mat-column-star {
+  width: 20px;
+  padding-right: 8px;
+}
+
+th.mat-column-position,
+td.mat-column-position {
+  padding-left: 8px;
+}
+
+.mat-table-sticky:first-child {
+  border-right: 1px solid #e0e0e0;
+  padding-left: 15px !important;
+}
+
+td.mat-cell {
+  min-width: 120px;
+}
+
+.provinces {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.province {
+  background: #4fb3bf;
+  padding: 8px;
+  margin: 5px;
+  min-width: 80px;
+}
+
+.province h5, .province p {
+  margin: 0;
+  color: white  ;
+}
+
+// .mat-table-sticky:last-child {
+//   border-left: 1px solid #e0e0e0;
+// }
+
+// @media only screen and (max-width: 600px) {
+//     table, mat-paginator {
+//         display: none;
+//     }
+// }

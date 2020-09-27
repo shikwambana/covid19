@@ -1,7 +1,7 @@
 <div class="infoContainer">
     <div class="articleHeader" fxLayout="column" fxLayoutAlign="center center">
         <div class="articleHeaderOverlay">
-            <h2 class="fadeInDown">Information on Corvid-19</h2>
+            <h2 class="fadeInDown">Information on Covid-19</h2>
             <div style="display: none;">
                 <div class="lds-ripple">
                     <div></div>
@@ -22,43 +22,60 @@
             <p>Number of Deaths: {{cases.recovered}}</p>
         </div>
     </div> -->
-    <div fxLayout="row wrap" style="display: flex; flex-wrap: wrap; justify-content: center;" class="numbers" fxFlex="100">
-        <div fxFlex="50" fxLayout="column wrap" class="numberCard"> 
+    <div class="casesTitle fadeIn globalCases" fxLayout="row wrap" style="text-align: center; margin: 15px 0;" *ngIf="cases">
+        <div fxLayout="column wrap" fxFlex="1">
+            <p>Number of Confirmed Global Cases</p>
+        </div>
+        <div fxLayout="column wrap" fxFlex="1">
+            <h1 class="caseNumber">{{cases.cases |  number:'':'en-US'}}</h1>
+            <div>
+                <p>Recoveries : {{cases.recovered |  number:'':'en-US'}}</p>
+                <p>Deaths : {{cases.deaths |  number:'':'en-US'}}</p>
+            </div>
+            
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <!-- <mat-icon (click)="getInfo()">refresh</mat-icon> -->
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row wrap" style="display: flex; flex-wrap: wrap; justify-content: center;" *ngIf="cases" class="numbers fadeIn"
+        fxFlex="100">
+        <div fxFlex="50" fxLayout="column wrap" class="numberCard">
             <p>Global Cases</p>
-            <h1>{{cases.cases}}</h1>
+            <h1>{{cases.cases |  number:'':'en-US'}}</h1>
         </div>
-        <div fxLayout="column wrap" fxFlex="50"  class="numberCard">
+        <div fxLayout="column wrap" fxFlex="50" class="numberCard">
             <p>Recoveries</p>
-            <h2>{{cases.recovered}}</h2>
+            <h2>{{cases.recovered |  number:'':'en-US'}}</h2>
         </div>
-        <div fxLayout="column wrap" fxFlex="50"  class="numberCard">
+        <div fxLayout="column wrap" fxFlex="50" class="numberCard">
             <p>Deaths</p>
-            <h2>{{cases.deaths}}</h2>
+            <h2>{{cases.deaths |  number:'':'en-US'}}</h2>
         </div>
 
     </div>
     <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-                What is Corvid-19?
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-      
-          <p>Coronavirus disease (COVID-19) is an infectious disease caused by a new virus.
-            The disease causes respiratory illness (like the flu) with symptoms such as a cough, fever, and in more
-            severe cases, difficulty breathing. You can protect yourself by washing your hands frequently, avoiding
-            touching your face, and avoiding close contact (1 meter or 3 feet) with people who are unwell.</p>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    What is Covid-19?
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <p>Coronavirus disease (COVID-19) is an infectious disease caused by a new virus.
+                The disease causes respiratory illness (like the flu) with symptoms such as a cough, fever, and in more
+                severe cases, difficulty breathing. You can protect yourself by washing your hands frequently, avoiding
+                touching your face, and avoiding close contact (1 meter or 3 feet) with people who are unwell.</p>
 
         </mat-expansion-panel>
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-              <mat-panel-title>
-                Symptoms
-              </mat-panel-title>
+                <mat-panel-title>
+                    Symptoms
+                </mat-panel-title>
             </mat-expansion-panel-header>
-        
+
             <p>People may be sick with the virus for 1 to 14 days before developing symptoms. The most common symptoms
                 of coronavirus disease (COVID-19) are fever, tiredness, and dry cough. Most people (about 80%) recover
                 from the disease without needing special treatment.
@@ -77,48 +94,53 @@
                 <li>tiredness</li>
                 <li>difficulty breathing (severe cases)</li>
             </ul>
-          </mat-expansion-panel>
+        </mat-expansion-panel>
 
-          <mat-expansion-panel>
+        <mat-expansion-panel>
             <mat-expansion-panel-header>
-              <mat-panel-title>
-                  Prevention
-              </mat-panel-title>
+                <mat-panel-title>
+                    Prevention
+                </mat-panel-title>
             </mat-expansion-panel-header>
-            
+
             <div *ngFor="let item of prevention">
                 <h4>{{item.title}}</h4>
                 <p>{{item.action}}</p>
                 <p><strong>Reason: </strong> {{item.reason}}</p>
             </div>
+
+        </mat-expansion-panel>
+        
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                  More Information (Videos)
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <iframe style="max-width: 560px;width: 100%; height: auto;" src="https://www.youtube.com/embed/FVIGhz3uwuQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe style="max-width: 560px;width: 100%; height: auto;" src="https://www.youtube.com/embed/dSQztKXR6k0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe style="max-width: 560px;width: 100%; height: auto;" src="https://www.youtube.com/embed/-LKVUarhtvE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe style="max-width: 560px;width: 100%; height: auto;" src="https://www.youtube.com/embed/v93rcPkFkZc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe style="max-width: 560px;width: 100%; height: auto;" src="https://www.youtube.com/embed/BE-cA4UK07c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   
           </mat-expansion-panel>
-<!-- 
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                  Videos
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-        
-  
-          </mat-expansion-panel> -->
 
-          <mat-expansion-panel>
+        <mat-expansion-panel>
             <mat-expansion-panel-header>
-              <mat-panel-title>
-                  Links
-              </mat-panel-title>
+                <mat-panel-title>
+                    Links
+                </mat-panel-title>
             </mat-expansion-panel-header>
-        
+
             <a href="http://www.nicd.ac.za/" target="_blank">National Institute of Communicable Diseases</a><br>
-            <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank">World Health Organisation</a>
-          </mat-expansion-panel>
+            <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank">World Health
+                Organisation</a>
+        </mat-expansion-panel>
 
 
-          
+
     </mat-accordion>
 
-    
+
 
 </div>

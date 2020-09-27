@@ -1,15 +1,22 @@
 <div class="container" fxLayout="row wrap" fxLayout.lt-md="column" fxFlex="100" fxFill>
     <div fxLayout="column wrap">
-        <div style="padding-top: 10px;" fxLayout="column wrap" style="text-align: center;" fxLayoutAlign="space-evenly center">
-            <div class="searchBar fadeInDown" fxLayout="row nowrap" fxLayoutAlign="center start" fxFlex="100">
-                <input MatInput type="text" style="max-width: 170px;" placeholder="Search for a Country" matInput [formControl]="searchCountry"
-                    [matAutocomplete]="countryResult" #searchTerm>
+        <div style="padding-top: 10px;" fxLayout="column wrap" style="text-align: center;"
+            fxLayoutAlign="space-evenly center">
+            <div class="searchBar fadeIn" fxLayout="row nowrap" fxLayoutAlign="center start" fxFlex="100">
+                <input MatInput type="text" style="max-width: 170px;" placeholder="Search for a Country" matInput
+                    [formControl]="searchCountry" [matAutocomplete]="countryResult" #searchTerm>
                 <div fxLayout="column wrap" fxLayoutAlign="center center" fxFlex="10" (click)="clearText()"
-                style="padding: 4px 0;display: flex;cursor: pointer;">
-                <mat-icon>clear</mat-icon>
+                    style="padding: 4px 0;display: flex;cursor: pointer;">
+                    <mat-icon>clear</mat-icon>
                 </div>
-<mat-icon [routerLink]="['/information']" class="infoBtn bounce">info_outline</mat-icon>
+                <!-- <mat-icon [routerLink]="['/information']" class="infoBtn bounce">info_outline</mat-icon> -->
 
+            </div>
+            <div fxLayout="row nowrap" class="countriesChipList">
+                <mat-chip-list *ngIf="countries">
+                    <mat-chip style="cursor: pointer;" [disableRipple]="true" (click)="updateCountry(country.country,searchTerm);clearText()"
+                        *ngFor="let country of countries">{{country.country}}</mat-chip>
+                </mat-chip-list>
             </div>
             <mat-autocomplete (optionSelected)="updateCountry($event.option.value,searchTerm)" autoActiveFirstOption
                 #countryResult="matAutocomplete">
@@ -20,61 +27,189 @@
         </div>
         <mat-card>
             <div *ngIf="!data" style="margin: 0 auto;text-align: center;">
-                <div class="lds-ripple"><div></div><div></div></div>
+                <div class="loadingPicture">
+                    <!-- <img src="../../assets/covid19cases.today-loader.png" alt=""> -->
+                    <p>Fetching Data from World Health Organisation</p>
+                </div>
+                <p *ngIf="noInternet">Cannot Reach Network</p>
             </div>
-            <!-- <mat-card-header > -->
-            <!-- <div mat-card-avatar class="example-header-image"></div> -->
-            <div class="casesTitle" fxLayout="row wrap" style="text-align: center;" *ngIf="data">
+
+            <!-- <div style="text-align: end;margin: 10px 0;" *ngIf="data">
+                View Yesterday's Cases  <mat-slide-toggle (change)="getInfo()" [(ngModel)]="isYesterday" ></mat-slide-toggle>
+            </div>
+
+            <div class="casesTitle fadeIn" fxLayout="row wrap" style="text-align: center;" *ngIf="data">
                 <div fxLayout="column wrap" fxFlex="1">
                     <h2>{{data.country}}</h2>
-                    <p>Number of Reported Cases</p>
+                    <p>Number of Confirmed Cases</p>
                 </div>
-                <div fxLayout="column wrap"  fxFlex="1">
-                    <mat-card-subtitle class="caseNumber">{{data.cases}}</mat-card-subtitle>
-                    <p>Cases per one million : {{data.casesPerOneMillion}}</p>
-                    <!-- <div fxLayout="row" fxLayoutAlign="center center">
-                    <p>Updated on {{updated}}</p>
-                    <mat-icon (click)="getInfo()">refresh</mat-icon>
-                    </div> -->
+                <div fxLayout="column wrap" fxFlex="1">
+                    <h1 class="caseNumber">{{data.cases |  number:'':'en-US'}}</h1>
+                    <div *ngIf="data.tests !== 0">
+                        <p>Tests Conducted : {{data.tests |  number:'':'en-US'}}</p>
+                        <p>{{percent | number:'1.1-1'}}% are positive</p>
+                    </div>
+                    <div *ngIf="data.tests == 0">
+                        <p>This country does not share the number of tests it conducts</p>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <mat-icon (click)="getInfo()">refresh</mat-icon> 
+                    </div>
                 </div>
+            </div> -->
+
+
+            <div *ngIf="data" class="newUInumbers fadeInUp">
+
+                <div class="newUIContainer">
+
+                    <div style="text-align: end;margin: 10px 0;" *ngIf="data">
+                        View Yesterday's Cases  <mat-slide-toggle (change)="getInfo()" [(ngModel)]="isYesterday" ></mat-slide-toggle>
+                    </div>
+
+                    <div class="casesTitle fadeIn" fxLayout="row wrap" style="text-align: center;" *ngIf="data">
+                        <div fxLayout="column wrap" fxFlex="1">
+                            <h2>{{data.country}}</h2>
+                            <p>Number of Confirmed Cases</p>
+                        </div>
+                        <div fxLayout="column wrap" fxFlex="1">
+                            <h1 class="caseNumber">{{data.cases |  number:'':'en-US'}}</h1>
+                            <div *ngIf="data.tests !== 0">
+                                <p>Tests Conducted : {{data.tests |  number:'':'en-US'}}</p>
+                                <p>{{percent | number:'1.1-1'}}% are positive</p>
+                            </div>
+                            <div *ngIf="data.tests == 0">
+                                <p>This country does not share the number of tests it conducts</p>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <!-- <mat-icon (click)="getInfo()">refresh</mat-icon> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="newUIContainer">
+                    <h3>At a glance</h3>
+                    <div class="NumberBlock fadeInUp">
+                        <fa-icon [icon]="faHandHoldingMedical"></fa-icon>
+                        <h3>New Cases Today</h3>
+                        <div class="caseNumberBlock">
+                            <p>{{data.todayCases  |  number:'':'en-US'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="NumberBlock fadeInUp">
+                        <fa-icon [icon]="faSkull"></fa-icon>
+                        <h3>New Deaths Today</h3>
+                        <div class="caseNumberBlock">
+                            <p>{{data.todayDeaths  |  number:'':'en-US'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="NumberBlock">
+                        <fa-icon [icon]="faProcedures"></fa-icon>
+                        <h3>Critical Cases</h3>
+                        <div class="caseNumberBlock">
+                            <p>{{data.critical  |  number:'':'en-US'}}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="newUIContainer">
+                    <h3>Overall Numbers</h3>
+                    <div class="NumberBlock">
+                        <fa-icon [icon]="faUserCheck"></fa-icon>
+                        <h3>Recovered</h3>
+                        <div class="caseNumberBlock">
+                            <p>{{data.recovered  |  number:'':'en-US'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="NumberBlock">
+                        <fa-icon [icon]="faLungsVirus"></fa-icon>
+                        <h3>Active Cases</h3>
+                        <div class="caseNumberBlock">
+                            <p>{{data.active  |  number:'':'en-US'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="NumberBlock">
+                        <fa-icon [icon]="faSkullCrossbones"></fa-icon>
+                        <h3>Total Deaths</h3>
+                        <div class="caseNumberBlock">
+                            <p>{{data.deaths  |  number:'':'en-US'}}</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- </mat-card-header> -->
+            <div *ngIf="data" style="margin-top: 15px;">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title style="color: #4fb3bf;">
+                            More information on {{data.country}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p><strong> {{data.country}}'s Flag:</strong></p>
+                    <img style="box-shadow: 6px 9px 10px 3px #cacaca;" src="{{data.countryInfo.flag}}"
+                        alt="{{data.country}} flag">
 
-            <mat-card-content class="blockContainers" fxLayout="column wrap" *ngIf="data">
-                <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>New Cases Today</h3>
-                        <p>{{data.todayCases}}</p>
+                    <p>Continent : <strong>{{data.continent}}</strong></p>
+                    <p>Total Population : <strong>{{data.population |  number:'':'en-US'}}</strong></p>
+                    <p>Total Cases : <strong>{{data.cases |  number:'':'en-US'}}</strong></p>
+                    <p>Cases per one million : <strong>{{data.casesPerOneMillion |  number:'':'en-US'}}</strong>
+                        <fa-icon style="margin-left: 15px;color: #4fb3bf;cursor: pointer;" (click)="info = !info" [icon]="faQuestionCircle"></fa-icon>
+                    </p>
+                    <div *ngIf="info" class="fadeInDown">
+                        <p>A basic measure of the corona virus frequency is a rate, which takes into account the number
+                            of cases or deaths and the population size. This is known as the 'cases per one million'</p>
+                        <p>For example, {{data.country}} has {{data.casesPerOneMillion |  number:'':'en-US'}} cases per one million, that
+                            means for every one million people, {{data.casesPerOneMillion |  number:'':'en-US'}} have the corona virus</p>
                     </div>
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Active Cases</h3>
-                        <p>{{data.active}}</p>
-                    </div>
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>New Deaths Today</h3>
-                        <p>{{data.todayDeaths}}</p>
-                    </div>
-                </div>
-                <div class="content" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Recovered</h3>
-                        <p>{{data.recovered}}</p>
-                    </div>
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Critical Cases</h3>
-                        <p>{{data.critical}}</p>
-                    </div>
-                    <div class="blockInfo" fxLayout="column wrap">
-                        <h3>Deaths</h3>
-                        <p>{{data.deaths}}</p>
-                    </div>
-                </div>
-            </mat-card-content>
+
+                    <p>Total Deaths : <strong>{{data.deaths |  number:'':'en-US'}}</strong></p>
+                    <p>Deaths per one million : <strong>{{data.deathsPerOneMillion |  number:'':'en-US'}}</strong></p>
+
+                    <p>Total Tests : <strong>{{data.tests |  number:'':'en-US'}}</strong></p>
+                    <p>Tests per one million : <strong>{{data.testsPerOneMillion |  number:'':'en-US'}}</strong>
+                        <br>
+
+                        <a href="https://www.google.com/maps/@{{data.countryInfo.lat}},{{data.countryInfo.long}},6z"
+                            target="_blank">
+                            <p>View {{data.country}} on Google Maps</p>
+                        </a>
+
+
+                </mat-expansion-panel>
+
+            </div>
         </mat-card>
 
-            <!-- <div class="articlesContainer" #articles id="articles" fxLayout="column wrap">
-                <app-articles></app-articles>
-            </div> -->
+        <div class="graphContainer" *ngIf="showGraph">
+
+            <div style="max-width: 700px;margin: 0 auto;" *ngIf="lineChartLabels && data && isSA">
+                <app-graphs></app-graphs>
+            </div>
+            <div style="max-width: 700px;margin: 0 auto;" *ngIf="lineChartLabels && data">
+                <h2 style="text-align: center;">Timeline for {{data.country}}</h2>
+                <canvas baseChart width="200" height="200" [datasets]="lineChartData" [labels]="lineChartLabels"
+                    [options]="lineChartOptions" [legend]="lineChartLegend" [chartType]="lineChartType"></canvas>
+            </div>
+
+            <div fxLayout="row wrap" style="display: flex; margin: 20px 0;justify-content: center;"
+                *ngIf="lineChartLabels && data">
+                <h5 style="margin: 14px;">Toggle Chart: </h5>
+                <mat-button-toggle-group [multiple]='true' name="fontStyle" aria-label="Font Style" [(ngModel)]="selected">
+                    <mat-button-toggle [checked]="true" (click)="changeGraph(0)" value="line">Cases
+                    </mat-button-toggle>
+                    <mat-button-toggle [checked]="true" (click)="changeGraph(1)" value="deaths">Deaths
+                    </mat-button-toggle>
+                    <mat-button-toggle [checked]="true" (click)="changeGraph(2)" value="recovered">Recovered
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+        </div>
+
     </div>
 </div>
