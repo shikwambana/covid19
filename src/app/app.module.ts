@@ -15,6 +15,7 @@ import { ChartsModule } from 'ng2-charts';
 import { HopitalsComponent } from './hopitals/hopitals.component';
 import { NewhomeComponent } from './newhome/newhome.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { WorldComponent } from './world/world.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     GraphsComponent,
     InfoComponent,
     HopitalsComponent,
-    NewhomeComponent
+    NewhomeComponent,
+    WorldComponent
   ],
   imports: [
     BrowserModule,

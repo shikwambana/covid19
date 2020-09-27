@@ -1,0 +1,32 @@
+<div class="infoContainer">
+    <div class="articleHeader" fxLayout="column" fxLayoutAlign="center center">
+        <div class="articleHeaderOverlay">
+            <h2 class="fadeInDown">All Countries</h2>
+            <div style="display: none;">
+                <div class="lds-ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="casesTitle fadeIn globalCases" fxLayout="row wrap" style="text-align: center; margin: 15px 0;" *ngIf="cases">
+        <div fxLayout="column wrap" fxFlex="1">
+            <p>Number of Confirmed Global Cases</p>
+        </div>
+        <div fxLayout="column wrap" fxFlex="1">
+            <h1 class="caseNumber">{{cases.cases |  number:'':'en-US'}}</h1>
+            <div>
+                <p>Recoveries : {{cases.recovered |  number:'':'en-US'}}</p>
+                <p>Deaths : {{cases.deaths |  number:'':'en-US'}}</p>
+            </div>
+            
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <!-- <mat-icon (click)="getInfo()">refresh</mat-icon> -->
+            </div>
+        </div>
+    </div>
+
+    
+</div>

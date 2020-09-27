@@ -12,8 +12,7 @@
                 <!-- <mat-icon [routerLink]="['/information']" class="infoBtn bounce">info_outline</mat-icon> -->
 
             </div>
-            <div fxLayout="row nowrap" style="overflow-x: auto; overflow-y: hidden; width: 300px;margin: 0 auto;"
-                class="countriesChipList">
+            <div fxLayout="row nowrap" class="countriesChipList">
                 <mat-chip-list *ngIf="countries">
                     <mat-chip style="cursor: pointer;" [disableRipple]="true" (click)="updateCountry(country.country,searchTerm);clearText()"
                         *ngFor="let country of countries">{{country.country}}</mat-chip>
@@ -35,7 +34,7 @@
                 <p *ngIf="noInternet">Cannot Reach Network</p>
             </div>
 
-            <div style="text-align: end;margin: 10px 0;" *ngIf="data">
+            <!-- <div style="text-align: end;margin: 10px 0;" *ngIf="data">
                 View Yesterday's Cases  <mat-slide-toggle (change)="getInfo()" [(ngModel)]="isYesterday" ></mat-slide-toggle>
             </div>
 
@@ -54,13 +53,40 @@
                         <p>This country does not share the number of tests it conducts</p>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="center center">
-                        <!-- <mat-icon (click)="getInfo()">refresh</mat-icon> -->
+                        <mat-icon (click)="getInfo()">refresh</mat-icon> 
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
             <div *ngIf="data" class="newUInumbers fadeInUp">
+
+                <div class="newUIContainer">
+
+                    <div style="text-align: end;margin: 10px 0;" *ngIf="data">
+                        View Yesterday's Cases  <mat-slide-toggle (change)="getInfo()" [(ngModel)]="isYesterday" ></mat-slide-toggle>
+                    </div>
+
+                    <div class="casesTitle fadeIn" fxLayout="row wrap" style="text-align: center;" *ngIf="data">
+                        <div fxLayout="column wrap" fxFlex="1">
+                            <h2>{{data.country}}</h2>
+                            <p>Number of Confirmed Cases</p>
+                        </div>
+                        <div fxLayout="column wrap" fxFlex="1">
+                            <h1 class="caseNumber">{{data.cases |  number:'':'en-US'}}</h1>
+                            <div *ngIf="data.tests !== 0">
+                                <p>Tests Conducted : {{data.tests |  number:'':'en-US'}}</p>
+                                <p>{{percent | number:'1.1-1'}}% are positive</p>
+                            </div>
+                            <div *ngIf="data.tests == 0">
+                                <p>This country does not share the number of tests it conducts</p>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <!-- <mat-icon (click)="getInfo()">refresh</mat-icon> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="newUIContainer">
                     <h3>At a glance</h3>
                     <div class="NumberBlock fadeInUp">

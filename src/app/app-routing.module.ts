@@ -6,6 +6,7 @@ import { GraphsComponent } from './graphs/graphs.component';
 import { InfoComponent } from './info/info.component';
 import { HopitalsComponent } from './hopitals/hopitals.component';
 import { NewhomeComponent } from './newhome/newhome.component';
+import { WorldComponent } from './world/world.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'article/:articleID/:articleTitle', component: ArticleComponent},
   { path: 'covid19statistics', component: GraphsComponent},
   { path: 'hospitals', component: HopitalsComponent},
+  { path: 'world', component: WorldComponent },
   { path: 'information', component: InfoComponent, children : [
     { path: ':section', component: InfoComponent}
   ]}

@@ -13,6 +13,7 @@ body {
   background-repeat: no-repeat;
   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
+
 body {
   margin: 0;
   font-family: "Noto Sans JP", sans-serif;
@@ -29,6 +30,7 @@ a {
   color: $lightBlack;
   font-weight: inherit;
 }
+
 .navabr {
   background-color: $primary;
 }
@@ -92,6 +94,14 @@ a {
   }
 }
 
+.countriesChipList {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 500px;
+  margin: 0 auto;
+  width: 75%;
+}
+
 .mat-chip-list-wrapper {
   display: flex;
   flex-direction: row;
@@ -144,6 +154,7 @@ a {
   .caseNumber {
     font-size: 10vw;
   }
+
   h3 {
     font-size: 3vw;
   }
@@ -419,6 +430,7 @@ a {
   width: 80px;
   height: 80px;
 }
+
 .lds-ripple div {
   position: absolute;
   border: 4px solid $light;
@@ -426,6 +438,7 @@ a {
   border-radius: 50%;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
+
 .lds-ripple div:nth-child(2) {
   animation-delay: -0.5s;
 }
@@ -438,6 +451,7 @@ a {
     height: 0;
     opacity: 1;
   }
+
   100% {
     top: 0px;
     left: 0px;
@@ -448,6 +462,7 @@ a {
 }
 
 @keyframes bounce {
+
   from,
   20%,
   53%,
