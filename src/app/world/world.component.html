@@ -11,22 +11,61 @@
         </div>
     </div>
 
-    <div class="casesTitle fadeIn globalCases" fxLayout="row wrap" style="text-align: center; margin: 15px 0;" *ngIf="cases">
+    <div class="casesTitle fadeIn globalCases" fxLayout="row wrap" style="margin: 15px 0;" *ngIf="cases">
         <div fxLayout="column wrap" fxFlex="1">
             <p>Number of Confirmed Global Cases</p>
         </div>
-        <div fxLayout="column wrap" fxFlex="1">
+        <div class="globalCasesSummary" fxLayout="column wrap" fxFlex="1">
             <h1 class="caseNumber">{{cases.cases |  number:'':'en-US'}}</h1>
-            <div>
-                <p>Recoveries : {{cases.recovered |  number:'':'en-US'}}</p>
-                <p>Deaths : {{cases.deaths |  number:'':'en-US'}}</p>
+            <h4 style="margin: 5px 0;">Countries affected : {{cases.affectedCountries}}</h4>
+            <div fxLayout="row">
+                <div fxFlex='48'>
+                    <p>Recoveries : {{cases.recovered |  number:'':'en-US'}}</p>
+                    <p>Deaths : {{cases.tests |  number:'':'en-US'}}</p>
+                </div>
+                <div fxFlex='48'>
+                    <p>Recoveries : {{cases.active |  number:'':'en-US'}}</p>
+                    <p>Deaths : {{cases.deaths |  number:'':'en-US'}}</p>
+                </div>
             </div>
-            
+
+
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!-- <mat-icon (click)="getInfo()">refresh</mat-icon> -->
             </div>
         </div>
     </div>
 
-    
+    <div *ngIf="countries" fxLayout="row" fxFlex='100'>
+        <mat-card class="caseCard" *ngFor="let item of countries">
+            <mat-card-header>
+                <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                <mat-card-title>{{item.country}}</mat-card-title>
+                <mat-card-subtitle>Cases : {{item.cases}}</mat-card-subtitle>
+            </mat-card-header>
+            <img style="max-width: 300px;margin: 5px 0;width: 100%;" mat-card-image src="{{item.countryInfo.flag}}"
+                alt="flag of {{item.country}}">
+            <mat-card-content>
+                <p>
+                    New Cases Today : {{item.todayCases}} <br>
+                    New Recoveries : {{item.todayRecovered}} <br>
+                    New Deaths : {{item.deaths}}
+                </p>
+                <p>
+                    Total Cases : {{item.cases}} <br>
+                    Total Recoveries : {{item.recovered}} <br>
+                    Total Deaths : {{item.deaths}}
+                </p>
+            </mat-card-content>
+            <!-- <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions> -->
+        </mat-card>
+    </div>
+    <mat-paginator #paginator [length]="countries.length"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+
 </div>
