@@ -135,7 +135,7 @@ a {
   border-radius: 5px;
   box-shadow: 0 -2px 5px -1px rgba(0, 0, 0, 0.15), 0 0px 2px 0px rgba(0, 0, 0, 0.15), 0 4px 4px rgba(0, 0, 0, 0.15),
     0 5px 8px rgba(0, 0, 0, 0.15);
-  padding: 1px;
+    padding: 7px 10px;
 }
 
 .searchBar input,
@@ -153,6 +153,7 @@ a {
 .globalCasesSummary p {
   width: fit-content;
 }
+
 @media only screen and (max-width: 600px) {
   .caseNumber {
     font-size: 10vw;
@@ -377,12 +378,14 @@ a {
 
 .caseCard {
   max-width: 300px;
-    margin: 9px;
-    border-radius: 20px;
-background: #ffffff;
-box-shadow:  20px 20px 60px #d9d9d9, 
-             -20px -20px 60px #ffffff;
+  margin: 9px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 20px 20px 60px #d9d9d9,
+    -20px -20px 60px #ffffff;
+  border: .2px #cecece solid;
 }
+
 //===============================
 // animation
 //===============================
@@ -517,4 +520,12 @@ box-shadow:  20px 20px 60px #d9d9d9,
   flex-wrap: wrap;
   margin: 0 auto;
   place-content: center;
+}
+
+.worldFilter {
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: white;
 }
