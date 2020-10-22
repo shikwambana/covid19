@@ -87,10 +87,10 @@
 
 
             </mat-card-content>
-            <!-- <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
-            </mat-card-actions> -->
+            <mat-card-actions>
+                <button mat-button class="viewBtn" (click)="view(item)">View More Information</button>
+                <!-- <button mat-button>SHARE</button> -->
+            </mat-card-actions>
         </mat-card>
     </div>
     <div *ngIf="countries">

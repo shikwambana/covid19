@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../api.service';
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-world',
   templateUrl: './world.component.html',
@@ -22,7 +23,7 @@ export class WorldComponent implements OnInit {
 
   @ViewChild('paginator', { static: true }) paginator: MatPaginator;
   sort: string = 'cases';
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router : Router) { }
 
   ngOnInit() {
     this.getNumbers()
@@ -43,6 +44,11 @@ export class WorldComponent implements OnInit {
   private _filter(value: string) {
     const filterValue = value.toLowerCase();
     this.countries = this.allCountries.filter(option => { return option.country.toLowerCase().includes(filterValue) });
+  }
+
+  view(item){
+    sessionStorage.setItem('country', item['country'])
+    this.router.navigate(['/'])
   }
 
   clearText() {
