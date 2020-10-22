@@ -57,13 +57,17 @@ export class ApiService {
     return this.http.get('https://corona.lmao.ninja/v2/all?yesterday=')
   }
 
-  getAllCountries(yesterday?) {
+  getAllCountries(yesterday?,sort?) {
+    if(!sort){
+      sort = 'cases'
+    }
     if (yesterday) {
-      return this.http.get('https://corona.lmao.ninja/v2/countries?yesterday=true&sort=cases')
+      return this.http.get('https://corona.lmao.ninja/v2/countries?yesterday=true&sort='+sort)
     } else {
-      return this.http.get('https://corona.lmao.ninja/v2/countries?yesterday=false&sort=cases')
+      return this.http.get('https://corona.lmao.ninja/v2/countries?yesterday=false&sort='+sort)
     }
   }
+  
 
   getYesterday() { }
 
