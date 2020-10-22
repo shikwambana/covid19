@@ -1,4 +1,4 @@
-<div class="infoContainer">
+<div class="infoContainer" fxFlex='100' fxFill>
     <div class="articleHeader" fxLayout="column" fxLayoutAlign="center center">
         <div class="articleHeaderOverlay">
             <h2 class="fadeInDown">All Countries</h2>
@@ -36,14 +36,14 @@
         </div>
     </div>
 
-    <div *ngIf="countries" fxLayout="row" fxFlex='100'>
+    <div *ngIf="countries" fxLayout="row wrap" fxLayoutAlign="center center" class="listOfCountries" fxFlex='100'>
         <mat-card class="caseCard" *ngFor="let item of countries">
             <mat-card-header>
                 <!-- <div mat-card-avatar class="example-header-image"></div> -->
                 <mat-card-title>{{item.country}}</mat-card-title>
                 <mat-card-subtitle>Cases : {{item.cases}}</mat-card-subtitle>
             </mat-card-header>
-            <img style="max-width: 300px;margin: 5px 0;width: 100%;" mat-card-image src="{{item.countryInfo.flag}}"
+            <img style="max-width: 300px;margin: 5px 0;width: 100%;border: .2px #b5b5b5 solid;" mat-card-image src="{{item.countryInfo.flag}}"
                 alt="flag of {{item.country}}">
             <mat-card-content>
                 <p>

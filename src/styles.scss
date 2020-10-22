@@ -511,3 +511,10 @@ box-shadow:  20px 20px 60px #d9d9d9,
 .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
   background-color: $light;
 }
+
+.listOfCountries {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  place-content: center;
+}
