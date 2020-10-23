@@ -37,8 +37,8 @@
     </div>
 
     <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="100" class="worldFilter">
-        <div class="searchBar fadeIn" fxLayout="row nowrap" fxLayoutAlign="center start" fxFlex="100">
-            <input MatInput type="text" style="max-width: 250px;" placeholder="Filter" matInput
+        <div class="searchBar fadeIn" style="background: white;" fxLayout="row nowrap" fxLayoutAlign="center start" fxFlex="100">
+            <input MatInput type="text" style="max-width: 250px;" placeholder="Filter Countries" matInput
                 [formControl]="searchCountry" #searchTerm>
             <div fxLayout="column wrap" fxLayoutAlign="center center" fxFlex="10" (click)="clearText()"
                 style="padding: 4px 0;display: flex;cursor: pointer;">
@@ -65,7 +65,7 @@
     </div>
 
     <div *ngIf="countries" fxLayout="row wrap" fxLayoutAlign="center center" class="listOfCountries" fxFlex='100'>
-        <mat-card class="caseCard" *ngFor="let item of (countries | slice: lowValue : highValue)">
+        <mat-card style="cursor: pointer;" class="caseCard" *ngFor="let item of (countries | slice: lowValue : highValue)" (click)="view(item)">
             <mat-card-header>
                 <!-- <div mat-card-avatar class="example-header-image"></div> -->
                 <mat-card-title>{{item.country}}</mat-card-title>
@@ -88,7 +88,7 @@
 
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button class="viewBtn" (click)="view(item)">View More Information</button>
+                <!-- <button mat-button class="viewBtn" >View More Information</button> -->
                 <!-- <button mat-button>SHARE</button> -->
             </mat-card-actions>
         </mat-card>
