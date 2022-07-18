@@ -54,15 +54,15 @@ export class ApiService {
 
   getAllCountries(yesterday?) {
     if (yesterday) {
-      return this.http.get('https://corona.lmao.ninja/v2/countries?yesterday=true&sort=cases')
+      return this.http.get('https://disease.sh/v3/covid-19/countries?yesterday=true&sort=cases')
     } else {
-      return this.http.get('https://corona.lmao.ninja/v2/countries?yesterday=false&sort=cases')
+      return this.http.get('https://disease.sh/v3/covid-19/countries?yesterday=false&sort=cases')
     }
   }
 
   getYesterday() { }
 
   getHistoricalData(country) {
-    return this.http.get(`https://corona.lmao.ninja/v2/historical/${country}?lastdays=50`)
+    return this.http.get(`https://disease.sh/v3/covid-19/historical/${country}?lastdays=50`)
   }
 }
