@@ -69,8 +69,9 @@ export class HomeComponent implements OnInit {
 
   getInfo() {
 
-    this.api.getAllCountries(this.isYesterday).subscribe(res => {
+    this.api.getAllCountries(this.isYesterday,'cases').subscribe(res => {
       this.countries = res;
+      this.api.countries = res
       if (sessionStorage.getItem('country')) {
         this.showCountryData(sessionStorage.getItem('country'));
       } else {

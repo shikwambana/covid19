@@ -1,4 +1,4 @@
-<div class="infoContainer">
+<div class="infoContainer" fxFlex='100' fxFill>
     <div class="articleHeader" fxLayout="column" fxLayoutAlign="center center">
         <div class="articleHeaderOverlay">
             <h2 class="fadeInDown">All Countries</h2>
@@ -11,22 +11,93 @@
         </div>
     </div>
 
-    <div class="casesTitle fadeIn globalCases" fxLayout="row wrap" style="text-align: center; margin: 15px 0;" *ngIf="cases">
+    <div class="casesTitle fadeIn globalCases" fxLayout="row wrap" style="margin: 15px 0;" *ngIf="cases">
         <div fxLayout="column wrap" fxFlex="1">
             <p>Number of Confirmed Global Cases</p>
         </div>
-        <div fxLayout="column wrap" fxFlex="1">
+        <div class="globalCasesSummary" fxLayout="column wrap" fxFlex="1">
             <h1 class="caseNumber">{{cases.cases |  number:'':'en-US'}}</h1>
-            <div>
-                <p>Recoveries : {{cases.recovered |  number:'':'en-US'}}</p>
-                <p>Deaths : {{cases.deaths |  number:'':'en-US'}}</p>
-            </div>
-            
+            <h4 style="margin: 5px 0;">Countries affected : {{cases.affectedCountries}}</h4>
+            <!-- <div fxLayout="row">
+                <div fxFlex='48'>
+                    <p>Recoveries : {{cases.recovered |  number:'':'en-US'}}</p>
+                    <p>Deaths : {{cases.tests |  number:'':'en-US'}}</p>
+                </div>
+                <div fxFlex='48'>
+                    <p>Recoveries : {{cases.active |  number:'':'en-US'}}</p>
+                    <p>Deaths : {{cases.deaths |  number:'':'en-US'}}</p>
+                </div>
+            </div> -->
+
+
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!-- <mat-icon (click)="getInfo()">refresh</mat-icon> -->
             </div>
         </div>
     </div>
 
-    
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="100" class="worldFilter">
+        <div class="searchBar fadeIn" style="background: white;" fxLayout="row nowrap" fxLayoutAlign="center start" fxFlex="100">
+            <input MatInput type="text" style="max-width: 250px;" placeholder="Filter Countries" matInput
+                [formControl]="searchCountry" #searchTerm>
+            <div fxLayout="column wrap" fxLayoutAlign="center center" fxFlex="10" (click)="clearText()"
+                style="padding: 4px 0;display: flex;cursor: pointer;">
+                <mat-icon>clear</mat-icon>
+            </div>
+
+        </div>
+
+        <!-- <div style="max-width: 170px;">
+            <mat-form-field>
+                <mat-label>Sort Countries by</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let sort of sortOrder" [value]="sort">
+                        {{sort}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div> -->
+    </div>
+    <div *ngIf="countries" style="margin: 0 auto;max-width: 400px;">
+        <mat-paginator #paginator [length]="countries.length" [pageSize]="10" (page)="getPaginatorData($event)"
+            [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator>
+    </div>
+
+    <div *ngIf="countries" fxLayout="row wrap" fxLayoutAlign="center center" class="listOfCountries" fxFlex='100'>
+        <mat-card style="cursor: pointer;" class="caseCard" *ngFor="let item of (countries | slice: lowValue : highValue)" (click)="view(item)">
+            <mat-card-header>
+                <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                <mat-card-title>{{item.country}}</mat-card-title>
+                <mat-card-subtitle>Cases : <span style="font-weight: bold;">{{item.cases}}</span> </mat-card-subtitle>
+            </mat-card-header>
+            <img style="max-width: 300px;margin: 5px 0;width: 100%;border: .2px #b5b5b5 solid;" mat-card-image
+                src="{{item.countryInfo.flag}}" alt="flag of {{item.country}}">
+            <mat-card-content>
+                <p>
+                    New Cases Today : {{item.todayCases}} <br>
+                    New Recoveries : {{item.todayRecovered}} <br>
+                    New Deaths : {{item.deaths}}
+                </p>
+                <p>
+                    Total Cases : {{item.cases}} <br>
+                    Total Recoveries : {{item.recovered}} <br>
+                    Total Deaths : {{item.deaths}}
+                </p>
+
+
+            </mat-card-content>
+            <mat-card-actions>
+                <!-- <button mat-button class="viewBtn" >View More Information</button> -->
+                <!-- <button mat-button>SHARE</button> -->
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div *ngIf="countries">
+        <mat-paginator #paginator [length]="countries.length" [pageSize]="10" (page)="getPaginatorData($event)"
+            [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator>
+    </div>
+
+
 </div>

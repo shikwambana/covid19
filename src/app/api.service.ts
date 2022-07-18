@@ -7,6 +7,7 @@ import { HttpClientModule, HttpClient, HttpHeaders } from "@angular/common/http"
 export class ApiService {
   myheaders: HttpHeaders;
   article;
+  countries: Object;
 
   constructor(private http: HttpClient) {
     this.myheaders = new HttpHeaders();
@@ -52,13 +53,21 @@ export class ApiService {
   //==========corona.lmao.ninja===========
   //======================================
 
-  getAllCountries(yesterday?) {
+  getGlobal(yesterday?){
+    return this.http.get('https://corona.lmao.ninja/v2/all?yesterday=')
+  }
+
+  getAllCountries(yesterday?,sort?) {
+    if(!sort){
+      sort = 'cases'
+    }
     if (yesterday) {
       return this.http.get('https://disease.sh/v3/covid-19/countries?yesterday=true&sort=cases')
     } else {
       return this.http.get('https://disease.sh/v3/covid-19/countries?yesterday=false&sort=cases')
     }
   }
+  
 
   getYesterday() { }
 

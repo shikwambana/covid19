@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ApiService } from "../api.service";
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-hopitals',
@@ -49,6 +50,11 @@ export class HopitalsComponent implements OnInit, AfterViewInit {
     }]
   dataSource;
   noInternet = false;
+  lowValue: number = 0;
+  highValue: number;
+
+  @ViewChild('paginator', { static: true }) paginator: MatPaginator;
+
   constructor(private api: ApiService) { }
 
   ngOnInit() {
@@ -94,6 +100,17 @@ export class HopitalsComponent implements OnInit, AfterViewInit {
     result.pop();
     this.hospitals = result;
     this.dataSource = new MatTableDataSource(this.hospitals);
+    this.dataSource.paginator = this.paginator
+    this.highValue = this.hospitals.length
+
+    // let body = {
+    //   length: this.highValue,
+    //   pageIndex: 0,
+    //   pageSize: 10,
+    //   previousPageIndex: 1
+    // }
+
+    // this.getPaginatorData(body)
     console.log(result)
   }
 
@@ -113,5 +130,11 @@ export class HopitalsComponent implements OnInit, AfterViewInit {
 
   showPosition(position){
     console.log(position)
+  }
+
+  getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    return event;
   }
 }

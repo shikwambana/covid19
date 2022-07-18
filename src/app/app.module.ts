@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'; 
-import { MatCardModule, MatAutocompleteModule, MatMenuModule, MatButtonToggleModule, MatIconModule, MatFormFieldModule,MatInputModule, MatTableModule, MatPaginatorModule, MatTabsModule, MatExpansionModule, MatChipsModule, MatSlideToggleModule } from '@angular/material';
+import { MatCardModule, MatAutocompleteModule, MatMenuModule, MatButtonToggleModule, MatIconModule, MatFormFieldModule,MatInputModule, MatTableModule, MatPaginatorModule, MatTabsModule, MatExpansionModule, MatChipsModule, MatSelectModule, MatSlideToggleModule } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
@@ -47,6 +47,7 @@ import { WorldComponent } from './world/world.component';
     MatFormFieldModule, 
     MatInputModule,
     MatSlideToggleModule,
+    MatSelectModule,
     FormsModule, 
     ChartsModule,
     ReactiveFormsModule,
